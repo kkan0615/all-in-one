@@ -1,10 +1,17 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
+import mainPageRoutes from './modules/mainPage'
+import businessRoutes from './modules/business'
+import erpTemplateRoutes from './modules/erpTemplate'
+import testRoutes from './modules/test'
+import authRoutes from './modules/auth'
+import listRoutes from './modules/shoppingMall'
 import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-  const routes: Array<RouteConfig> = [
+const defaultRoutes: RouteConfig[] = [
   {
     path: '/',
     name: 'Home',
@@ -20,10 +27,21 @@ Vue.use(VueRouter)
   }
 ]
 
+const createRouter = () => {
+  let routes: RouteConfig[] = []
+  routes = routes.concat(defaultRoutes)
+  routes = routes.concat(mainPageRoutes)
+  routes = routes.concat(businessRoutes)
+  routes = routes.concat(testRoutes)
+  routes = routes.concat(authRoutes)
+  routes = routes.concat(listRoutes)
+  routes = routes.concat(erpTemplateRoutes)
+  return routes
+}
+
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+  // mode: process.env.HISTORY || 'history',
+  routes: createRouter()
 })
 
 export default router
