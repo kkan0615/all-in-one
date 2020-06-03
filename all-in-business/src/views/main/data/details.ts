@@ -37,7 +37,7 @@ export const details: Array<DetailInterface> = [
     title: 'Bussiness Template',
     description: 'This is Bussiness template',
     backgroundImage: null,
-    link: '/',
+    link: '/business',
     icon: null,
     color: '#416EB6'
   },

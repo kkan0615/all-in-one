@@ -76,7 +76,6 @@
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import productChip from './productChip.vue'
 import { ProductInterface } from '@/dataInterface/Product/productInterface'
 import { SettingModule } from '@/store/modules/setting'
@@ -88,7 +87,6 @@ import { currencyFormatter } from '@/utils/formaterUtils'
   name: 'ProductCard',
   components: {
     productChip,
-    FontAwesomeIcon,
     Confirm
   }
 })

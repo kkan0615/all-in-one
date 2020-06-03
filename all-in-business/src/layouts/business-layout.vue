@@ -19,7 +19,7 @@
               <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
             </v-col>
             <v-col cols="6" class="text-right">
-              <v-btn small text>edit</v-btn>
+              <v-btn small text>{{ item.icon }}</v-btn>
             </v-col>
           </v-row>
           <v-divider v-else-if="item.divider" :key="i" dark class="my-4" />
@@ -29,9 +29,7 @@
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title class="grey--text">
-                {{
-                  item.text
-                }}
+                {{ item.text }}
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>

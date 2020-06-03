@@ -100,7 +100,7 @@ export const shoppingMenus: Array<MenuInterface> = [
     id: 0,
     groupCode: 0,
     icon: 'fa-ambulance',
-    name: 'Test0',
+    name: 'List',
     level: 0,
     link: '/',
     parentCode: null
@@ -145,7 +145,7 @@ export const shoppingMenus: Array<MenuInterface> = [
     id: 5,
     groupCode: 0,
     icon: 'fa-ambulance',
-    name: 'Item List-SubTest5',
+    name: 'Item List-v1',
     level: 1,
     link: '/shoppingMall/list',
     parentCode: 0
@@ -154,7 +154,7 @@ export const shoppingMenus: Array<MenuInterface> = [
     id: 6,
     groupCode: 0,
     icon: 'fa-ambulance',
-    name: 'SubTest6',
+    name: 'Item List-v2',
     level: 1,
     link: '/',
     parentCode: 0
@@ -163,7 +163,7 @@ export const shoppingMenus: Array<MenuInterface> = [
     id: 7,
     groupCode: 0,
     icon: 'fa-ambulance',
-    name: 'SubTest7',
+    name: 'Item List-v3',
     level: 1,
     link: '/',
     parentCode: 0

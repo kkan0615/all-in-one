@@ -95,7 +95,6 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import { MenuInterface } from '@/dataInterface/menu/MenuInterface'
-// import _ from 'lodash'
 
 @Component({
   name: 'ShoppingNavigationBar',

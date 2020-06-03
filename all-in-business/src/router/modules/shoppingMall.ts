@@ -8,17 +8,20 @@ const shoppingMall: RouteConfig[] = [
       {
         path: '/',
         name: 'ShoppingMallIndex',
-        component: () => import('@/views/shoppingMall/indexPage/index.vue')
+        component: () => import('@/views/shoppingMall/indexPage/index.vue'),
+        meta: { icon: '', hidden: true }
       },
       {
         path: 'list',
         name: 'ShoppingMallList',
-        component: () => import('@/views/shoppingMall/list/index.vue')
+        component: () => import('@/views/shoppingMall/list/index.vue'),
+        meta: { icon: '', hidden: false }
       },
       {
         path: 'product/:productId',
         name: 'ShoppingMallProduct',
-        component: () => import('@/views/shoppingMall/product/index.vue')
+        component: () => import('@/views/shoppingMall/product/index.vue'),
+        meta: { icon: '', hidden: true }
       }
     ]
   }

@@ -10,6 +10,7 @@
         xs="12"
       >
         <v-text-field
+          v-model="searchValue"
           class="mx-4"
           label="search"
           append-icon="search"
@@ -127,11 +128,15 @@ export default class extends Vue {
   private products: Array<any> = []
   private sortOption = [{ code: 0, value: 'ASC' }, { code: 1, value: 'DESC' }, { code: 2, value: 'Rating' }]
   private loading = false
+  private searchValue = ''
 
   private AddIndex = 0 // (Test-test)
 
   clickSearchIconEvent() {
-    console.log('clickSearchIconEvent')
+    const newProductArr = Products.filter((e) => {
+      return e.title.includes(this.searchValue)
+    })
+    this.products = newProductArr
   }
 
   // (Test-test)
@@ -178,10 +183,6 @@ export default class extends Vue {
     })
     renewProducts(newProducts)
     this.products = JSON.parse(JSON.stringify(Products))
-  }
-
-  updated() {
-    console.log('test')
   }
 }
 </script>

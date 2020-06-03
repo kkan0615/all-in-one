@@ -7,6 +7,7 @@ import erpTemplateRoutes from './modules/erpTemplate'
 import testRoutes from './modules/test'
 import authRoutes from './modules/auth'
 import listRoutes from './modules/shoppingMall'
+import convenienceERP from './modules/convenienceERP'
 import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
@@ -36,6 +37,7 @@ const createRouter = () => {
   routes = routes.concat(authRoutes)
   routes = routes.concat(listRoutes)
   routes = routes.concat(erpTemplateRoutes)
+  routes = routes.concat(convenienceERP)
   return routes
 }
 

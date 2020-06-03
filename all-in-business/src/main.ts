@@ -8,6 +8,7 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css' // Icon l
 import Apollo from './apolloClient'
 import VueApollo from 'vue-apollo'
 /** Styles import */
+import '@/styles/index.scss'
 import '@/styles/transition.scss' // Transition scss
 
 /** Vue graphql Setting */
