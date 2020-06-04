@@ -9,12 +9,22 @@
         sm="6"
         xs="6"
       >
-        <v-img
-          height="60vh"
-          :src="firstImage"
-          @drop.prevent="onDropFirstImage"
-          @dragover="onDragOver"
-        />
+        <v-card
+          :color="'grey'"
+        >
+          <v-img
+            height="60vh"
+            :src="firstImage"
+            :draggable="false"
+            @dragstart="onDragStart"
+            @drop.prevent="onDropFirstImage"
+            @dragover="onDragOver"
+          >
+            <v-card-text v-if="!firstImage" class="text-center">
+              Drop down the image to here!
+            </v-card-text>
+          </v-img>
+        </v-card>
       </v-col>
       <v-col
         cols="6"
@@ -24,12 +34,21 @@
         sm="6"
         xs="6"
       >
-        <v-img
-          height="60vh"
-          :src="secondImage"
-          @drop.prevent="onDropSecondImage"
-          @dragover="onDragOver"
-        />
+        <v-card
+          :color="'grey'"
+        >
+          <v-img
+            height="60vh"
+            :src="secondImage"
+            @dragstart="onDragStart"
+            @drop.prevent="onDropSecondImage"
+            @dragover="onDragOver"
+          >
+            <v-card-text v-if="!secondImage" class="text-center">
+              Drop down the image to here!
+            </v-card-text>
+          </v-img>
+        </v-card>
       </v-col>
     </v-row>
     <v-card
@@ -37,7 +56,9 @@
       :dark="true"
       class="pa-2 overflow-auto"
     >
-      <BusinessDropDownImagesGroup />
+      <BusinessDropDownImagesGroup
+        :images="images"
+      />
     </v-card>
   </section>
 </template>
@@ -53,9 +74,15 @@ import BusinessDropDownImagesGroup from './components/ImagesSlideGroup/index.vue
   }
 })
 export default class extends Vue {
-  private firstImage = 'https://lh3.googleusercontent.com/proxy/hmaDC3q25rIFnJDEeBH0GAyobOttvBWeJe4X9yyxBRu7IUG8ufRW9TG45AvQ7Orq09ajpfQccrdbfBj-rqX9YlHb9RJJ6NXwdabYrGUWnn1bJcFgSpOxWl_S2MYU8sD1B9tYdZLkMDFt62pUcC-jtnkc6OdcpJuUcqOcUobQVQjmBfupqfTj64gRHMSBVrQMs-cUIi1XB8goJRgj41oROi8CJT1wo12QneISlNWR0DnwR9fH7T1GET5DrMeqo1s_FE90VX5FDnMS6vKZXzwva_QSAdD2tGJcNanyzuuy26tartxfOkbWnK0Fs0W6BSwXKlmE1r2asfYIKhCQbGlZo3IyZkf6RpOWcp8e-f9PmJIvuCipUyYRg5k9NXnJav-jh7kzb8hWnaf_Zorn7nTQqbT-lq4Mi8PT49H7ykvVoZP24VoTsTLC53ikSsRASCCO70fSU_s'
-  private secondImage = 'https://lh3.googleusercontent.com/proxy/cdf62r-eX1Cr80FJImSDstq_8YORyQ5dIoSgQWOJwqWA4qrClGhVDd6LqZxIXjE7lf4Ef8PoSSpxlx07jgsZem2m5mnmjqeTp7Xydqmd-G88FIEuIqKaEcKN6kHZJ7NxOBvnJ9EQFxTOwCQnCyXOmD5n6wiNZ2QyCrEVxeh6jA'
-  private testImage = 'https://i.vimeocdn.com/video/877697510_640x360.jpg'
+  private firstImage = ''
+  private secondImage = ''
+  private images = [
+    'https://cdn.britannica.com/s:700x500/78/43678-050-F4DC8D93/Starry-Night-canvas-Vincent-van-Gogh-New-1889.jpg',
+    'https://cdn.britannica.com/s:300x300/36/69636-050-81A93193/Self-Portrait-artist-panel-board-Vincent-van-Gogh-1887.jpg',
+    'https://cdn.britannica.com/s:700x500/41/181941-050-DBEBA6D5/Old-Tower-canvas-oil-cardboard-Fields-Vincent-1884.jpg',
+    'https://cdn.britannica.com/s:700x500/78/69678-050-491A5ED8/Bedroom-oil-canvas-Vincent-van-Gogh-Art-1889.jpg',
+    'https://cdn.britannica.com/s:700x500/22/134022-050-8F6CF8E5/Portrait-Joseph-Roulin-oil-canvas-France-Arles-1889.jpg'
+  ]
 
   public onDropFirstImage(e: any) {
     const transferedImage = e.dataTransfer.getData('text')
@@ -78,8 +105,7 @@ export default class extends Vue {
   }
 
   public onDragStart(e: any) {
-    console.log(e)
-    console.log(e.dataTransfer.setData('text', this.testImage))
+    e.returnValue = false
   }
 }
 </script>
