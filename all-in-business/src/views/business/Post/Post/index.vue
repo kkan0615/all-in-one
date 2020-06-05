@@ -1,11 +1,17 @@
 <template>
   <div>
-    <business-post-menu
-      :menus="menus"
-    />
-    <div
-      v-html="post"
-    />
+    <v-row>
+      <v-col>
+        <business-post-menu
+          :menus="menus"
+        />
+      </v-col>
+      <v-col>
+        <v-card>
+          <v-card-text v-html="post" />
+        </v-card>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -31,13 +37,13 @@ export default class extends Vue {
     this.menus = []
   }
 
-  created() {
+  mounted() {
     this.createMenu()
   }
 
   private createMenu() {
-    const titleTags = document.body.getElementsByTagName('h1')
-    console.log(titleTags)
+    const titleTags = document.getElementsByTagName('h1')
+    console.log(titleTags.length)
     for (let i = 0; i < titleTags.length; i++) {
       const element = titleTags[i]
       element.setAttribute('id', `${i}h1`)

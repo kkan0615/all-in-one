@@ -4,8 +4,10 @@
       v-for="(menu, i) in menus"
       :key="i"
     >
-      <v-card-title>
-        {{ menu.title }}
+      <v-card-title
+        @click="onClickTtile(i)"
+      >
+        {{ menu.title.innerText }}
       </v-card-title>
       <v-card-text
         v-for="(sub, j) in menu.subTitles"
@@ -26,6 +28,20 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 })
 export default class extends Vue {
   @Prop() private menus !: Array<any>
+
+  private onClickTtile(index: number) {
+    const titleId = document.getElementById(`${index}h1`)
+    if (!titleId) {
+      return
+    }
+    // const titleId = document.getElementById('0h1')
+    console.log(titleId.offsetHeight)
+    const top = titleId.offsetHeight - 20
+    window.scroll({
+      top,
+      behavior: 'smooth'
+    })
+  }
 }
 </script>
 
