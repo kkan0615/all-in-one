@@ -18,9 +18,8 @@
         name="login"
         prepend-inner-icon="person"
         type="text"
-        :color="mainColor"
-        background-color="white"
         :rules="[rules.required]"
+        @keyup.enter="login"
       />
       <v-text-field
         id="password"
@@ -31,10 +30,9 @@
         prepend-inner-icon="lock"
         :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
         :type="showPassword ? 'text' : 'password'"
-        :color="mainColor"
-        background-color="white"
         :rules="[rules.required]"
         @click:append="showPassword = !showPassword"
+        @keyup.enter="login"
       />
     </v-form>
     <v-btn

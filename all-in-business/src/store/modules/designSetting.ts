@@ -2,20 +2,37 @@
 import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'
 import store from '@/store'
 
+import { DesginColorInterface, designColorList, DesginColorModeEnum } from '../data/colors'
+
 /** Minimum mobile size - vuetify is 600 */
 const MOBILEWIDTH = 960
 
 export interface DesignInterface {
   isMobile: boolean,
+  designColor: DesginColorInterface
 }
 
 @Module({ dynamic: true, store, namespaced: true, name: 'DesignSetting' })
 class DesignSetting extends VuexModule implements DesignInterface {
   isMobile = false
+  designColor = designColorList[0]
 
   @Mutation
   private SET_ISMOBILE(isMobile: boolean) {
     this.isMobile = isMobile
+  }
+
+  @Mutation
+  private SET_DESIGNCOLOR(key: string) {
+    const found = designColorList.find(e => e.key === key)
+    if (found) {
+      this.designColor = found
+    }
+  }
+
+  @Mutation
+  private SET_DESIGNCOLOROFMODE(mode: DesginColorModeEnum) {
+    this.designColor.mode = mode
   }
 
   @Action
@@ -25,6 +42,24 @@ class DesignSetting extends VuexModule implements DesignInterface {
     } else {
       this.SET_ISMOBILE(false)
     }
+  }
+
+  /**
+   * name
+   */
+  @Action
+  public setDesignColor(key: string) {
+    this.SET_DESIGNCOLOR(key)
+  }
+
+  @Action
+  public setDesignColorMode(mode: DesginColorModeEnum) {
+    this.SET_DESIGNCOLOROFMODE(mode)
+  }
+
+  @Action
+  public setDesignColorOther(key: string) {
+    console.log(key)
   }
 }
 

@@ -1,17 +1,18 @@
 <template>
-  <v-card>
+  <v-card class="position-absolute">
     <div
       v-for="(menu, i) in menus"
       :key="i"
+      @click="onClickTtile(i)"
     >
       <v-card-title
-        @click="onClickTtile(i)"
+        v-if="menu.nodeName === 'H1'"
       >
-        {{ menu.title.innerText }}
+        {{ menu.innerText }}
+        <v-divider />
       </v-card-title>
       <v-card-text
-        v-for="(sub, j) in menu.subTitles"
-        :key="j"
+        v-else
       >
         {{ menu.innerText }}
       </v-card-text>
@@ -27,16 +28,15 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
   name: 'BusinessPostMenu'
 })
 export default class extends Vue {
-  @Prop() private menus !: Array<any>
+  @Prop() private menus !: Array<HTMLHeadingElement>
 
   private onClickTtile(index: number) {
-    const titleId = document.getElementById(`${index}h1`)
-    if (!titleId) {
+    const tagId = document.getElementById(`${index}tag`)
+    if (!tagId) {
       return
     }
     // const titleId = document.getElementById('0h1')
-    console.log(titleId.offsetHeight)
-    const top = titleId.offsetHeight - 20
+    const top = tagId.offsetTop - 20
     window.scroll({
       top,
       behavior: 'smooth'

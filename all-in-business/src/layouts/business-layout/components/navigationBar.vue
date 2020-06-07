@@ -1,7 +1,6 @@
 <template>
   <v-navigation-drawer
     app
-    dark
     :value="navigation"
     @input="onChangeNavigation"
   >
@@ -22,6 +21,7 @@
         <v-btn
           block
           large
+          :color="designSetting.subColorOne"
         >
           Login
         </v-btn>
@@ -30,7 +30,7 @@
 
     <v-divider />
     <div v-for="(menu, i) in menus" :key="i">
-      <v-list v-if="menu.children.length < 1 && !menu.meta.hidden">
+      <v-list v-if="menu.children.length < 1 && !menu.meta.hidden" :expand="false">
         <v-list-item>
           <v-list-item-icon>
             <v-icon>{{ menu.meta.icon }}</v-icon>
@@ -39,11 +39,12 @@
           <v-list-item-title>{{ menu.name }}</v-list-item-title>
         </v-list-item>
       </v-list>
-      <v-list v-else-if="menu.children.length > 0 && !menu.meta.hidden" shaped>
+      <v-list v-else-if="menu.children.length > 0 && !menu.meta.hidden" shaped :expand="false">
         <v-list-group
           :prepend-icon="menu.meta.icon"
           value="true"
-          color="white"
+          :color="designSetting.subColorFive"
+          :expand="false"
         >
           <template v-slot:activator>
             <v-list-item-title>{{ menu.name }}</v-list-item-title>
@@ -71,6 +72,7 @@
       <div class="pa-2">
         <v-btn
           :to="`/${$route.path.split('/')[1]}/setting`"
+          :color="designSetting.subColorOne"
           block
         >Setting</v-btn>
       </div>
@@ -81,9 +83,11 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { UserModule } from '@/store/modules/uesr'
+import { DesignSettingModule } from '@/store/modules/designSetting'
+import { DesginColorInterface } from '@/store/data/colors'
 
 @Component({
-  name: 'MainNavigationBar'
+  name: 'BusinessNavigationBar'
 })
 export default class extends Vue {
   @Prop() private menus!: Array<any>
@@ -95,6 +99,10 @@ export default class extends Vue {
 
   public get isLoggedIn() : string {
     return UserModule.userToken
+  }
+
+  private get designSetting() : DesginColorInterface {
+    return DesignSettingModule.designColor
   }
 
   onChangeNavigation(value: boolean) {

@@ -1,6 +1,6 @@
 <template>
-  <v-app id="inspire">
-    <v-content class="auth-background">
+  <v-app>
+    <v-content>
       <router-view />
     </v-content>
   </v-app>
@@ -10,7 +10,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
-  name: 'AuthIndex',
+  name: 'AuthLayoutIndex',
   components: {
   }
 })
@@ -19,7 +19,4 @@ export default class extends Vue {
 </script>
 
 <style scoped>
-  .auth-background {
-    background-color: #d2d6d3;
-  }
 </style>

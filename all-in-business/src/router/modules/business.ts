@@ -75,13 +75,13 @@ const business: RouteConfig[] = [
     path: '/business/post',
     name: 'DropDown',
     component: () => import('@/layouts/business-layout/index.vue'),
-    meta: { title: 'Business Template', icon: 'fas fa-edit', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: true },
+    meta: { title: 'Business Template', icon: 'fas fa-edit', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: false },
     children: [
       {
         path: 'Post',
         name: 'Post',
         component: () => import('@/views/business/Post/Post/index.vue'),
-        meta: { title: 'Post', icon: 'note', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: true }
+        meta: { title: 'Post', icon: 'note', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: false }
       }
     ]
   }

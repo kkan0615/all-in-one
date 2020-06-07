@@ -1,11 +1,11 @@
 <template>
-  <v-app class="auth-background">
-    <main-app-bar
+  <v-app class="light-background">
+    <business-nav-bar
       :navigation="navigationBar"
       :is-mobile="isMobile"
       @onChangeNavigation="onChangeNavigation"
     />
-    <main-navigation-bar
+    <business-navigation-bar
       :menus="menus"
       :navigation="navigationBar"
       :is-mobile="isMobile"
@@ -52,8 +52,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import MainAppBar from './components/appBar.vue'
-import MainNavigationBar from './components/navigationBar.vue'
+import BusinessNavBar from './components/appBar.vue'
+import BusinessNavigationBar from './components/navigationBar.vue'
 import FloatingButtons from './components/FloatingButtons/index.vue'
 import { ResizeHandlerMixins } from '@/mixins/modules/ResizeHandler'
 import { DesignSettingModule } from '@/store/modules/designSetting'
@@ -62,8 +62,8 @@ import businessRoutes from '@/router/modules/business'
 @Component({
   name: 'MainLayout',
   components: {
-    MainAppBar,
-    MainNavigationBar,
+    BusinessNavBar,
+    BusinessNavigationBar,
     FloatingButtons
   },
   mixins: [ResizeHandlerMixins]
@@ -95,8 +95,8 @@ export default class extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  .auth-background {
-    background-color: #0e0e10;
-    color: white;
-  }
+dark-background {
+  background-color: #0e0e10;
+  color: white;
+}
 </style>

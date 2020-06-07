@@ -3,6 +3,20 @@
     <!-- <v-btn icon>
       <v-icon>shopping_cart</v-icon>
     </v-btn> -->
+    <v-btn
+      v-if="!isFullscreen"
+      icon
+      @click="openFullscreen"
+    >
+      <v-icon>fullscreen</v-icon>
+    </v-btn>
+    <v-btn
+      v-else-if="isFullscreen"
+      icon
+      @click="closeFullscreen"
+    >
+      <v-icon>fullscreen_exit</v-icon>
+    </v-btn>
     <v-menu open-on-hover top offset-y>
       <template v-slot:activator="{ on }">
         <v-btn icon v-on="on">
@@ -11,12 +25,6 @@
       </template>
 
       <v-list v-if="isLogin">
-        <!-- <v-list-item
-          v-for="(item, index) in items"
-          :key="index"
-        >
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item> -->
         <v-list-item>
           <v-list-item-title>Logout</v-list-item-title>
         </v-list-item>
@@ -43,23 +51,24 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { UserModule } from '@/store/modules/uesr'
+import { openFullscreen, closeFullscreen } from '@/utils/Fullscreen'
 
 // import { gql } from 'apollo-boost'
 
 @Component({
-  name: 'MainIconsWithMenu',
-  components: {
-  }
+  name: 'BusinessNavBar'
 })
 export default class extends Vue {
   @Prop() private isMobile!: boolean
 
   private dark = true
   private items !: Array<any>
+  private isFullscreen !: boolean
 
   constructor() {
     super()
     this.items = []
+    this.isFullscreen = false
   }
 
   public get isLogin() : boolean {
@@ -76,6 +85,16 @@ export default class extends Vue {
 
   public onClickRegister() {
     this.$router.push({ name: 'Register' })
+  }
+
+  private openFullscreen() {
+    openFullscreen()
+    this.isFullscreen = true
+  }
+
+  private closeFullscreen() {
+    closeFullscreen()
+    this.isFullscreen = false
   }
 }
 </script>
