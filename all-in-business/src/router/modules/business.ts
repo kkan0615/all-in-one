@@ -84,6 +84,20 @@ const business: RouteConfig[] = [
         meta: { title: 'Post', icon: 'note', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: false }
       }
     ]
+  },
+  {
+    path: '/business/tables',
+    name: 'Table',
+    component: () => import('@/layouts/business-layout/index.vue'),
+    meta: { title: 'Business Template', icon: 'fas fa-edit', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: true },
+    children: [
+      {
+        path: 'Table',
+        name: 'Table',
+        component: () => import('@/views/business/Restaurant/Tables/index.vue'),
+        meta: { title: 'Table', icon: 'note', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: true }
+      }
+    ]
   }
 ]
 
