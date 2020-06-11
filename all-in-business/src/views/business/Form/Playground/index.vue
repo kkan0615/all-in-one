@@ -1,16 +1,18 @@
 <template>
-  <v-card>
-    <v-card-text>
-      test
-    </v-card-text>
-  </v-card>
+  <section>
+    <Generator />
+  </section>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import Generator from './components/generator.vue'
 
 @Component({
-  name: 'Playground'
+  name: 'Playground',
+  components: {
+    Generator
+  }
 
 })
 export default class extends Vue {
