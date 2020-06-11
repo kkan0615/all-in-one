@@ -22,60 +22,67 @@ import { TableInterface } from '../../../types/table'
 })
 export default class extends Vue {
   @Prop() private table !: TableInterface
+  private posX !: number
+  private posY !: number
+  private element !: HTMLElement | null
+
+  constructor() {
+    super()
+    this.posX = 0
+    this.posY = 0
+    const exist = document.getElementById(this.table.id.toString())
+    if (exist) {
+      this.element = exist
+    }
+  }
+
+  mounted() {
+    const exist = document.getElementById(this.table.id.toString())
+    if (exist) {
+      this.element = exist
+    }
+  }
+
+  beforeDestroy() {
+    document.onmousemove = null
+    document.onmouseup = null
+  }
 
   public get style() : string {
     return `top: ${this.table.y}px; left: ${this.table.x}px;`
   }
 
   private onMousedown(e: any) {
-    console.log(e)
-    this.table.x = e.clientX
-    this.table.y = e.clientY
+    this.posX = e.clientX
+    this.posY = e.clientY
     document.onmousemove = this.onElementDrag
     document.onmouseup = this.onCloseElementDrag
   }
 
   private onElementDrag(e: any) {
     e.preventDefault()
-    this.table.x -= e.clientX
-    this.table.y -= e.clientY
+    const tempX = this.posX - e.clientX
+    const tempY = this.posY - e.clientY
+    this.posX = e.clientX
+    this.posY = e.clientY
+
+    if (this.element) {
+      const newY = this.element.offsetTop - tempY
+      const newX = this.element.offsetLeft - tempX
+
+      this.element.style.top = `${newY}px`
+      this.element.style.left = `${newX}px`
+
+      this.posX = newX
+      this.posY = newY
+    }
+    // this.table.x =
   }
   private onCloseElementDrag() {
     document.onmousemove = null
     document.onmouseup = null
-  }
-
-  private onDragstart(e: any) {
-    // e.dataTransfer.effectAllowed = 'move'
-    // e.dataTransfer.setData('text', this.table.id.toString())
-    // console.log(e.dataTransfer.getData('text'))
-    console.log(e)
-    const table = document.getElementById(this.table.id.toString())
-    if (table) {
-      table.style.display = 'none'
-    }
-
-    this.table.x = e.clientX
-    this.table.y = e.clientY
-  }
-
-  private onDragend(e:any) {
-    console.log(e)
-    const table = document.getElementById(this.table.id.toString())
-    if (table) {
-      table.style.display = 'unset'
-    }
-    this.table.x = e.clientX
-    this.table.y = e.clientY
-  }
-
-  private onDrop(e: any) {
-    console.log('onDrOP')
-    console.log(e)
-  }
-
-  private onDragover(e: any) {
-    e.preventDefault()
+    this.table.x = this.posX
+    this.table.y = this.posY
   }
 }
 </script>

@@ -50,7 +50,7 @@ const business: RouteConfig[] = [
     meta: { title: 'Business Template', icon: 'fas fa-edit', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: true },
     children: [
       {
-        path: 'BusinessMusicList',
+        path: 'businessMusicList',
         name: 'BusinessMusicList',
         component: () => import('@/views/business/Music/MuiscList/index.vue'),
         meta: { title: 'Music list', icon: 'note', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: false }
@@ -64,7 +64,7 @@ const business: RouteConfig[] = [
     meta: { title: 'Business Template', icon: 'fas fa-edit', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: true },
     children: [
       {
-        path: 'DropDownImages',
+        path: 'dropDownImages',
         name: 'DropDownImages',
         component: () => import('@/views/business/DropDownImages/index.vue'),
         meta: { title: 'DropDownImages', icon: 'note', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: true }
@@ -78,7 +78,7 @@ const business: RouteConfig[] = [
     meta: { title: 'Business Template', icon: 'fas fa-edit', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: false },
     children: [
       {
-        path: 'Post',
+        path: 'post',
         name: 'Post',
         component: () => import('@/views/business/Post/Post/index.vue'),
         meta: { title: 'Post', icon: 'note', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: false }
@@ -92,10 +92,24 @@ const business: RouteConfig[] = [
     meta: { title: 'Business Template', icon: 'fas fa-edit', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: true },
     children: [
       {
-        path: 'Table',
+        path: 'table',
         name: 'Table',
         component: () => import('@/views/business/Restaurant/Tables/index.vue'),
         meta: { title: 'Table', icon: 'note', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: true }
+      }
+    ]
+  },
+  {
+    path: '/business/form',
+    name: 'Form',
+    component: () => import('@/layouts/business-layout/index.vue'),
+    meta: { title: 'Business Template', icon: 'fas fa-edit', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: true },
+    children: [
+      {
+        path: 'form',
+        name: 'Form',
+        component: () => import('@/views/business/Form/Playground/index.vue'),
+        meta: { title: 'Form', icon: 'note', isRequireLogin: false, keepAlive: false, hidden: false, fullSize: true }
       }
     ]
   }
