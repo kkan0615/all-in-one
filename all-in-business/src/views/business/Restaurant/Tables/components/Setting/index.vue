@@ -1,10 +1,7 @@
 <template>
   <div
-    @dragover="onDragover"
-    @dragend="onDragend"
+    class="full-screen"
   >
-    lol
-
     <Table
       v-for="table in tables"
       :key="table.id"
@@ -29,17 +26,23 @@ export default class extends Vue {
   private tables: Array<TableInterface> = [
     {
       id: 0,
-      name: 'table',
+      name: 'table 0',
+      x: 800,
+      y: 400
+    },
+    {
+      id: 1,
+      name: 'table 1',
       x: 500,
       y: 400
     }
   ]
 
   private onDragover(e: any) {
-    const data = e.dataTransfer.getData('text/plain')
+    e.preventDefault()
+    const data = e.dataTransfer.getData('text')
 
-    // const data = e.dataTransfer.getData('text')
-    console.log(e.dataTransfer.getData('text/plain'))
+    console.log(e.dataTransfer.getData('text'))
 
     const table = this.tables.find(e => e.id === data)
 
@@ -61,5 +64,9 @@ export default class extends Vue {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.full-screen {
+  width: 1000px;
+  height: 1009px;
+}
 </style>

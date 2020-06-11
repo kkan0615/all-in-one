@@ -2,6 +2,7 @@
   <div>
     <v-row>
       <v-col
+        :class="isMobile ? '' : 'position-absolute'"
         cols="3"
         xl="2"
         lg="3"
@@ -10,7 +11,7 @@
         xs="12"
       >
         <business-post-menu
-          :class="isMobile ? '' : 'position-absolute'"
+
           :menus="menus"
         />
       </v-col>
@@ -58,8 +59,6 @@ export default class extends Vue {
   }
 
   private createMenu() {
-    // const titleTags = document.getElementsByTagName('h1')
-    // console.log(titleTags.length)
     const tags = document.querySelectorAll('h1, h2, h3, h4, h5, h6')
     for (let i = 0; i < tags.length; i++) {
       const element = tags[i]
@@ -69,8 +68,6 @@ export default class extends Vue {
   }
 
   private get isMobile() : boolean {
-    console.log(DesignSettingModule.isMobile)
-
     return DesignSettingModule.isMobile
   }
 }
@@ -78,6 +75,7 @@ export default class extends Vue {
 
 <style lang="scss" scoped>
 .position-absolute {
-  position: fixed;
+  position: sticky;
+  top: 10%;
 }
 </style>

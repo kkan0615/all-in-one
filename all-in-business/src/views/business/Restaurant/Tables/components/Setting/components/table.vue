@@ -4,7 +4,7 @@
     class="table"
     :style="style"
     :draggable="true"
-    @dragstart="onDragstart"
+    @mousedown="onMousedown"
   >
     <v-card-text>
       {{ table.name }}
@@ -27,10 +27,55 @@ export default class extends Vue {
     return `top: ${this.table.y}px; left: ${this.table.x}px;`
   }
 
+  private onMousedown(e: any) {
+    console.log(e)
+    this.table.x = e.clientX
+    this.table.y = e.clientY
+    document.onmousemove = this.onElementDrag
+    document.onmouseup = this.onCloseElementDrag
+  }
+
+  private onElementDrag(e: any) {
+    e.preventDefault()
+    this.table.x -= e.clientX
+    this.table.y -= e.clientY
+  }
+  private onCloseElementDrag() {
+    document.onmousemove = null
+    document.onmouseup = null
+  }
+
   private onDragstart(e: any) {
-    e.dataTransfer.effectAllowed = 'move'
-    e.dataTransfer.setData('text/plain', this.table.id.toString())
-    console.log(e.dataTransfer.getData('text/plain'))
+    // e.dataTransfer.effectAllowed = 'move'
+    // e.dataTransfer.setData('text', this.table.id.toString())
+    // console.log(e.dataTransfer.getData('text'))
+    console.log(e)
+    const table = document.getElementById(this.table.id.toString())
+    if (table) {
+      table.style.display = 'none'
+    }
+
+    this.table.x = e.clientX
+    this.table.y = e.clientY
+  }
+
+  private onDragend(e:any) {
+    console.log(e)
+    const table = document.getElementById(this.table.id.toString())
+    if (table) {
+      table.style.display = 'unset'
+    }
+    this.table.x = e.clientX
+    this.table.y = e.clientY
+  }
+
+  private onDrop(e: any) {
+    console.log('onDrOP')
+    console.log(e)
+  }
+
+  private onDragover(e: any) {
+    e.preventDefault()
   }
 }
 </script>
