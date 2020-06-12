@@ -12,10 +12,16 @@ interface LoginFormInterface {
   password: string
 }
 
+// export enum UserRoleEnum {
+//   admin = 'admin',
+//   guest = 'guest'
+// }
+
 export interface UserInterface {
   userToken: string,
   nickname: string
   avator: string,
+  roles: Array<string>
   detail: Array<string>
   // username: string
 }
@@ -26,6 +32,7 @@ class User extends VuexModule implements UserInterface {
   public userToken = ''
   public nickname = 'testNick'
   public avator = ''
+  public roles: Array<string> = []
   public detail: Array<string> = []
 
   @Mutation
@@ -41,6 +48,15 @@ class User extends VuexModule implements UserInterface {
   @Mutation
   private SET_AVACTOR(avator: string) {
     this.avator = avator
+  }
+
+  @Mutation
+  private SET_ROLES(roles: Array<string>) {
+    if (roles.length === 0) {
+      this.roles = []
+    } else {
+      this.roles = roles
+    }
   }
 
   @Action
