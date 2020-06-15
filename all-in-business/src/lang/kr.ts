@@ -14,7 +14,8 @@ export default {
     onMenuIcon: '메뉴화면 열기',
     offMenuIcon: '메뉴화면 닫기',
     onSearch: '검색창 열기',
-    offSearch: '검색창 닫기'
+    offSearch: '검색창 닫기',
+    searchLabel: '메뉴 검색'
   },
   login: {
     requireUserId: '아이디를 입력해주시기바랍니다.',

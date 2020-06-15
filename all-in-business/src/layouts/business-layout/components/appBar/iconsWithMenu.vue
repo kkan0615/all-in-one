@@ -2,16 +2,6 @@
   <div>
     <v-tooltip bottom>
       <template v-slot:activator="{ on, attrs }">
-        <v-btn icon v-bind="attrs" @click="onClickSearch" v-on="on">
-          <v-icon>search</v-icon>
-        </v-btn>
-      </template>
-      <span v-if="visibleSearchBar">{{ $t('appBarTooltips.onSearch') }}</span>
-      <span v-else>{{ $t('appBarTooltips.offSearch') }}</span>
-    </v-tooltip>
-
-    <v-tooltip bottom>
-      <template v-slot:activator="{ on, attrs }">
         <v-btn v-if="!isFullscreen" icon v-bind="attrs" @click="openFullscreen" v-on="on">
           <v-icon>fullscreen</v-icon>
         </v-btn>

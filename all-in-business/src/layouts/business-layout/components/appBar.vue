@@ -37,6 +37,19 @@
     </v-row>
 
     <v-spacer />
+    <Search
+      v-show="visibleSearchBar === true && !isMobile"
+      :open="visibleSearchBar"
+    />
+    <v-tooltip v-if="!isMobile" bottom>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn icon v-bind="attrs" @click="onClickSearch" v-on="on">
+          <v-icon>search</v-icon>
+        </v-btn>
+      </template>
+      <span v-if="visibleSearchBar">{{ $t('appBarTooltips.onSearch') }}</span>
+      <span v-else>{{ $t('appBarTooltips.offSearch') }}</span>
+    </v-tooltip>
     <main-icons-with-menu
       :is-mobile="isMobile"
     />
@@ -46,11 +59,13 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import MainIconsWithMenu from './appBar/iconsWithMenu.vue'
+import Search from './appBar/search.vue'
 
 @Component({
   name: 'MainAppBar',
   components: {
-    MainIconsWithMenu
+    MainIconsWithMenu,
+    Search
   }
 })
 export default class extends Vue {
@@ -59,6 +74,12 @@ export default class extends Vue {
 
   private dark = true
   private title = 'Business Template'
+  private visibleSearchBar !: boolean
+
+  constructor() {
+    super()
+    this.visibleSearchBar = false
+  }
 
   onChangeNavigation() {
     this.$emit('onChangeNavigation', !this.navigation)
@@ -68,6 +89,10 @@ export default class extends Vue {
     if (this.$route.path !== '/business') {
       this.$router.push({ path: '/business' })
     }
+  }
+
+  private onClickSearch() {
+    this.visibleSearchBar = !this.visibleSearchBar
   }
 }
 </script>

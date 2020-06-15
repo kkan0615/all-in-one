@@ -14,7 +14,8 @@ export default {
     onMenuIcon: 'Open Menu',
     offMenuIcon: 'Close Menu',
     onSearch: 'Open Search bar',
-    offSearch: 'Close Search bar'
+    offSearch: 'Close Search bar',
+    searchLabel: 'Search menu'
   },
   login: {
     requireUserId: 'ID is required',
