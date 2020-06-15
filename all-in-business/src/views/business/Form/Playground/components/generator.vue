@@ -1,9 +1,7 @@
 <template>
   <v-card>
     <v-card-text>
-      <v-form
-        ref="formRef"
-      >
+      <v-form ref="formRef">
         <v-text-field
           v-model="label"
           :counter="10"
@@ -13,9 +11,7 @@
           required
         />
         <v-row>
-          <v-col
-            :cols="9"
-          >
+          <v-col :cols="9">
             <!-- autocomplete로 변경하기 -->
             <v-text-field
               v-model="option"
@@ -25,32 +21,16 @@
               required
             />
           </v-col>
-          <v-col
-            :cols="3"
-          >
-            <v-btn
-              large
-              block
-              @click="resetForm"
-            >
-              option
-            </v-btn>
+          <v-col :cols="3">
+            <v-btn large block @click="resetForm">option</v-btn>
           </v-col>
         </v-row>
         <v-row>
           <v-col>
-            <v-btn
-              @click="createInputBox"
-            >
-              create
-            </v-btn>
+            <v-btn @click="createInputBox">create</v-btn>
           </v-col>
           <v-col>
-            <v-btn
-              @click="resetForm"
-            >
-              reset
-            </v-btn>
+            <v-btn @click="resetForm">reset</v-btn>
           </v-col>
         </v-row>
       </v-form>

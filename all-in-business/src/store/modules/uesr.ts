@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'
 import store from '@/store'
-import apollo from '@/apolloClient'
+import { getAuthToken, setAuthToken } from '@/utils/authUtils'
+
+// import apollo from '@/apolloClient'
 
 /** ********** 삭제해주세요 ************/
 // import { findUser } from '@/store/data/user'
-import { gql } from 'apollo-boost'
+// import { gql } from 'apollo-boost'
+import Axios from 'axios'
 
 interface LoginFormInterface {
   userId: string,
@@ -29,7 +32,7 @@ export interface UserInterface {
 // @Module({ namespaced: true, name: 'user' })
 @Module({ dynamic: true, store, name: 'user' })
 class User extends VuexModule implements UserInterface {
-  public userToken = ''
+  public userToken = getAuthToken() || ''
   public nickname = 'testNick'
   public avator = ''
   public roles: Array<string> = []
@@ -38,6 +41,7 @@ class User extends VuexModule implements UserInterface {
   @Mutation
   private SET_USETOKEN(token: string) {
     this.userToken = token
+    setAuthToken(token)
   }
 
   @Mutation
@@ -52,7 +56,7 @@ class User extends VuexModule implements UserInterface {
 
   @Mutation
   private SET_ROLES(roles: Array<string>) {
-    if (roles.length === 0) {
+    if (!roles || roles.length === 0) {
       this.roles = []
     } else {
       this.roles = roles
@@ -61,38 +65,64 @@ class User extends VuexModule implements UserInterface {
 
   @Action
   public async login(args:LoginFormInterface) {
-    // const exUser = findUser(args.userId, args.password)
-
-    const exUser = (await apollo.query({
-      query: gql`
-        query{
-          findUserByuserId(userId: "${args.userId}") {
-            id
-            userToken
-            userId
-            nickname
-            avator
-          }
-        }
-      `
-    })).data.findUserByuserId
-    if (exUser) {
-      this.SET_USETOKEN(exUser.userToken)
-      this.SET_NICKNAME(exUser.nickname)
-      this.SET_AVACTOR(exUser.avator)
-      return true
-    } else {
-      console.error(`User is not exist Check your id or password userId: ${args.userId} password: ${args.password}`)
+    try {
+      const res = (await Axios.post('/auth/login', args)).data
+      if (res) {
+        this.SET_USETOKEN(res.userToken)
+        this.SET_NICKNAME(res.nickname)
+        this.SET_AVACTOR(res.avator)
+        this.SET_ROLES(res.roles)
+        return true
+      } else {
+        return false
+      }
+    } catch (error) {
+      console.error(error)
       return false
     }
   }
 
   @Action
-  public logout() {
-    this.SET_USETOKEN('')
-    this.SET_NICKNAME('')
-    this.SET_AVACTOR('')
-    return true
+  public async requestDetail() {
+    try {
+      const res = (await Axios.post('/auth/detail', { token: this.userToken })).data
+      if (res) {
+        this.SET_USETOKEN(res.userToken)
+        this.SET_NICKNAME(res.nickname)
+        this.SET_AVACTOR(res.avator)
+        this.SET_ROLES(res.roles)
+        return { status: true, message: 'Success to Login' }
+      } else {
+        return { status: false, message: 'User Id and Password is not matched' }
+      }
+    } catch (error) {
+      console.error(error)
+      if (error.message) {
+        return { status: false, message: error.message }
+      } else {
+        return { status: false, message: error }
+      }
+    }
+  }
+
+  @Action
+  public async logout() {
+    try {
+      const res = (await Axios.post('/auth/logout', { token: this.userToken })).data
+      if (res) {
+        this.SET_USETOKEN('')
+        this.SET_NICKNAME('')
+        this.SET_AVACTOR('')
+        this.SET_ROLES([])
+
+        return true
+      } else {
+        return false
+      }
+    } catch (error) {
+      console.error(error)
+      return false
+    }
   }
 }
 

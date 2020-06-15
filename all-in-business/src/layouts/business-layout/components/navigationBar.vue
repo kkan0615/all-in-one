@@ -7,11 +7,11 @@
     <v-list v-if="isLoggedIn">
       <v-list-item class="px-2" dark>
         <v-list-item-avatar>
-          <v-img src="https://avatars0.githubusercontent.com/u/46660361?s=460&u=5c87a78f30eb7777300fa1f8fd539aa4a4cefdb1&v=4" />
+          <v-img :src="user.avator" />
         </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-title class="title">Youngjin Kwak</v-list-item-title>
-          <v-list-item-subtitle>kkan0615@gmail.com</v-list-item-subtitle>
+          <v-list-item-title class="title">{{ user.nickname }}</v-list-item-title>
+          <v-list-item-subtitle>{{ userRoles }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -82,7 +82,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { UserModule } from '@/store/modules/uesr'
+import { UserModule, UserInterface } from '@/store/modules/uesr'
 import { DesignSettingModule } from '@/store/modules/designSetting'
 import { DesginColorInterface } from '@/store/data/colors'
 
@@ -103,6 +103,25 @@ export default class extends Vue {
 
   private get designSetting() : DesginColorInterface {
     return DesignSettingModule.designColor
+  }
+
+  public get user() : UserInterface {
+    return UserModule
+  }
+
+  public get userRoles() : string {
+    let result = ''
+
+    for (let i = 0; i < UserModule.roles.length; i++) {
+      const element = UserModule.roles[i]
+      if (i !== UserModule.roles.length - 1) {
+        result += `${element}, `
+      } else {
+        result += `${element} `
+      }
+    }
+
+    return result
   }
 
   onChangeNavigation(value: boolean) {

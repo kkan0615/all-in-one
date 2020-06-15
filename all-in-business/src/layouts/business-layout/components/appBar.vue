@@ -4,19 +4,38 @@
     app
     :dark="dark"
   >
-    <v-app-bar-nav-icon
-      @click="onChangeNavigation"
-    />
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on, attrs }">
 
-    <v-icon
-      class="mx-4"
-      large
+        <v-app-bar-nav-icon
+          v-bind="attrs"
+          @click="onChangeNavigation"
+          v-on="on"
+        />
+      </template>
+      <span v-if="!navigation">{{ $t('appBarTooltips.onMenuIcon') }}</span>
+      <span v-else>{{ $t('appBarTooltips.offMenuIcon') }}</span>
+    </v-tooltip>
+
+    <v-row
+      class="cursor-pointer"
       @click="onClcikMainIcon"
     >
-      home
-    </v-icon>
+      <v-icon
+        class="mx-4"
+        large
+      >
+        home
+      </v-icon>
 
-    <v-toolbar-title>{{ title }}</v-toolbar-title>
+      <h3
+        v-if="!isMobile"
+        class="center-h3"
+      >
+        {{ title }}
+      </h3>
+    </v-row>
+
     <v-spacer />
     <main-icons-with-menu
       :is-mobile="isMobile"
@@ -53,5 +72,10 @@ export default class extends Vue {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+.center-h3 {
+  margin: auto;
+  margin-left:0px;
+}
 </style>

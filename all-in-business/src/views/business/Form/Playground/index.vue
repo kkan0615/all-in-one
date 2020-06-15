@@ -13,9 +13,11 @@ import Generator from './components/generator.vue'
   components: {
     Generator
   }
-
 })
 export default class extends Vue {
+  created() {
+    this.$toasted.error('Toasted !!')
+  }
 }
 </script>
 

@@ -5,9 +5,15 @@
       src="@/assets/sampleLogo.png"
       aspect-ratio="3"
     />
-    <v-alert v-show="showAlert" :type="alertType">
+    <v-alert
+      v-model="showAlert"
+      :type="alertType"
+    >
       {{ alertMessage }}
     </v-alert>
+    <div class="my-4 text-right">
+      <TranslateMenu />
+    </div>
     <v-form
       ref="loginForm"
     >
@@ -18,7 +24,7 @@
         name="login"
         prepend-inner-icon="person"
         type="text"
-        :rules="[rules.required]"
+        :rules="[userIdRules.required]"
         @keyup.enter="login"
       />
       <v-text-field
@@ -30,15 +36,14 @@
         prepend-inner-icon="lock"
         :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
         :type="showPassword ? 'text' : 'password'"
-        :rules="[rules.required]"
+        :rules="[passwordRules.required]"
         @click:append="showPassword = !showPassword"
         @keyup.enter="login"
       />
     </v-form>
     <v-btn
-      :color="mainColor"
+      :color="getDesignSetting.subColorOne"
       large
-      dark
       block
       :loading="loading"
       @click="login"
@@ -49,7 +54,6 @@
       color="blue"
       class="my-5"
       large
-      dark
       block
     >
       google Login
@@ -62,16 +66,26 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { UserModule } from '@/store/modules/uesr'
+import { DesignSettingModule } from '@/store/modules/designSetting'
+import { DesginColorInterface } from '@/store/data/colors'
+import TranslateMenu from '@/layouts/business-layout/components/appBar/translateMenu.vue'
 
 @Component({
-  name: 'LoginForm'
+  name: 'LoginForm',
+  components: {
+    TranslateMenu
+  }
 })
 export default class extends Vue {
   private routerPath = '/'
   private userId = ''
   private password = ''
-  private rules = {
-    required: (value : string) => !!value || 'Required.'
+  private userIdRules = {
+    required: (value : string): any => !!value || 'Required'
+  }
+
+  private passwordRules = {
+    required: (value : string) :any => !!value || 'Required.'
   }
   private showAlert = false
   private alertType = 'success'
@@ -83,6 +97,15 @@ export default class extends Vue {
 
   $refs!: {
     loginForm: HTMLFormElement
+  }
+
+  private get getDesignSetting() : DesginColorInterface {
+    return DesignSettingModule.designColor
+  }
+
+  created() {
+    this.userIdRules.required = (value : string) => !!value || this.$t('login.requireUserId')
+    this.passwordRules.required = (value : string) => !!value || this.$t('login.requirePassword')
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
