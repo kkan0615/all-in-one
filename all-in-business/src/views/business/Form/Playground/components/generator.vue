@@ -12,19 +12,25 @@
         />
         <v-row>
           <v-col :cols="9">
-            <!-- autocomplete로 변경하기 -->
-            <v-text-field
-              v-model="option"
-              :rules="[labelRules.required]"
-              label="option"
+            <v-select
+              v-model="type"
+              :items="typeOptions"
               outlined
-              required
+              label="option"
+              item-text="key"
+              item-value="name"
+              :rules="[optionRules.required]"
+              @change="onChangeOptions"
             />
           </v-col>
-          <v-col :cols="3">
-            <v-btn large block @click="resetForm">option</v-btn>
+          <v-col v-if="optionsRequire" :cols="3">
+            <v-btn large block @click="onClickOptionButton">option</v-btn>
           </v-col>
         </v-row>
+        <v-checkbox
+          v-model="validation"
+          label="Validation"
+        />
         <v-row>
           <v-col>
             <v-btn @click="createInputBox">create</v-btn>
@@ -40,6 +46,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { typeOptions, TypeOptionInterface } from '../data/typeOption'
+import { OptionTypeEnum } from '../types'
 
 @Component({
   name: 'Generator'
@@ -51,18 +59,38 @@ export default class extends Vue {
   }
 
   private label !: string
-  private option !: string
-  private optionDialogVisible !: boolean
-
+  private type !: string
+  private validation !: boolean
+  private optionsDialogVisible !: boolean
+  private typeOptions !: Array<TypeOptionInterface>
   private labelRules = {
     required: (v: string) => !!v || 'Label is required'
+  }
+  private optionRules = {
+    required: (v: string) => !!v || 'Option is required'
   }
 
   constructor() {
     super()
     this.label = ''
-    this.option = ''
-    this.optionDialogVisible = false
+    this.type = ''
+    this.optionsDialogVisible = false
+    this.validation = false
+    this.typeOptions = JSON.parse(JSON.stringify(typeOptions))
+  }
+
+  public get optionsRequire() : boolean {
+    const result = this.type === OptionTypeEnum.selectBox
+
+    return result
+  }
+
+  private onChangeOptions() {
+    console.log(this.type)
+  }
+
+  private onClickOptionButton() {
+    this.optionsDialogVisible = true
   }
 
   private createInputBox() {
