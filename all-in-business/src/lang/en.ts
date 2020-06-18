@@ -2,6 +2,11 @@ export default {
   axios: {
     resError: '서버와의 연결이 실패했습니다.'
   },
+  businessRouter: {
+    editorTitle: 'Editor',
+    postTitle: 'Post samples'
+
+  },
   profileMenu: {
     login: 'login',
     logout: 'logout',
@@ -21,5 +26,9 @@ export default {
     requireUserId: 'ID is required',
     requirePassword: 'Password is required',
     logout: 'Success to logout'
+  },
+  postVer1: {
+    title: 'Post Sample1',
+    indexTitle: 'Index'
   }
 }

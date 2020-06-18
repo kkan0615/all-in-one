@@ -24,7 +24,7 @@
         xs="12"
       >
         <v-card>
-          <v-card-text v-html="post" />
+          <div id="post" class="pa-5" v-html="post" />
         </v-card>
       </v-col>
     </v-row>
@@ -59,7 +59,11 @@ export default class extends Vue {
   }
 
   private createMenu() {
-    const tags = document.querySelectorAll('h1, h2, h3, h4, h5, h6')
+    const postDiv = document.getElementById('post')
+    if (!postDiv) {
+      return
+    }
+    const tags = postDiv.querySelectorAll('h1, h2, h3, h4, h5, h6')
     for (let i = 0; i < tags.length; i++) {
       const element = tags[i]
       element.setAttribute('id', `${i}tag`)

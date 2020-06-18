@@ -72,13 +72,30 @@ class User extends VuexModule implements UserInterface {
         this.SET_NICKNAME(res.nickname)
         this.SET_AVACTOR(res.avator)
         this.SET_ROLES(res.roles)
-        return true
+        return {
+          success: true,
+          message: ''
+        }
       } else {
-        return false
+        return {
+          success: false,
+          message: 'User id or Password is wrong'
+        }
       }
     } catch (error) {
       console.error(error)
-      return false
+
+      if (error.response) {
+        return {
+          success: false,
+          message: 'UserId and Password are not matched'
+        }
+      } else {
+        return {
+          success: false,
+          message: error
+        }
+      }
     }
   }
 

@@ -2,6 +2,10 @@ export default {
   axios: {
     resError: '서버와의 연결이 실패했습니다.'
   },
+  businessRouter: {
+    editorTitle: '편집기',
+    postTitle: '게시물 샘플들'
+  },
   profileMenu: {
     login: '로그인',
     logout: '로그아웃',
@@ -21,5 +25,9 @@ export default {
     requireUserId: '아이디를 입력해주시기바랍니다.',
     requirePassword: '비밀번호를 입력해주시기바랍니다.',
     logout: '로그아웃 되었습니다.'
+  },
+  postVer1: {
+    title: '게시물 샘플 1',
+    indexTitle: '목차'
   }
 }
