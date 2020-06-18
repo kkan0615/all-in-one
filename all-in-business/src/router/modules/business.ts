@@ -9,17 +9,17 @@
  */
 
 import { RouteConfig } from 'vue-router'
+import i18n from '@/lang'
 
 const business: RouteConfig[] = [
   {
     path: '/business',
-    name: 'main',
     component: () => import('@/layouts/business-layout/index.vue'),
     meta: { title: 'Business Template', icon: 'fas fa-edit', roles: [], keepAlive: false, hidden: true, fullSize: false },
     children: [
       {
-        path: '',
-        name: 'BusinessMain',
+        path: '/',
+        name: 'index',
         component: () => import('@/views/business/main/index.vue'),
         meta: { title: 'Markdown Editor', icon: 'note', roles: [], keepAlive: false, hidden: true, fullSize: false }
       },
@@ -30,8 +30,8 @@ const business: RouteConfig[] = [
         meta: { title: 'Markdown Editor', icon: 'settings', roles: [], keepAlive: false, hidden: true, fullSize: false },
         children: [
           {
-            path: '',
-            name: '',
+            path: '/visual',
+            name: 'BusinessSettingVisual',
             component: () => import('@/views/business/setting/components/visualSetting/index.vue'),
             meta: { title: 'Markdown Editor', icon: 'note', roles: [], keepAlive: false, hidden: true, fullSize: false }
           }
@@ -43,7 +43,7 @@ const business: RouteConfig[] = [
     path: '/business/editor',
     name: 'Editor',
     component: () => import('@/layouts/business-layout/index.vue'),
-    meta: { title: 'Business Template', icon: 'fas fa-edit', roles: [], keepAlive: false, hidden: false, fullSize: true },
+    meta: { title: i18n.t('businessRouter.editorTitle'), icon: 'fas fa-edit', roles: [], keepAlive: false, hidden: false, fullSize: true },
     children: [
       {
         path: 'markdownEditor',
@@ -57,7 +57,7 @@ const business: RouteConfig[] = [
     path: '/business/music',
     name: 'Music',
     component: () => import('@/layouts/business-layout/index.vue'),
-    meta: { title: 'Business Template', icon: 'fas fa-edit', roles: [], keepAlive: false, hidden: false, fullSize: true },
+    meta: { title: 'Business Template', icon: 'album', roles: [], keepAlive: false, hidden: false, fullSize: true },
     children: [
       {
         path: 'businessMusicList',
@@ -68,10 +68,10 @@ const business: RouteConfig[] = [
     ]
   },
   {
-    path: '/business/dropDown',
-    name: 'DropDown',
+    path: '/business/images',
+    name: 'images',
     component: () => import('@/layouts/business-layout/index.vue'),
-    meta: { title: 'Business Template', icon: 'fas fa-edit', roles: [], keepAlive: false, hidden: false, fullSize: true },
+    meta: { title: 'Business Template', icon: 'insert_photo', roles: [], keepAlive: false, hidden: false, fullSize: true },
     children: [
       {
         path: 'dropDownImages',
@@ -83,21 +83,21 @@ const business: RouteConfig[] = [
   },
   {
     path: '/business/post',
-    name: 'DropDown',
+    name: 'BusinessPost',
     component: () => import('@/layouts/business-layout/index.vue'),
-    meta: { title: 'Business Template', icon: 'fas fa-edit', roles: [], keepAlive: false, hidden: false, fullSize: false },
+    meta: { title: i18n.t('businessRouter.postTitle'), icon: 'post_add', roles: [], keepAlive: false, hidden: false, fullSize: false },
     children: [
       {
         path: 'post',
         name: 'Post',
         component: () => import('@/views/business/Post/Post/index.vue'),
-        meta: { title: 'Post', icon: 'note', roles: [], keepAlive: false, hidden: false, fullSize: false }
+        meta: { title: i18n.t('postVer1.title').toString(), icon: 'post_add', roles: [], keepAlive: false, hidden: false, fullSize: false }
       }
     ]
   },
   {
     path: '/business/tables',
-    name: 'Table',
+    name: 'BusinessTable',
     component: () => import('@/layouts/business-layout/index.vue'),
     meta: { title: 'Business Template', icon: 'fas fa-edit', roles: [], keepAlive: false, hidden: false, fullSize: true },
     children: [
@@ -111,15 +111,15 @@ const business: RouteConfig[] = [
   },
   {
     path: '/business/form',
-    name: 'Form',
+    name: 'BusinessForm',
     component: () => import('@/layouts/business-layout/index.vue'),
     meta: { title: 'Business Template', icon: 'fas fa-edit', roles: [], keepAlive: false, hidden: false, fullSize: true },
     children: [
       {
-        path: 'form',
-        name: 'Form',
+        path: 'formVer1',
+        name: 'FormVer1',
         component: () => import('@/views/business/Form/Playground/index.vue'),
-        meta: { title: 'Form', icon: 'note', roles: [], keepAlive: false, hidden: false, fullSize: true }
+        meta: { title: 'FormVer1', icon: 'note', roles: [], keepAlive: false, hidden: false, fullSize: true }
       }
     ]
   }

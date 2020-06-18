@@ -6,6 +6,8 @@ import { UserModule } from '@/store/modules/uesr'
 // Vue.toasted.error('You are not')
 
 Router.beforeEach(async(to: Route, from: Route, next :Function) => {
+  console.log(Router)
+
   /** Usertoken is not exist */
   if (!UserModule.userToken) {
     if (!to.meta.roles || to.meta.roles.length < 1) {
