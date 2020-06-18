@@ -22,7 +22,7 @@
         md="4"
       >
         <login-form />
-        <advertisement />
+        <!-- <advertisement /> -->
       </v-col>
     </v-row>
   </v-container>

@@ -116,15 +116,15 @@ export default class extends Vue {
         this.loading = true
         const isScuccess = await UserModule.login({ userId: this.userId, password: this.password })
 
-        if (isScuccess) {
+        if (isScuccess.success) {
           this.$router.go(-1)
         } else {
-          this.showAlertMessage('Fail to login! Check your id or password', 'error')
+          this.showAlertMessage(isScuccess.message, 'error')
         }
         this.loading = false
       } catch (error) {
         console.error(error)
-        this.showAlertMessage('Error to connect with sever, try again after a moment', 'error')
+        this.showAlertMessage('Error: Client Error occured...', 'error')
         this.loading = false
       }
     }
