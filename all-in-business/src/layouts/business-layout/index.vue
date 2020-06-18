@@ -11,7 +11,7 @@
       :is-mobile="isMobile"
       @onChangeNavigation="onChangeNavigation"
     />
-    <v-content fulid>
+    <v-main fulid>
       <v-container
         class="fill-height"
         app
@@ -45,7 +45,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-content>
+    </v-main>
     <FloatingButtons />
   </v-app>
 </template>

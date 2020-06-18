@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <AppBar />
-    <v-content app>
+    <v-main app>
       <router-view />
-    </v-content>
+    </v-main>
     <!-- <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lacinia iaculis enim, faucibus auctor ipsum pharetra nec. Praesent ultricies convallis magna, a efficitur nisi posuere lacinia. Donec pretium finibus turpis. Cras tortor sapien, pharetra eu risus id, sagittis vulputate sapien. Suspendisse potenti. Phasellus vel risus auctor, pulvinar massa vel, eleifend dolor. Nullam pharetra vel leo sed blandit. Nam ullamcorper, nunc ac tempus tincidunt, eros nisl facilisis arcu, at pulvinar purus ipsum nec lorem. Suspendisse in lectus dui. Donec massa diam, ultricies eget purus at, convallis viverra enim.
 

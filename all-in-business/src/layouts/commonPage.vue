@@ -10,11 +10,11 @@
       :menus="menus"
       @onChangeDrawer="onChangeDrawer"
     />
-    <v-content>
+    <v-main>
       <v-container class="fill-height" app>
         <router-view />
       </v-container>
-    </v-content>
+    </v-main>
     <Footer />
   </v-app>
 </template>

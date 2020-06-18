@@ -36,7 +36,7 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-    <v-content>
+    <v-main>
       <v-container fluid app>
         <v-row align="center" justify="center">
           <v-col class="text-center">
@@ -44,7 +44,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-content>
+    </v-main>
     <Footer />
   </v-app>
 </template>

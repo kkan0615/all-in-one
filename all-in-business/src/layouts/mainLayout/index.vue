@@ -11,7 +11,7 @@
       :is-mobile="isMobile"
       @onChangeNavigation="onChangeNavigation"
     />
-    <v-content
+    <v-main
       class="auth-background"
     >
       <v-container
@@ -34,7 +34,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 

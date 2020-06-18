@@ -18,7 +18,7 @@
       :dark="dark"
       @onChangeNavigation="onChangeNavigation"
     />
-    <v-content class="auth-background">
+    <v-main class="auth-background">
       <v-container class="fill-height" app fluid>
         <v-row align="center" justify="center" no-gutters class="mb-12">
           <v-col cols="12" xl="9" lg="12" md="12" sm="12" xs="12">
@@ -28,7 +28,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 

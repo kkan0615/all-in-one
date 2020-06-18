@@ -22,6 +22,7 @@
           block
           large
           :color="designSetting.subColorOne"
+          @click="onClcikLoginButton"
         >
           Login
         </v-btn>
@@ -39,15 +40,14 @@
           <v-list-item-title>{{ menu.name }}</v-list-item-title>
         </v-list-item>
       </v-list>
-      <v-list v-else-if="menu.children.length > 0 && !menu.meta.hidden" shaped :expand="false">
+      <v-list v-else-if="menu.children.length > 0 && !menu.meta.hidden" shaped>
         <v-list-group
           :prepend-icon="menu.meta.icon"
-          value="true"
+          :value="false"
           :color="designSetting.subColorFive"
-          :expand="false"
         >
           <template v-slot:activator>
-            <v-list-item-title>{{ menu.name }}</v-list-item-title>
+            <v-list-item-title>{{ menu.meta.title }}</v-list-item-title>
           </template>
 
           <v-list-item
@@ -60,7 +60,7 @@
             <v-list-item-icon>
               <v-icon />
             </v-list-item-icon>
-            <v-list-item-title>{{ child.name }}</v-list-item-title>
+            <v-list-item-title>{{ child.meta.title }}</v-list-item-title>
             <v-list-item-icon>
               <v-icon>{{ child.meta.icon }}</v-icon>
             </v-list-item-icon>
@@ -122,6 +122,10 @@ export default class extends Vue {
     }
 
     return result
+  }
+
+  private onClcikLoginButton() {
+    this.$router.push({ name: 'Login' })
   }
 
   onChangeNavigation(value: boolean) {
