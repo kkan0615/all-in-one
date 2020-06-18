@@ -1,5 +1,8 @@
 <template>
   <v-card>
+    <OptionDialog
+      :visible="optionsDialogVisible"
+    />
     <v-card-text>
       <v-form ref="formRef">
         <v-text-field
@@ -48,9 +51,13 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { typeOptions, TypeOptionInterface } from '../data/typeOption'
 import { OptionTypeEnum } from '../types'
+import OptionDialog from './optionDialog.vue'
 
 @Component({
-  name: 'Generator'
+  name: 'Generator',
+  components: {
+    OptionDialog
+  }
 
 })
 export default class extends Vue {
