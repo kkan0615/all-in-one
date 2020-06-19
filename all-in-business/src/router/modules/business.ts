@@ -99,13 +99,13 @@ const business: RouteConfig[] = [
     path: '/business/tables',
     name: 'BusinessTable',
     component: () => import('@/layouts/business-layout/index.vue'),
-    meta: { title: 'Business Template', icon: 'fas fa-edit', roles: [], keepAlive: false, hidden: false, fullSize: true },
+    meta: { title: 'Business Template', icon: 'fas fa-edit', roles: ['admin'], keepAlive: false, hidden: false, fullSize: true },
     children: [
       {
         path: 'table',
         name: 'Table',
         component: () => import('@/views/business/Restaurant/Tables/index.vue'),
-        meta: { title: 'Table', icon: 'note', roles: [], keepAlive: false, hidden: false, fullSize: true }
+        meta: { title: 'Table', icon: 'note', roles: ['admin'], keepAlive: false, hidden: false, fullSize: true }
       }
     ]
   },

@@ -132,13 +132,13 @@ class User extends VuexModule implements UserInterface {
         this.SET_AVACTOR('')
         this.SET_ROLES([])
 
-        return true
+        return Promise.resolve(true)
       } else {
-        return false
+        return Promise.reject(false)
       }
     } catch (error) {
       console.error(error)
-      return false
+      return Promise.reject(false)
     }
   }
 }

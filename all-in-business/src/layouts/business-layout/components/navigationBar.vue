@@ -85,6 +85,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { UserModule, UserInterface } from '@/store/modules/uesr'
 import { DesignSettingModule } from '@/store/modules/designSetting'
 import { DesginColorInterface } from '@/store/data/colors'
+import { RouteConfig } from 'vue-router'
 
 @Component({
   name: 'BusinessNavigationBar'
@@ -124,11 +125,27 @@ export default class extends Vue {
     return result
   }
 
+  private get allowedMenus() : RouteConfig[] {
+    let result = []
+    result = this.menus.filter((e: RouteConfig) => {
+      if (!e.meta.roles) {
+        return true
+      }
+      const filteredArr = e.meta.roles.filter((e: string) => UserModule.roles.indexOf(e) !== -1)
+      if (filteredArr) {
+        return true
+      } else {
+        return false
+      }
+    })
+    return result
+  }
+
   private onClcikLoginButton() {
     this.$router.push({ name: 'Login' })
   }
 
-  onChangeNavigation(value: boolean) {
+  private onChangeNavigation(value: boolean) {
     this.$emit('onChangeNavigation', value)
   }
 
