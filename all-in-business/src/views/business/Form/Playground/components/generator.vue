@@ -1,13 +1,17 @@
 <template>
   <v-card>
     <OptionDialog
-      :visible="optionsDialogVisible"
+      :visible.sync="optionsDialogVisible"
+      :option-array="optionArray"
     />
     <v-card-text>
-      <v-form ref="formRef">
+      <v-form
+        ref="formRef"
+      >
         <v-text-field
+          ref="labelTextBoxRef"
           v-model="label"
-          :counter="10"
+          :counter="20"
           :rules="[labelRules.required]"
           label="label"
           outlined
@@ -34,24 +38,35 @@
           v-model="validation"
           label="Validation"
         />
-        <v-row>
-          <v-col>
-            <v-btn @click="createInputBox">create</v-btn>
-          </v-col>
-          <v-col>
-            <v-btn @click="resetForm">reset</v-btn>
-          </v-col>
-        </v-row>
+        <v-card-actions
+          class="justify-center"
+        >
+          <v-btn
+            :color="designSettingModule.designColor.subColorOne"
+            outlined
+            @click="createInputBox"
+          >
+            create
+          </v-btn>
+          <v-btn
+            :color="designSettingModule.designColor.subColorOne"
+            outlined
+            @click="resetForm"
+          >
+            reset
+          </v-btn>
+        </v-card-actions>
       </v-form>
     </v-card-text>
   </v-card>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Prop } from 'vue-property-decorator'
 import { typeOptions, TypeOptionInterface } from '../data/typeOption'
-import { OptionTypeEnum } from '../types'
+import { OptionTypeEnum, OptionArrayInterface, InputFormInterface } from '../types'
 import OptionDialog from './optionDialog.vue'
+import { DesignSettingModule } from '@/store/modules/designSetting'
 
 @Component({
   name: 'Generator',
@@ -62,14 +77,20 @@ import OptionDialog from './optionDialog.vue'
 })
 export default class extends Vue {
   $refs!: {
-    formRef: HTMLFormElement
+    formRef: HTMLFormElement,
+    labelTextBoxRef: HTMLInputElement
   }
+
+  @Prop() private inputFormArray !: Array<InputFormInterface>
 
   private label !: string
   private type !: string
   private validation !: boolean
-  private optionsDialogVisible !: boolean
   private typeOptions !: Array<TypeOptionInterface>
+  private optionArray !: Array<OptionArrayInterface>
+
+  private optionsDialogVisible !: boolean
+
   private labelRules = {
     required: (v: string) => !!v || 'Label is required'
   }
@@ -84,12 +105,21 @@ export default class extends Vue {
     this.optionsDialogVisible = false
     this.validation = false
     this.typeOptions = JSON.parse(JSON.stringify(typeOptions))
+    this.optionArray = []
   }
 
   public get optionsRequire() : boolean {
     const result = this.type === OptionTypeEnum.selectBox
 
     return result
+  }
+
+  public get designSettingModule() : any {
+    return DesignSettingModule
+  }
+
+  mounted() {
+    this.$refs.labelTextBoxRef.focus()
   }
 
   private onChangeOptions() {
@@ -102,8 +132,20 @@ export default class extends Vue {
 
   private createInputBox() {
     const validate = this.$refs.formRef.validate()
+
     if (validate) {
-      console.log('i am here')
+      const inputForm: InputFormInterface = {
+        id: this.inputFormArray.length,
+        option: this.type as OptionTypeEnum,
+        label: this.label,
+        validation: this.validation,
+        optionArray: this.optionArray,
+        value: null
+      }
+      this.$emit('push', inputForm)
+      this.$nextTick(() => {
+        this.optionArray = []
+      })
     }
   }
 

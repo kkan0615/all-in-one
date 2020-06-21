@@ -1,12 +1,29 @@
 <template>
   <section>
     <v-row>
-      <v-col>
-        <Generator />
+      <v-col
+        :cols="6"
+        :xl="6"
+        :lg="6"
+        :md="6"
+        :xs="12"
+        :sm="12"
+      >
+        <Generator
+          :input-form-array="inputFormArray"
+          @push="pushToInputFormArray"
+        />
       </v-col>
-      <v-col>
+      <v-col
+        :cols="6"
+        :xl="6"
+        :lg="6"
+        :md="6"
+        :xs="12"
+        :sm="12"
+      >
         <Result
-          :input-array="inputArray"
+          :input-form-array="inputFormArray"
         />
       </v-col>
     </v-row>
@@ -17,7 +34,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import Generator from './components/generator.vue'
 import Result from './components/result.vue'
-import { FormInterface } from './types'
+import { InputFormInterface } from './types'
 
 @Component({
   name: 'Playground',
@@ -27,19 +44,19 @@ import { FormInterface } from './types'
   }
 })
 export default class extends Vue {
-  private inputArray !: Array<FormInterface>
+  private inputFormArray !: Array<InputFormInterface>
 
   constructor() {
     super()
-    this.inputArray = []
+    this.inputFormArray = []
   }
 
-  private pushToInputArray(data: FormInterface) {
-    this.inputArray.push(data)
+  private pushToInputFormArray(data: InputFormInterface) {
+    this.inputFormArray.push(data)
   }
 
-  private removeFromInputArray(num: number) {
-    this.inputArray.slice(num, 0)
+  private removeFromInputFormArray(num: number) {
+    this.inputFormArray.splice(num, 1)
   }
 }
 </script>
