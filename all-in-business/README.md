@@ -1,6 +1,6 @@
 # Vue Template with typescript
 
-## How to Set up setting
+## Getting Started
 
 ### Install
 ```
@@ -29,3 +29,5 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Direectory Structure
