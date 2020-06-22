@@ -1,5 +1,5 @@
 /**
- *
+ * @description
  * @param currency - Currency
  * @param number  - Changed Number
  * @return stirng - Formatted number
@@ -29,6 +29,10 @@ export function currencyFormatter(currency: string, number: number): string {
  * @return stirng - Formatted number
  */
 export function numberFormatter(number: number | string): string {
+  if (!number) {
+    return ''
+  }
+
   let result = ''
 
   if (typeof number === 'number') {

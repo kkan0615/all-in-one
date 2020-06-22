@@ -1,17 +1,24 @@
 <template>
   <v-text-field
-    v-if="visible=true"
+    v-if="isFocused"
     ref="numberBoxRef"
+    v-model="numberInput"
     :hide-details="hideDetails"
     :label="label"
+    outlined
     :rules="rules"
+    type="number"
     @blur="onBlur"
+    @change="changeValue"
   />
   <v-text-field
     v-else
+    :value="numberFormatter"
+    :placeholder="placeholder"
     :hide-details="hideDetails"
     :label="label"
-    :rules="rules"
+    outlined
+    @focus="onFocus"
   />
 </template>
 
@@ -26,10 +33,13 @@ export default class extends Vue {
   @Prop({ default: false }) private hideDetails !: boolean
   @Prop({ default: '' }) private label !: string
   @Prop({ default: [] }) private rules !: Array<any>
+  @Prop({ default: false }) private readonly !: boolean
+  @Prop() private placeholder !: string
   @Prop() private value !: number
 
-  private visible !: boolean
-  private temp !: string | number | null
+  private isFocused !: boolean
+  private display !: string
+  private numberInput !: number
 
   $refs !: {
     numberBoxRef: HTMLInputElement
@@ -37,18 +47,40 @@ export default class extends Vue {
 
   constructor() {
     super()
-    this.visible = false
-    this.temp = null
+    this.isFocused = false
+    this.display = ''
+    this.numberInput = this.value
+  }
+
+  public get numberFormatter() : string {
+    if (!this.value) {
+      // this.changeValue(0)
+      this.$nextTick(() => {
+        return numberFormatter(this.value)
+      })
+    } else {
+      return numberFormatter(this.value)
+    }
+    return ''
+  }
+
+  private changeValue(v: number) {
+    console.log(v)
+    this.numberInput = v
+    this.$emit('update: value', v)
+    this.$emit('input', v)
+    this.$emit('change', v)
   }
 
   private onBlur() {
-    this.visible = false
+    this.isFocused = false
+    this.numberInput = this.value
+    // this.changeValue(this.numberInput)
   }
 
   private onFocus() {
-    this.visible = true
-    this.temp = this.value
-    this.value = numberFormatter(this.value)
+    this.isFocused = true
+    this.focus()
   }
 
   public focus() {

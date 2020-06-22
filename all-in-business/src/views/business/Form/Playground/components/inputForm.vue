@@ -9,23 +9,28 @@
       outlined
     />
     <v-text-field
-      v-if="inputForm.option === 'emailBox'"
+      v-else-if="inputForm.option === 'emailBox'"
       v-model="inputForm.value"
       :rules="[inputForm.validation ? rules.required : true, rules.email]"
       :label="inputForm.label"
       clearable
       outlined
     />
-    <v-text-field
-      v-if="inputForm.option === 'numberBox'"
+    <vNumberBox
+      v-else-if="inputForm.option === 'numberBox'"
+      v-model="inputForm.value"
+      :rules="[inputForm.validation ? rules.required : true]"
+    />
+    <!-- <v-text-field
       v-model="inputForm.value"
       type="number"
       :rules="[inputForm.validation ? rules.required : true]"
       :label="inputForm.label"
       clearable
       outlined
-    />
+    /> -->
     <v-select
+      v-else-if="inputForm.option === 'selectBox'"
       :items="inputForm.optionArray"
       :label="inputForm.label"
       item-text="value"
@@ -38,9 +43,13 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { InputFormInterface } from '../types'
+import vNumberBox from '@/components/inputBox/vNumberBox.vue'
 
 @Component({
-  name: 'FormInput'
+  name: 'FormInput',
+  components: {
+    vNumberBox
+  }
 
 })
 export default class extends Vue {
