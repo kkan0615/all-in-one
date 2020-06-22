@@ -42,8 +42,6 @@ export default class extends Vue {
     e.preventDefault()
     const data = e.dataTransfer.getData('text')
 
-    console.log(e.dataTransfer.getData('text'))
-
     const table = this.tables.find(e => e.id === data)
 
     if (table) {
