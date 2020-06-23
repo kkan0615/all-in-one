@@ -3,9 +3,10 @@
     v-if="isFocused"
     ref="numberBoxRef"
     v-model="numberInput"
+    class="remove-spinner"
     :hide-details="hideDetails"
     :label="label"
-    outlined
+    :outlined="outlined"
     :rules="rules"
     type="number"
     @blur="onBlur"
@@ -17,7 +18,7 @@
     :placeholder="placeholder"
     :hide-details="hideDetails"
     :label="label"
-    outlined
+    :outlined="outlined"
     @focus="onFocus"
   />
 </template>
@@ -34,12 +35,14 @@ export default class extends Vue {
   @Prop({ default: '' }) private label !: string
   @Prop({ default: [] }) private rules !: Array<any>
   @Prop({ default: false }) private readonly !: boolean
+  @Prop({ default: true }) private outlined !: boolean
   @Prop() private placeholder !: string
   @Prop() private value !: number
 
   private isFocused !: boolean
   private display !: string
   private numberInput !: number
+  // private innerRules !: Array<any>
 
   $refs !: {
     numberBoxRef: HTMLInputElement
@@ -65,7 +68,6 @@ export default class extends Vue {
   }
 
   private changeValue(v: number) {
-    console.log(v)
     this.numberInput = v
     this.$emit('update: value', v)
     this.$emit('input', v)
@@ -92,4 +94,11 @@ export default class extends Vue {
 </script>
 
 <style lang="scss" scoped>
+  .remove-spinner {
+    ::v-deep input::-webkit-outer-spin-button,
+    ::v-deep input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+  }
 </style>
