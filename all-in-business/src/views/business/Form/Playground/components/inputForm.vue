@@ -20,6 +20,7 @@
       v-else-if="inputForm.option === 'numberBox'"
       v-model="inputForm.value"
       :rules="[inputForm.validation ? rules.required : true]"
+      :label="inputForm.label"
     />
     <!-- <v-text-field
       v-model="inputForm.value"

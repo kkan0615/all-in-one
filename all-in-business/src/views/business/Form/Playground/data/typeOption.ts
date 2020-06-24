@@ -17,5 +17,9 @@ export const typeOptions: Array<TypeOptionInterface> = [
   {
     key: OptionTypeEnum.selectBox,
     name: 'selectBox'
+  },
+  {
+    key: OptionTypeEnum.emailBox,
+    name: 'emailBox'
   }
 ]

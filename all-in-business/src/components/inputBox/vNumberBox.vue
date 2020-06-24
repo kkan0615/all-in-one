@@ -7,7 +7,7 @@
     :hide-details="hideDetails"
     :label="label"
     :outlined="outlined"
-    :rules="rules"
+    :rules="innerRules"
     type="number"
     @blur="onBlur"
     @change="changeValue"
@@ -17,6 +17,7 @@
     :value="numberFormatter"
     :placeholder="placeholder"
     :hide-details="hideDetails"
+    :rules="innerRules"
     :label="label"
     :outlined="outlined"
     @focus="onFocus"
@@ -42,7 +43,7 @@ export default class extends Vue {
   private isFocused !: boolean
   private display !: string
   private numberInput !: number
-  // private innerRules !: Array<any>
+  private innerRules !: Array<any>
 
   $refs !: {
     numberBoxRef: HTMLInputElement
@@ -53,6 +54,7 @@ export default class extends Vue {
     this.isFocused = false
     this.display = ''
     this.numberInput = this.value
+    this.innerRules = []
   }
 
   public get numberFormatter() : string {
@@ -87,6 +89,7 @@ export default class extends Vue {
 
   public focus() {
     this.$nextTick(() => {
+      this.innerRules = this.rules
       this.$refs.numberBoxRef.focus()
     })
   }

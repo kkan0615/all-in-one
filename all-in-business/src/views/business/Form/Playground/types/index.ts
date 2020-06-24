@@ -10,7 +10,8 @@ export interface InputFormInterface {
 export enum OptionTypeEnum {
   textBox = 'textBox',
   numberBox = 'numberBox',
-  selectBox = 'selectBox'
+  selectBox = 'selectBox',
+  emailBox = 'emailBox'
 }
 
 export interface OptionArrayInterface {

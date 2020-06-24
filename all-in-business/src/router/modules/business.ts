@@ -113,13 +113,27 @@ const business: RouteConfig[] = [
     path: '/business/form',
     name: 'BusinessForm',
     component: () => import('@/layouts/business-layout/index.vue'),
-    meta: { title: 'Business Template', icon: 'fas fa-edit', roles: [], keepAlive: false, hidden: false, fullSize: true },
+    meta: { title: 'Form samples', icon: 'fas fa-edit', roles: [], keepAlive: false, hidden: false, fullSize: true },
     children: [
       {
         path: 'formVer1',
         name: 'FormVer1',
         component: () => import('@/views/business/Form/Playground/index.vue'),
         meta: { title: 'FormVer1', icon: 'note', roles: [], keepAlive: false, hidden: false, fullSize: true }
+      }
+    ]
+  },
+  {
+    path: '/business/grid',
+    name: 'BusinessGrid',
+    component: () => import('@/layouts/business-layout/index.vue'),
+    meta: { title: 'moevableGrid', icon: 'fas fa-edit', roles: [], keepAlive: false, hidden: false, fullSize: true },
+    children: [
+      {
+        path: 'moevableGrid',
+        name: 'moevableGrid',
+        component: () => import('@/views/business/grid/moevableGrid/index.vue'),
+        meta: { title: 'moevableGrid', icon: 'note', roles: [], keepAlive: false, hidden: false, fullSize: true }
       }
     ]
   }
