@@ -1,35 +1,11 @@
 <template>
-  <!-- <div
-    style="display: flex"
-  >
-    <div
-      style="max-width: 50%"
-    >
-      <resizeable-div />
-    </div>
-    <div
-      style="max-width: 50%"
-    >
-      <resizeable-div />
-    </div>
-    <div
-      style="max-width: 50%"
-    >
-      <resizeable-div />
-    </div>
-  </div> -->
   <v-row>
-
     <resizeable-div
-      :title="'test1'"
-    />
-
-    <resizeable-div
-      :title="'test2'"
-    />
-
-    <resizeable-div
-      :title="'test3'"
+      v-for="(resizeableDiv, i) in divArray"
+      :key="i"
+      :title="resizeableDiv.title"
+      :width="resizeableDiv.width"
+      :height="resizeableDiv.height"
     />
   </v-row>
 </template>
@@ -38,6 +14,9 @@
 import { Component, Vue } from 'vue-property-decorator'
 import ResizeableDiv from '@/components/resizeableDiv/index.vue'
 
+// Fake data
+import { fakeDivArray } from './data/fakeData'
+
 @Component({
   name: 'moveableGrid',
   components: {
@@ -45,6 +24,16 @@ import ResizeableDiv from '@/components/resizeableDiv/index.vue'
   }
 })
 export default class extends Vue {
+  private divArray !: Array<any>
+
+  constructor() {
+    super()
+    this.divArray = []
+  }
+
+  created() {
+    this.divArray = JSON.parse(JSON.stringify(fakeDivArray))
+  }
 }
 </script>
 

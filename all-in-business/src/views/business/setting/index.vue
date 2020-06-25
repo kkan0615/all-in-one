@@ -19,7 +19,7 @@
         sm="9"
         xs="9"
       >
-        <router-view />
+        <visual-setting />
       </v-col>
     </v-row>
   </section>
@@ -28,11 +28,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import BusinessSettingMenu from './components/menu/index.vue'
+import VisualSetting from './components/visualSetting/index.vue'
 
 @Component({
   name: 'BusinessSetting',
   components: {
-    BusinessSettingMenu
+    BusinessSettingMenu,
+    VisualSetting
   }
 })
 export default class extends Vue {

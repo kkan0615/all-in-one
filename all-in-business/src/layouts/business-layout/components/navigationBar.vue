@@ -37,7 +37,7 @@
             <v-icon>{{ menu.meta.icon }}</v-icon>
           </v-list-item-icon>
 
-          <v-list-item-title>{{ menu.name }}</v-list-item-title>
+          <v-list-item-title class="text-body-2">{{ menu.name }}</v-list-item-title>
         </v-list-item>
       </v-list>
       <v-list v-else-if="menu.children.length > 0 && !menu.meta.hidden" shaped>
@@ -47,7 +47,7 @@
           :color="designSetting.subColorFive"
         >
           <template v-slot:activator>
-            <v-list-item-title>{{ menu.meta.title }}</v-list-item-title>
+            <v-list-item-title class="text-body-2">{{ menu.meta.title }}</v-list-item-title>
           </template>
 
           <v-list-item
@@ -60,7 +60,7 @@
             <v-list-item-icon>
               <v-icon />
             </v-list-item-icon>
-            <v-list-item-title>{{ child.meta.title }}</v-list-item-title>
+            <v-list-item-title class="text-caption">{{ child.meta.title }}</v-list-item-title>
             <v-list-item-icon>
               <v-icon>{{ child.meta.icon }}</v-icon>
             </v-list-item-icon>

@@ -1,11 +1,15 @@
 <template>
   <v-card
-    class="resizeable"
-    @mouseup="resizeDrag"
+    :style="`width: ${width}; height: ${height};`"
+    class="resizeable ma-2"
+    @resize="resizeDrag"
   >
     <v-card-title>
       {{ title }}
     </v-card-title>
+    <v-card-text>
+      {{ text }}
+    </v-card-text>
   </v-card>
 </template>
 
@@ -18,6 +22,9 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 })
 export default class extends Vue {
   @Prop() private title !: string
+  @Prop({ default: '32%' }) private width !: string | number
+  @Prop({ default: '300px' }) private height !: string | number
+  @Prop({ required: false }) private text !: string
 
   private resizeDrag(event: any) {
     console.log(event)

@@ -1,8 +1,7 @@
 <template>
   <v-app-bar
-    color="grey darken-4"
     app
-    :dark="dark"
+    :dark="$vuetify.theme.dark"
   >
     <v-tooltip bottom>
       <template v-slot:activator="{ on, attrs }">
@@ -72,13 +71,14 @@ export default class extends Vue {
   @Prop() private navigation!: boolean
   @Prop() private isMobile!: boolean
 
-  private dark = true
+  private dark !: boolean
   private title = 'Business Template'
   private visibleSearchBar !: boolean
 
   constructor() {
     super()
     this.visibleSearchBar = false
+    this.dark = true
   }
 
   onChangeNavigation() {
