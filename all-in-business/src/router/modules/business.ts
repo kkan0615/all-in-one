@@ -136,6 +136,20 @@ const business: RouteConfig[] = [
         meta: { title: 'moevableGrid', icon: 'note', roles: [], keepAlive: false, hidden: false, fullSize: true }
       }
     ]
+  },
+  {
+    path: '/business/table',
+    name: 'BusinessTable',
+    component: () => import('@/layouts/business-layout/index.vue'),
+    meta: { title: 'Table', icon: 'fas fa-edit', roles: [], keepAlive: false, hidden: false, fullSize: true },
+    children: [
+      {
+        path: 'inlineEditTable',
+        name: 'inlineEditTable',
+        component: () => import('@/views/business/tables/inlineEditTable/index.vue'),
+        meta: { title: 'inlineEditTable', icon: 'note', roles: [], keepAlive: false, hidden: false, fullSize: true }
+      }
+    ]
   }
 ]
 

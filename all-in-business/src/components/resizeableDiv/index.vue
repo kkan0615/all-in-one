@@ -4,12 +4,7 @@
     class="resizeable ma-2"
     @resize="resizeDrag"
   >
-    <v-card-title>
-      {{ title }}
-    </v-card-title>
-    <v-card-text>
-      {{ text }}
-    </v-card-text>
+    <slot />
   </v-card>
 </template>
 

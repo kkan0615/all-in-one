@@ -7,6 +7,7 @@
     :hide-details="hideDetails"
     :label="label"
     :outlined="outlined"
+    :dense="dense"
     :rules="innerRules"
     type="number"
     @blur="onBlur"
@@ -19,7 +20,10 @@
     :hide-details="hideDetails"
     :rules="innerRules"
     :label="label"
+    :dense="dense"
     :outlined="outlined"
+    :single-line="false"
+
     @focus="onFocus"
   />
 </template>
@@ -32,11 +36,12 @@ import { numberFormatter } from '@/utils/formaterUtils'
   name: 'vNumberBox'
 })
 export default class extends Vue {
-  @Prop({ default: false }) private hideDetails !: boolean
+  @Prop({ default: true }) private hideDetails !: boolean
   @Prop({ default: '' }) private label !: string
-  @Prop({ default: [] }) private rules !: Array<any>
+  @Prop({ default: () => [] }) private rules !: Array<any>
   @Prop({ default: false }) private readonly !: boolean
   @Prop({ default: true }) private outlined !: boolean
+  @Prop({ default: false }) private dense !: boolean
   @Prop() private placeholder !: string
   @Prop() private value !: number
 
@@ -53,7 +58,7 @@ export default class extends Vue {
     super()
     this.isFocused = false
     this.display = ''
-    this.numberInput = this.value
+    this.numberInput = this.value | 0
     this.innerRules = []
   }
 
@@ -104,4 +109,9 @@ export default class extends Vue {
     margin: 0;
     }
   }
+</style>
+<style lang="scss">
+.v-input__control, .v-input__slot, .v-text-field__slot {
+			border-style: none;
+		}
 </style>

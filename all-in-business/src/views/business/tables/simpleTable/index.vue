@@ -16,9 +16,33 @@
         :items="items"
         :headers="columns"
         :search="search"
-        :calculate-widths="false"
-        :height="500"
+        :calculate-widths="true"
       >
+        <!-- <template #body="{ items }">
+          <tbody>
+            <tr v-for="(item, i) in items" :key="i">
+              <td>
+                <v-text-field
+                  v-model="item.ITEMCODE"
+                  hide-details
+                />
+              </td>
+              <td>
+                <v-text-field
+                  v-model="item.ITEMNAME"
+                  hide-details
+                />
+              </td>
+              <td>
+                <vNumberBox
+                  v-model="item.PRICE"
+                  :outlined="false"
+                />
+              </td>
+              <td>{{ item.UNIT }}</td>
+            </tr>
+          </tbody>
+        </template> -->
         <template v-if="status === 'edit'" #item.ITEMCODE="props">
           <v-text-field
             v-model="props.item.ITEMCODE"
@@ -39,15 +63,6 @@
         </template>
         <template v-else #item.PRICE="props">
           <div>{{ numberFormatter(props.item.PRICE) }}</div>
-        </template>
-        <template v-if="status === 'edit'" #item.UNIT="props">
-          <v-select
-            v-model="props.item.UNIT"
-            hide-details
-            :items="commonList.UNIT"
-            item-text="value"
-            item-value="id"
-          />
         </template>
         <template v-if="status === 'edit'" v-slot:item.actions="{ item }">
           <v-icon
@@ -73,7 +88,6 @@ import { numberFormatter } from '@/utils/formaterUtils'
 
 import { columns } from './data/columns'
 import { ItemInterface, fakeItems } from './data/items'
-import { fakeUnitArray } from './data/commonList'
 import vNumberBox from '@/components/inputBox/vNumberBox.vue'
 
 @Component({
@@ -87,9 +101,6 @@ export default class extends Vue {
   private columns : Array<ColumnInterface>
   private search !: string
   private status !: 'edit' | 'read' | 'new'
-  private selected !: Array<any> | object /** For selection */
-
-  private commonList !: any
 
   constructor() {
     super()
@@ -97,11 +108,9 @@ export default class extends Vue {
     this.columns = columns
     this.search = ''
     this.status = 'read'
-    this.commonList = {}
   }
 
   created() {
-    this.commonList.UNIT = JSON.parse(JSON.stringify(fakeUnitArray))
     this.items = JSON.parse(JSON.stringify(fakeItems))
   }
 
@@ -113,7 +122,6 @@ export default class extends Vue {
     switch (this.status) {
       case 'edit':
         this.status = 'read'
-        /** Remove actions */
         const index = this.columns.findIndex(e => e.text === 'ACTIONS')
         this.columns.splice(index, 1)
         break
@@ -135,7 +143,7 @@ export default class extends Vue {
       ITEMCODE: '',
       ITEMNAME: '',
       PRICE: 0,
-      UNIT: 'EA'
+      UNIT: ''
     })
   }
 

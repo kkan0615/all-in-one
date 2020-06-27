@@ -31,16 +31,16 @@
 
     <v-divider />
     <div v-for="(menu, i) in menus" :key="i">
-      <v-list v-if="menu.children.length < 1 && !menu.meta.hidden" :expand="false">
+      <v-list v-if="menu.children.length < 1 && !menu.meta.hidden" :expand="false" dense>
         <v-list-item>
           <v-list-item-icon>
-            <v-icon>{{ menu.meta.icon }}</v-icon>
+            <v-icon x-small>{{ menu.meta.icon }}</v-icon>
           </v-list-item-icon>
 
           <v-list-item-title class="text-body-2">{{ menu.name }}</v-list-item-title>
         </v-list-item>
       </v-list>
-      <v-list v-else-if="menu.children.length > 0 && !menu.meta.hidden" shaped>
+      <v-list v-else-if="menu.children.length > 0 && !menu.meta.hidden" shaped dense>
         <v-list-group
           :prepend-icon="menu.meta.icon"
           :value="false"
@@ -67,6 +67,7 @@
           </v-list-item>
         </v-list-group>
       </v-list>
+      <v-divider />
     </div>
     <template v-slot:append>
       <div class="pa-2">

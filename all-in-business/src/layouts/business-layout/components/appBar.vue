@@ -1,6 +1,7 @@
 <template>
   <v-app-bar
     app
+    dense
     :dark="$vuetify.theme.dark"
   >
     <v-tooltip bottom>
