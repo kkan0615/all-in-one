@@ -3,10 +3,10 @@
     app
     dense
     :dark="$vuetify.theme.dark"
+    :color="designSetting.subColorOne"
   >
     <v-tooltip bottom>
       <template v-slot:activator="{ on, attrs }">
-
         <v-app-bar-nav-icon
           v-bind="attrs"
           @click="onChangeNavigation"
@@ -60,6 +60,8 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import MainIconsWithMenu from './appBar/iconsWithMenu.vue'
 import Search from './appBar/search.vue'
+import { DesignSettingModule } from '../../../store/modules/designSetting'
+import { DesginColorInterface } from '../../../store/data/colors'
 
 @Component({
   name: 'MainAppBar',
@@ -80,6 +82,10 @@ export default class extends Vue {
     super()
     this.visibleSearchBar = false
     this.dark = true
+  }
+
+  private get designSetting() : DesginColorInterface {
+    return DesignSettingModule.designColor
   }
 
   onChangeNavigation() {

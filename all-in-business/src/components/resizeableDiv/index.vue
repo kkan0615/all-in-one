@@ -17,8 +17,8 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 })
 export default class extends Vue {
   @Prop() private title !: string
-  @Prop({ default: '32%' }) private width !: string | number
-  @Prop({ default: '300px' }) private height !: string | number
+  @Prop({ default: '100%' }) private width !: string | number
+  @Prop({ default: '100%' }) private height !: string | number
   @Prop({ required: false }) private text !: string
 
   private resizeDrag(event: any) {

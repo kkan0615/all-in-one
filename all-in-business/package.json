@@ -19,6 +19,7 @@
     "core-js": "^3.6.4",
     "echarts": "^4.8.0",
     "eslint-config-prettier": "^6.10.0",
+    "file-saver": "^2.0.2",
     "graphql": "^14.6.0",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.15",
@@ -36,9 +37,11 @@
     "vuetify": "^2.3.1",
     "vuex": "^3.1.2",
     "vuex-class": "^0.3.2",
-    "vuex-module-decorators": "^0.16.1"
+    "vuex-module-decorators": "^0.16.1",
+    "xlsx": "^0.16.2"
   },
   "devDependencies": {
+    "@types/file-saver": "^2.0.1",
     "@types/lodash": "^4.14.150",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
