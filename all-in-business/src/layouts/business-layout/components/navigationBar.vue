@@ -122,6 +122,8 @@ export default class extends Vue {
   private get allowedMenus(): RouteConfig[] {
     let result = []
     result = this.menus.filter((e: RouteConfig) => {
+      console.log(e)
+
       if (!e.meta.roles) {
         return true
       }
@@ -132,6 +134,8 @@ export default class extends Vue {
         return false
       }
     })
+    console.log(result)
+
     return result
   }
 
