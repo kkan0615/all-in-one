@@ -5,12 +5,12 @@ Vue.use(Vuetify)
 
 export const vuetify = new Vuetify({
   theme: {
-    dark: true,
-    themes: {
-      dark: {
+    dark: true
+    // themes: {
+    //   dark: {
 
-      }
-    }
+    //   }
+    // }
   }
 })
 

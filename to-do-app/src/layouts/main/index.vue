@@ -31,9 +31,11 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
-export default class HelloWorld extends Vue {
+export default class extends Vue {
   @Prop() private msg!: string;
   public get key(): string {
+    console.log(this.$router)
+
     return this.$route.path
   }
 }

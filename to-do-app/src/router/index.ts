@@ -16,7 +16,30 @@ const routes: Array<RouteConfig> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import('../views/About.vue')
+  },
+  {
+    path: '/todo',
+    name: 'ToDoList',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('@/views/to-do-list/index.vue')
+  },
+  {
+    path: '/test',
+    name: 'test',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('@/layouts/main/index.vue'),
+    children: [
+      {
+        path: '/test2',
+        name: 'test2',
+        component: () => import('@/views/to-do-list/index.vue')
+      }
+    ]
   }
 ]
 
