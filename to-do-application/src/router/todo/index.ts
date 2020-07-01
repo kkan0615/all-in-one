@@ -8,14 +8,14 @@ const todoRoutes : RouteConfig[] = [
     children: [
       {
         path: 'list',
-        name: 'List',
+        name: 'ToDoList',
         component: () => import('@/views/todo/list/index.vue')
+      },
+      {
+        path: 'create',
+        name: 'ToDoCreate',
+        component: () => import('@/views/todo/create/index.vue')
       }
-      // {
-      //   path: 'create',
-      //   name: 'Create',
-      //   component: () => import('@/views/auth/register/index.vue')
-      // }
     ]
   }
 ]
