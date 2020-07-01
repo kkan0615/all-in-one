@@ -58,10 +58,10 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import MainIconsWithMenu from './appBar/iconsWithMenu.vue'
-import Search from './appBar/search.vue'
-import { DesignSettingModule } from '../../../store/modules/designSetting'
-import { DesginColorInterface } from '../../../store/data/colors'
+import MainIconsWithMenu from './components/iconsWithMenu.vue'
+import Search from './componentssearch.vue'
+import { DesignSettingModule } from '@/store/modules/designSetting'
+import { DesginColorInterface } from '@/store/data/colors'
 
 @Component({
   name: 'MainAppBar',

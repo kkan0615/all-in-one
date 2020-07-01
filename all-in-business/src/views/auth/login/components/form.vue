@@ -68,7 +68,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import { UserModule } from '@/store/modules/uesr'
 import { DesignSettingModule } from '@/store/modules/designSetting'
 import { DesginColorInterface } from '@/store/data/colors'
-import TranslateMenu from '@/layouts/business-layout/components/appBar/translateMenu.vue'
+import TranslateMenu from '@/layouts/business-layout/components/appBar/components/translateMenu.vue'
 
 @Component({
   name: 'LoginForm',

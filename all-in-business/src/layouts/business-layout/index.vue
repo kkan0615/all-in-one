@@ -52,8 +52,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import BusinessNavBar from './components/appBar.vue'
-import BusinessNavigationBar from './components/navigationBar.vue'
+import BusinessNavBar from './components/appBar/index.vue'
+import BusinessNavigationBar from './components/navigatorBar/index.vue'
 import FloatingButtons from './components/FloatingButtons/index.vue'
 import { ResizeHandlerMixins } from '@/mixins/modules/ResizeHandler'
 import { DesignSettingModule } from '@/store/modules/designSetting'
