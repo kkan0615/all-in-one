@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 
+import '@/styles/index.scss'
+
 /**
  * For solving Error Not showing icon in vuetify
  * https://stackoverflow.com/questions/57053728/vuetify-icon-not-showing

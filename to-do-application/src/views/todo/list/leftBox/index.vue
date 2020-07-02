@@ -1,7 +1,8 @@
 <template>
-  <v-card>
+  <v-card
+    class="resizeable"
+  >
     <v-card-title>
-
       <v-text-field
         label="search"
         outlined
@@ -20,8 +21,7 @@
       </v-btn>
     </v-card-title>
     <v-card-text>
-
-      test
+      <draggable-to-do-list />
     </v-card-text>
   </v-card>
 </template>
@@ -30,11 +30,13 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 import TodoListViewSetting from './components/viewSetting.vue'
+import DraggableToDoList from './components/draggableToDoList/index.vue'
 
 @Component({
   name: 'TodoListLeftBox',
   components: {
-    TodoListViewSetting
+    TodoListViewSetting,
+    DraggableToDoList
   }
 })
 export default class extends Vue {
