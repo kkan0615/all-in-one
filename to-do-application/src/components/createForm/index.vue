@@ -19,6 +19,11 @@
           readonly
           outlined
         />
+        <v-checkbox
+          v-model="todoForm.endDate"
+          label="All Day"
+          outlined
+        />
         <v-color-box
           v-model="todoForm.color"
           label="Color"
