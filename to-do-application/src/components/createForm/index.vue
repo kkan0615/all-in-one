@@ -107,6 +107,7 @@ export default class extends Vue {
    */
   private resetDefaultToDoForm(): ToDoInterface {
     return {
+      id: ToDoFakeData.length,
       title: '',
       content: '',
       color: '#2196F3FF',

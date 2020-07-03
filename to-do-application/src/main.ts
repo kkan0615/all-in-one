@@ -5,6 +5,7 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 
 import '@/styles/index.scss'
+import '@/styles/transition.scss'
 
 /**
  * For solving Error Not showing icon in vuetify

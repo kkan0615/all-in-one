@@ -21,14 +21,19 @@
       </v-btn>
     </v-card-title>
     <v-card-text>
-      <draggable-to-do-list />
+      <draggable-to-do-list
+        class="draggable-to-do-list"
+        :todo-list="todoList"
+        @openDetail="openDetail"
+      />
     </v-card-text>
   </v-card>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-
+import { ToDoFakeData } from '@/data/fakeData/toDoFakeData'
+import { ToDoInterface } from '@/types/todo'
 import TodoListViewSetting from './components/viewSetting.vue'
 import DraggableToDoList from './components/draggableToDoList/index.vue'
 
@@ -40,13 +45,24 @@ import DraggableToDoList from './components/draggableToDoList/index.vue'
   }
 })
 export default class extends Vue {
-  // constructor() {
-  //   super()
-
-  // }
+  private todoList !: Array<ToDoInterface>
+  constructor() {
+    super()
+    this.todoList = ToDoFakeData
+  }
 
   private searchTodo() {
     console.log('hi')
   }
+
+  private openDetail(todo: ToDoInterface) {
+    this.$emit('openDetail', todo)
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+.draggable-to-do-list {
+  overflow-x: auto;;
+}
+</style>

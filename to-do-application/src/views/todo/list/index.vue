@@ -2,7 +2,9 @@
   <div>
     <v-row>
       <v-col>
-        <TodoListLeftBox />
+        <TodoListLeftBox
+          @openDetail="openDetail"
+        />
       </v-col>
       <v-col
         v-if="visibleRigBox"
@@ -22,6 +24,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 import TodoListLeftBox from './leftBox/index.vue'
+import { ToDoInterface } from '../../../types/todo'
 
 @Component({
   name: 'TodoList',
@@ -31,14 +34,21 @@ import TodoListLeftBox from './leftBox/index.vue'
 })
 export default class extends Vue {
   private visibleRigBox !: boolean
+  private currentToDo : ToDoInterface | null
 
   constructor() {
     super()
     this.visibleRigBox = false
+    this.currentToDo = null
   }
 
   private showToDoDetail() {
     this.visibleRigBox = true
+  }
+
+  private openDetail(todo: ToDoInterface) {
+    this.currentToDo = todo
+    this.showToDoDetail()
   }
 }
 </script>
