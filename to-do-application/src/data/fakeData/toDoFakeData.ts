@@ -33,8 +33,8 @@ export const ToDoFakeData : Array<ToDoInterface> = [
   },
   {
     id: 1,
-    title: 'default #0',
-    color: '#FFFFFF',
+    title: 'default #1',
+    color: '#F57F17FF',
     content: `
     <h2>
     Hi there,

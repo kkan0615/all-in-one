@@ -22,9 +22,8 @@
     </v-card-title>
     <v-card-text>
       <draggable-to-do-list
-        class="draggable-to-do-list"
         :todo-list="todoList"
-        @openDetail="openDetail"
+        @open="openDetail"
       />
     </v-card-text>
   </v-card>
@@ -56,13 +55,10 @@ export default class extends Vue {
   }
 
   private openDetail(todo: ToDoInterface) {
-    this.$emit('openDetail', todo)
+    this.$emit('open', todo)
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.draggable-to-do-list {
-  overflow-x: auto;;
-}
 </style>

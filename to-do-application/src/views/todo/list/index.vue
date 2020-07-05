@@ -3,17 +3,32 @@
     <v-row>
       <v-col>
         <TodoListLeftBox
-          @openDetail="openDetail"
+          @open="openDetail"
         />
       </v-col>
       <v-col
-        v-if="visibleRigBox"
+        v-if="visibleRightBox"
         :cols="3"
       >
-        <v-card
-          @showToDoDetail="showToDoDetail"
-        >
-          test2
+        <v-card>
+          <v-card-title>
+            {{ currentToDo.title }}
+            <v-btn
+              icon
+            >
+              <v-icon
+                @click="closeDetail"
+              >
+                close
+              </v-icon>
+            </v-btn>
+          </v-card-title>
+          <v-card-subtitle>
+            {{ currentToDo.endDate || 'All day' }}
+          </v-card-subtitle>
+          <v-card-text>
+            <v-card v-html="currentToDo.content" />
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
@@ -24,7 +39,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 import TodoListLeftBox from './leftBox/index.vue'
-import { ToDoInterface } from '../../../types/todo'
+import { ToDoInterface } from '@/types/todo'
 
 @Component({
   name: 'TodoList',
@@ -33,22 +48,28 @@ import { ToDoInterface } from '../../../types/todo'
   }
 })
 export default class extends Vue {
-  private visibleRigBox !: boolean
+  private visibleRightBox !: boolean
   private currentToDo : ToDoInterface | null
 
   constructor() {
     super()
-    this.visibleRigBox = false
+    this.visibleRightBox = false
     this.currentToDo = null
   }
 
   private showToDoDetail() {
-    this.visibleRigBox = true
+    this.visibleRightBox = true
   }
 
   private openDetail(todo: ToDoInterface) {
     this.currentToDo = todo
     this.showToDoDetail()
+  }
+
+  private closeDetail() {
+    this.currentToDo = null
+
+    this.visibleRightBox = false
   }
 }
 </script>

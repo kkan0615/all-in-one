@@ -12,18 +12,28 @@
           outlined
           clearable
         />
-        <v-date-box
-          v-model="todoForm.endDate"
-          label="End date"
-          :rules="[dateRules.required]"
-          readonly
-          outlined
-        />
-        <v-checkbox
-          v-model="todoForm.endDate"
-          label="All Day"
-          outlined
-        />
+        <v-row>
+          <v-col
+            :cols="9"
+          >
+            <v-date-box
+              v-model="todoForm.endDate"
+              label="End date"
+              readonly
+              outlined
+              @change="onChangeEndDateBox"
+            />
+
+          </v-col>
+          <v-col>
+            <v-checkbox
+              v-model="allDay"
+              label="All Day"
+              outlined
+              @change="onChangeAllDayBox"
+            />
+          </v-col>
+        </v-row>
         <v-color-box
           v-model="todoForm.color"
           label="Color"
@@ -31,10 +41,14 @@
           readonly
           outlined
         />
-        <v-tip-tap-box
+        <!-- <v-tip-tap-box
           v-model="todoForm.content"
           label="Color"
           :rules="[dateRules.required]"
+          outlined
+        /> -->
+        <v-textarea
+          v-model="todoForm.content"
           outlined
         />
         <v-card-actions>
@@ -54,6 +68,14 @@
             @click="resetForm"
           >
             Reset
+          </v-btn>
+          <v-btn
+            color="red"
+            right
+            outlined
+            @click="cancel"
+          >
+            cancel
           </v-btn>
         </v-card-actions>
       </v-form>
@@ -86,6 +108,7 @@ export default class extends Vue {
   }
 
   private todoForm !: ToDoInterface
+  private allDay !: boolean
 
   private titleRules = {
     required: (value: any) => !!value || 'Title is required.'
@@ -98,6 +121,7 @@ export default class extends Vue {
   constructor() {
     super()
     this.todoForm = this.resetDefaultToDoForm()
+    this.allDay = false
   }
 
   mounted() {
@@ -122,6 +146,18 @@ export default class extends Vue {
     }
   }
 
+  private onChangeAllDayBox() {
+    if (this.allDay) {
+      this.todoForm.endDate = ''
+    } else {
+      this.todoForm.endDate = new Date().toISOString().substr(0, 10)
+    }
+  }
+
+  private onChangeEndDateBox() {
+    this.allDay = false
+  }
+
   private submitForm() {
     const valid = this.$refs.createFormRef.validate()
     if (!valid) {
@@ -140,6 +176,10 @@ export default class extends Vue {
     this.$nextTick(() => {
       this.$refs.titleBox.focus()
     })
+  }
+
+  private cancel() {
+    this.$router.go(-1)
   }
 }
 </script>

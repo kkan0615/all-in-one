@@ -10,10 +10,14 @@
   >
     <v-card-title
       class="pa-2"
+      @click="clickTitle"
     >
       {{ value.title }}
     </v-card-title>
-    <!-- <v-card-text v-html="value.content" /> -->
+    <v-card-text
+      v-if="visibleContent"
+      v-html="value.content"
+    />
     <div
       class="acitons-height"
     >
@@ -22,46 +26,10 @@
           v-if="visibleActions"
         >
           <v-spacer />
-
-          <v-menu bottom left>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                icon
-                v-bind="attrs"
-                v-on="on"
-              >
-                <v-icon>mdi-dots-vertical</v-icon>
-              </v-btn>
-            </template>
-
-            <!-- <v-list>
-          <v-list-item
-            v-for="(item, i) in list"
-            :key="i"
-          >
-            <v-list-item-icon>
-              <v-icon>
-                {{ item.icon }}
-              </v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              {{ item.title }}
-            </v-list-item-content>
-          </v-list-item>
-        </v-list> -->
-            <v-card
-              v-for="(item, i) in list"
-              :key="i"
-            >
-              <v-card-title>
-                {{ item.title }}
-              </v-card-title>
-            </v-card>
-          </v-menu>
           <v-btn
             icon
           >
-            <v-icon>mdi-dots-vertical</v-icon>
+            <v-icon @click="onClickdelete">delete</v-icon>
           </v-btn>
         </v-card-actions>
       </transition>
@@ -85,6 +53,7 @@ import { toDoCardList } from './data/list'
 })
 export default class extends Vue {
   @Prop({ required: true }) private value !: ToDoInterface
+  @Prop({ required: false, default: false }) private visibleContent !: boolean
   private list !: Array<ListInterface>
   private visibleActions !: boolean
 
@@ -96,10 +65,6 @@ export default class extends Vue {
 
   public get islightColor() : boolean {
     const result = islightColor(this.value.color)
-
-    // if (!result) {
-    //   return this.$vuetify.theme.dark
-    // }
     return result || this.$vuetify.theme.dark
   }
 
@@ -109,6 +74,14 @@ export default class extends Vue {
 
   private offVisibleActions() {
     this.visibleActions = false
+  }
+
+  private onClickdelete() {
+    this.$emit('delete')
+  }
+
+  private clickTitle() {
+    this.$emit('click')
   }
 }
 </script>

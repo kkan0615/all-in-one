@@ -46,6 +46,7 @@ export default class extends Vue {
 
   private changeValue(date: string) {
     this.dateMenu = false
+    this.$emit('change', date)
     this.$emit('input', date)
     this.$emit('updated:value', date)
   }
