@@ -87,7 +87,7 @@ export const ToDoFakeData : Array<ToDoInterface> = [
     – mom
   </blockquote>
   `,
-    endDate: new Date().toISOString().substr(0, 10),
+    endDate: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().substr(0, 10),
     status: 'working',
     tags: []
   },
@@ -124,7 +124,7 @@ export const ToDoFakeData : Array<ToDoInterface> = [
   {
     id: 4,
     title: 'default #4',
-    color: '#FFFFFF',
+    color: '#D81B60FF',
     content: `
     <h2>
     Hi there,
@@ -148,13 +148,13 @@ export const ToDoFakeData : Array<ToDoInterface> = [
   </blockquote>
   `,
     endDate: new Date().toISOString().substr(0, 10),
-    status: 'working',
+    status: 'done',
     tags: []
   },
   {
     id: 5,
     title: 'default #5',
-    color: '#FFFFFF',
+    color: '#26A69AFF',
     content: `
     <h2>
     Hi there,
@@ -177,7 +177,7 @@ export const ToDoFakeData : Array<ToDoInterface> = [
     – mom
   </blockquote>
   `,
-    endDate: new Date().toISOString().substr(0, 10),
+    endDate: '',
     status: 'working',
     tags: []
   }

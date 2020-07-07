@@ -51,13 +51,9 @@ import _ from 'lodash'
 
 @Component({
   name: 'ToDoCard'
-  // components: {
-  //   Footer
-  // }
 })
 export default class extends Vue {
   @Prop({ required: true }) private value !: ToDoInterface
-  // @Prop({ required: false, default: false }) private visibleContent !: boolean
   private visibleContent !: boolean
   private list !: Array<ListInterface>
   private visibleActions !: boolean
@@ -91,15 +87,13 @@ export default class extends Vue {
     this.$emit('click')
   }
 
-  private resizeHandler(event: MouseEvent) {
-    console.log(event)
+  private resizeHandler() {
     const todo = document.getElementById(`todo-${this.value.id}`)
 
     if (!todo) {
       return
     }
 
-    console.log(todo.offsetHeight)
     if (todo.offsetHeight > 200) {
       this.visibleContent = true
     } else {

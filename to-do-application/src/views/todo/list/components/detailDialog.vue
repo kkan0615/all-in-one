@@ -8,6 +8,8 @@
     @input="inputChanged"
   >
     <v-card
+      :light="islightColor"
+      :dark="!islightColor"
       :color="detail.color"
     >
       <v-card-title
@@ -51,6 +53,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { ToDoInterface } from '@/types/todo'
+import { islightColor } from '@/uitls/color'
 
 @Component({
   name: 'TodoDetailDialog'
@@ -58,6 +61,10 @@ import { ToDoInterface } from '@/types/todo'
 export default class extends Vue {
   @Prop({ required: true }) private value !: boolean
   @Prop() private detail !: ToDoInterface
+
+  public get islightColor() : boolean {
+    return islightColor(this.detail.color)
+  }
 
   private closeDialog() {
     this.$emit('update:value', false)

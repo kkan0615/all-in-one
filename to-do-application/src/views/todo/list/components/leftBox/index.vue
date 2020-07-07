@@ -1,63 +1,68 @@
 <template>
-  <v-row>
-    <v-col
-      v-for="(item, i) in filteredToDoList"
-      :key="i"
-    >
-      <v-list>
-        <v-list-item-title>{{ item.title }} / {{ item.list.length }}</v-list-item-title>
-
-        <draggable
-          class="list-group"
-          :list="item.list"
-          :group="{ name: 'todo' }"
-          @change="(event) => test(event, item)"
-        >
-          <to-do-card
-            v-for="todo in item.list"
-            :key="todo.id"
-            class="ma-4"
-            :value="todo"
-            @delete="() => deleteToDoCard(i, todo)"
-            @click="openToDoDetail(todo)"
-          />
-        </draggable>
-        <v-list-item v-if="item.list.length < 1">
-          <v-list-item-content>
-            No data
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-
-    </v-col>
-  </v-row>
+  <v-card
+    class="resizeable"
+  >
+    <v-card-title>
+      <v-text-field
+        label="search"
+        outlined
+        hide-details
+        append-icon="search"
+        @keyup.enter="searchTodo"
+        @click:append="searchTodo"
+      />
+      <v-spacer />
+      <v-btn
+        color="primary"
+        link
+        :to="{name: 'ToDoCreate'}"
+      >
+        Add new
+      </v-btn>
+    </v-card-title>
+    <v-card-text>
+      <draggable-to-do-list
+        :todo-list="todoList"
+        :filtered-to-do-list="filteredToDoList"
+        @open="openDetail"
+        @remove="deleteToDoCard"
+        @change="change"
+      />
+    </v-card-text>
+  </v-card>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
-import draggable from 'vuedraggable'
-import ToDoCard from '@/components/toDoCard/index.vue'
+import { Component, Vue } from 'vue-property-decorator'
+import { ToDoFakeData } from '@/data/fakeData/toDoFakeData'
 import { ToDoInterface } from '@/types/todo'
-import { ToDoListInterface } from './types/draggableToDoList'
+import TodoListViewSetting from './components/viewSetting.vue'
+import DraggableToDoList from './components/draggableToDoList/index.vue'
+import { ToDoListInterface } from './components/draggableToDoList/types/draggableToDoList'
 
 @Component({
-  name: 'DraggableToDoList',
+  name: 'TodoListLeftBox',
   components: {
-    ToDoCard,
-    draggable
+    TodoListViewSetting,
+    DraggableToDoList
   }
 })
 export default class extends Vue {
-  @Prop() private todoList !: Array<ToDoInterface>
-
+  private todoList !: Array<ToDoInterface>
   private filteredToDoList !: Array<ToDoListInterface>
+
   constructor() {
     super()
+    this.todoList = ToDoFakeData
     this.filteredToDoList = []
   }
 
   created() {
     this.groupingToDoList()
+  }
+
+  private searchTodo() {
+    console.log('hi')
   }
 
   private groupingToDoList() {
@@ -95,37 +100,7 @@ export default class extends Vue {
     this.filteredToDoList.push(allDayLlist)
   }
 
-  private openDetail(todo: ToDoInterface) {
-    this.$emit('openDetail', todo)
-  }
-
-  private test(event: any, item: ToDoListInterface) {
-    let element: ToDoInterface
-    if (event.added) {
-      element = event.added.element
-    } else {
-      return
-    }
-
-    const today = new Date()
-    switch (item.title) {
-      case 'This week':
-        element.status = 'working'
-        element.endDate = new Date().toISOString().substr(0, 10)
-        break
-      case 'Upcomming':
-        element.status = 'working'
-        element.endDate = new Date(today.setDate(today.getDate() + 7)).toISOString().substr(0, 10)
-        break
-      case 'done':
-        element.status = 'done'
-        break
-      case 'All day':
-        element.endDate = ''
-        break
-      default:
-        break
-    }
+  private change(element: ToDoInterface) {
     const index = this.todoList.findIndex(e => {
       return e.id === element.id
     })
@@ -142,10 +117,11 @@ export default class extends Vue {
     this.filteredToDoList[itemIndex].list.splice(toDoListIndex, 1)
   }
 
-  private openToDoDetail(todo: ToDoInterface) {
-    console.log('test')
-
+  private openDetail(todo: ToDoInterface) {
     this.$emit('open', todo)
   }
 }
 </script>
+
+<style lang="scss" scoped>
+</style>
