@@ -60,5 +60,125 @@ export const ToDoFakeData : Array<ToDoInterface> = [
     endDate: new Date().toISOString().substr(0, 10),
     status: 'working',
     tags: []
+  },
+  {
+    id: 2,
+    title: 'default #2',
+    color: '#FFFFFF',
+    content: `
+    <h2>
+    Hi there,
+  </h2>
+  <p>
+    this is a very <em>basic</em> example of tiptap.
+  </p>
+  <pre><code>body { display: none; }</code></pre>
+  <ul>
+    <li>
+      A regular list
+    </li>
+    <li>
+      With regular items
+    </li>
+  </ul>
+  <blockquote>
+    It's amazing 👏
+    <br />
+    – mom
+  </blockquote>
+  `,
+    endDate: new Date().toISOString().substr(0, 10),
+    status: 'working',
+    tags: []
+  },
+  {
+    id: 3,
+    title: 'default #3',
+    color: '#FFFFFF',
+    content: `
+    <h2>
+    Hi there,
+  </h2>
+  <p>
+    this is a very <em>basic</em> example of tiptap.
+  </p>
+  <pre><code>body { display: none; }</code></pre>
+  <ul>
+    <li>
+      A regular list
+    </li>
+    <li>
+      With regular items
+    </li>
+  </ul>
+  <blockquote>
+    It's amazing 👏
+    <br />
+    – mom
+  </blockquote>
+  `,
+    endDate: new Date().toISOString().substr(0, 10),
+    status: 'working',
+    tags: []
+  },
+  {
+    id: 4,
+    title: 'default #4',
+    color: '#FFFFFF',
+    content: `
+    <h2>
+    Hi there,
+  </h2>
+  <p>
+    this is a very <em>basic</em> example of tiptap.
+  </p>
+  <pre><code>body { display: none; }</code></pre>
+  <ul>
+    <li>
+      A regular list
+    </li>
+    <li>
+      With regular items
+    </li>
+  </ul>
+  <blockquote>
+    It's amazing 👏
+    <br />
+    – mom
+  </blockquote>
+  `,
+    endDate: new Date().toISOString().substr(0, 10),
+    status: 'working',
+    tags: []
+  },
+  {
+    id: 5,
+    title: 'default #5',
+    color: '#FFFFFF',
+    content: `
+    <h2>
+    Hi there,
+  </h2>
+  <p>
+    this is a very <em>basic</em> example of tiptap.
+  </p>
+  <pre><code>body { display: none; }</code></pre>
+  <ul>
+    <li>
+      A regular list
+    </li>
+    <li>
+      With regular items
+    </li>
+  </ul>
+  <blockquote>
+    It's amazing 👏
+    <br />
+    – mom
+  </blockquote>
+  `,
+    endDate: new Date().toISOString().substr(0, 10),
+    status: 'working',
+    tags: []
   }
 ]

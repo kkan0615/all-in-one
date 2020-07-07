@@ -2,6 +2,7 @@
   <v-app-bar
     dense
     app
+    color="amber"
   >
     <v-app-bar-nav-icon
       @click="changeNabigatorBarStatus"

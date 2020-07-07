@@ -164,7 +164,6 @@ export default class extends Vue {
       return
     } else {
       ToDoFakeData.push(this.todoForm)
-      console.log(ToDoFakeData)
 
       this.$router.push({ name: 'ToDoList' })
     }

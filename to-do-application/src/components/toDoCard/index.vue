@@ -1,12 +1,14 @@
 <template>
   <v-card
+    :id="`todo-${value.id}`"
     :color="value.color"
     :light="islightColor"
     :dark="!islightColor"
+    class="resizeable hide-scroll"
     max-width="400px"
-    max-height="200px"
     @mouseenter="onVisibleActions"
     @mouseleave="offVisibleActions"
+    @mousemove="mousemove"
   >
     <v-card-title
       class="pa-2"
@@ -19,7 +21,7 @@
       v-html="value.content"
     />
     <div
-      class="acitons-height"
+      class="acitons-div"
     >
       <transition name="fade">
         <v-card-actions
@@ -45,6 +47,8 @@ import { ToDoInterface } from '@/types/todo'
 import { ListInterface } from '@/types/simpleList'
 import { toDoCardList } from './data/list'
 
+import _ from 'lodash'
+
 @Component({
   name: 'ToDoCard'
   // components: {
@@ -53,7 +57,8 @@ import { toDoCardList } from './data/list'
 })
 export default class extends Vue {
   @Prop({ required: true }) private value !: ToDoInterface
-  @Prop({ required: false, default: false }) private visibleContent !: boolean
+  // @Prop({ required: false, default: false }) private visibleContent !: boolean
+  private visibleContent !: boolean
   private list !: Array<ListInterface>
   private visibleActions !: boolean
 
@@ -61,6 +66,7 @@ export default class extends Vue {
     super()
     this.list = toDoCardList
     this.visibleActions = false
+    this.visibleContent = false
   }
 
   public get islightColor() : boolean {
@@ -80,14 +86,37 @@ export default class extends Vue {
     this.$emit('delete')
   }
 
-  private clickTitle() {
+  private clickTitle(event: MouseEvent) {
+    event.stopPropagation()
     this.$emit('click')
   }
+
+  private resizeHandler(event: MouseEvent) {
+    console.log(event)
+    const todo = document.getElementById(`todo-${this.value.id}`)
+
+    if (!todo) {
+      return
+    }
+
+    console.log(todo.offsetHeight)
+    if (todo.offsetHeight > 200) {
+      this.visibleContent = true
+    } else {
+      this.visibleContent = false
+    }
+  }
+  private mousemove = _.throttle(this.resizeHandler, 500)
 }
 </script>
 
 <style lang="scss" scoped>
-.acitons-height {
+.acitons-div {
   height: 50px;
+  bottom: 0px;
+}
+
+.hide-scroll {
+  overflow: hidden;
 }
 </style>
