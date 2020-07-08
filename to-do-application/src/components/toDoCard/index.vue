@@ -33,6 +33,12 @@
           >
             <v-icon @click="onClickdelete">delete</v-icon>
           </v-btn>
+          <v-btn
+            v-if="value.status !== 'done'"
+            icon
+          >
+            <v-icon @click="statusToDone">done</v-icon>
+          </v-btn>
         </v-card-actions>
       </transition>
     </div>
@@ -48,6 +54,7 @@ import { ListInterface } from '@/types/simpleList'
 import { toDoCardList } from './data/list'
 
 import _ from 'lodash'
+import { ToDoFakeData } from '@/data/fakeData/toDoFakeData'
 
 @Component({
   name: 'ToDoCard'
@@ -101,6 +108,15 @@ export default class extends Vue {
     }
   }
   private mousemove = _.throttle(this.resizeHandler, 500)
+
+  private statusToDone() {
+    const todo = ToDoFakeData.find(e => e.id === this.value.id)
+    if (!todo) {
+      throw new Error(`No data`)
+    }
+    todo.status = 'done'
+    this.$emit('done')
+  }
 }
 </script>
 

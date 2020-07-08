@@ -41,12 +41,7 @@
           readonly
           outlined
         />
-        <!-- <v-tip-tap-box
-          v-model="todoForm.content"
-          label="Color"
-          :rules="[dateRules.required]"
-          outlined
-        /> -->
+
         <v-textarea
           v-model="todoForm.content"
           outlined
@@ -59,7 +54,16 @@
             outlined
             @click="submitForm"
           >
-            Create
+            <div
+              v-if="mode === 'create'"
+            >
+              Create
+            </div>
+            <div
+              v-else
+            >
+              edit
+            </div>
           </v-btn>
           <v-btn
             color="red"
@@ -89,7 +93,6 @@ import { ToDoInterface } from '@/types/todo'
 
 import VDateBox from '@/components/inputBox/dateBox/index.vue'
 import VColorBox from '@/components/inputBox/colorBox/index.vue'
-import VTipTapBox from '@/components/inputBox/tipTapBox/index.vue'
 
 import { ToDoFakeData } from '@/data/fakeData/toDoFakeData'
 
@@ -97,8 +100,7 @@ import { ToDoFakeData } from '@/data/fakeData/toDoFakeData'
   name: 'ToDoCreateForm',
   components: {
     VDateBox,
-    VColorBox,
-    VTipTapBox
+    VColorBox
   }
 })
 export default class extends Vue {
@@ -109,6 +111,7 @@ export default class extends Vue {
 
   private todoForm !: ToDoInterface
   private allDay !: boolean
+  private mode !: 'edit' | 'create'
 
   private titleRules = {
     required: (value: any) => !!value || 'Title is required.'
@@ -122,6 +125,20 @@ export default class extends Vue {
     super()
     this.todoForm = this.resetDefaultToDoForm()
     this.allDay = false
+    this.mode = 'create'
+  }
+
+  created() {
+    const id = this.$route.query.id
+    if (id) {
+      const todo = ToDoFakeData.find(e => e.id.toString() === id)
+
+      if (!todo) {
+        throw new Error(`${id} is not in data`)
+      }
+      this.todoForm = todo
+      this.mode = 'edit'
+    }
   }
 
   mounted() {
@@ -163,8 +180,9 @@ export default class extends Vue {
     if (!valid) {
       return
     } else {
-      ToDoFakeData.push(this.todoForm)
-
+      if (this.mode === 'create') {
+        ToDoFakeData.push(this.todoForm)
+      }
       this.$router.push({ name: 'ToDoList' })
     }
   }

@@ -21,6 +21,15 @@
         <v-btn
           color="primary"
           icon
+          @click="editMode"
+        >
+          <v-icon>
+            edits
+          </v-icon>
+        </v-btn>
+        <v-btn
+          color="primary"
+          icon
           @click="closeDialog"
         >
           <v-icon>
@@ -35,17 +44,6 @@
       <v-card-text v-html="detail.content">
         <v-card class="mx-auto" outlined v-html="detail.content" />
       </v-card-text>
-
-      <!-- <v-card-actions>
-        <v-spacer />
-        <v-btn
-          color="primary"
-          text
-          @click="closeDialog"
-        >
-          닫기
-        </v-btn>
-      </v-card-actions> -->
     </v-card>
   </v-dialog>
 </template>
@@ -76,6 +74,10 @@ export default class extends Vue {
     if (!bool) {
       this.closeDialog()
     }
+  }
+
+  private editMode() {
+    this.$router.push({ name: 'ToDoCreate', query: { id: this.detail.id.toString() }})
   }
 }
 </script>
