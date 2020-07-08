@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <TodoLayoutAppBar
+    <todo-layout-app-bar
       :navigator-bar="navigatorBar"
       @openNavigatorBar="openNavigatorBar"
       @closeNavigatorBar="closeNavigatorBar"
