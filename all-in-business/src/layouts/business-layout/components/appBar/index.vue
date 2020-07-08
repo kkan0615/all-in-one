@@ -3,7 +3,7 @@
     app
     dense
     :dark="$vuetify.theme.dark"
-    :color="designSetting.subColorOne"
+    color="primary"
   >
     <v-tooltip bottom>
       <template v-slot:activator="{ on, attrs }">
@@ -59,7 +59,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import MainIconsWithMenu from './components/iconsWithMenu.vue'
-import Search from './componentssearch.vue'
+import Search from './components/search.vue'
 import { DesignSettingModule } from '@/store/modules/designSetting'
 import { DesginColorInterface } from '@/store/data/colors'
 

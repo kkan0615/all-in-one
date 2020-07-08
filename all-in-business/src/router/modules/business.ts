@@ -27,15 +27,7 @@ const business: RouteConfig[] = [
         path: 'setting',
         name: 'BusinessSetting',
         component: () => import('@/views/business/setting/index.vue'),
-        meta: { title: 'Markdown Editor', icon: 'settings', roles: [], keepAlive: false, hidden: true, fullSize: false },
-        children: [
-          {
-            path: '/visual',
-            name: 'BusinessSettingVisual',
-            component: () => import('@/views/business/setting/components/visualSetting/index.vue'),
-            meta: { title: 'Markdown Editor', icon: 'note', roles: [], keepAlive: false, hidden: true, fullSize: false }
-          }
-        ]
+        meta: { title: 'Markdown Editor', icon: 'settings', roles: [], keepAlive: false, hidden: true, fullSize: false }
       }
     ]
   },
