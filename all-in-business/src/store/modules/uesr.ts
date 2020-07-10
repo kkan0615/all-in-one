@@ -35,7 +35,7 @@ class User extends VuexModule implements UserInterface {
   public userToken = getAuthToken() || ''
   public nickname = 'testNick'
   public avator = ''
-  public roles: Array<string> = []
+  public roles: Array<string> = ['admin']
   public detail: Array<string> = []
 
   @Mutation

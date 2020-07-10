@@ -5,21 +5,21 @@ import { ColorInterface } from '@/types/colors'
 
 Vue.use(Vuetify)
 
-const localStorageColor: ColorInterface = JSON.parse(localStorage.getItem('color') || JSON.stringify(colorConfig))
+const currentColor: ColorInterface = JSON.parse(localStorage.getItem('color') || JSON.stringify(colorConfig))
 
 export const vuetify = new Vuetify({
   theme: {
-    dark: localStorageColor.nightMode,
+    dark: currentColor.nightMode,
     themes: {
       dark: {
-        primary: localStorageColor.primary,
-        secondary: localStorageColor.secondary,
-        anchor: localStorageColor.accent
+        primary: currentColor.dark.primary,
+        secondary: currentColor.dark.secondary,
+        anchor: currentColor.dark.accent
       },
       light: {
-        primary: localStorageColor.primary,
-        secondary: localStorageColor.secondary,
-        anchor: localStorageColor.accent
+        primary: currentColor.light.primary,
+        secondary: currentColor.light.secondary,
+        anchor: currentColor.light.accent
       }
     }
   }

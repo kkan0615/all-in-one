@@ -27,7 +27,7 @@
             v-if="!isFullSize"
             cols="12"
             sm="12"
-            md="9"
+            md="7"
           >
             <transition name="fade-transform" mode="out-in" appear>
               <router-view :key="key" />

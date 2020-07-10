@@ -3,6 +3,7 @@ import { Route } from 'vue-router'
 // import { getAuthToken } from '@/utils/authUtils'
 import { UserModule } from '@/store/modules/uesr'
 import Vue from 'vue'
+import { checkColorToLocalStorage } from '@/utils/color'
 
 /**
  * Check roles
@@ -14,6 +15,7 @@ const checkRoles = (to: Route): boolean => {
 }
 
 Router.beforeEach(async(to: Route, from: Route, next :Function) => {
+  checkColorToLocalStorage()
   try {
     /** Usertoken is not exist */
     if (!UserModule.userToken) {

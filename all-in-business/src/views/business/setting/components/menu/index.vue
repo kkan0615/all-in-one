@@ -1,10 +1,14 @@
 <template>
   <v-list :dark="true" shaped>
     <v-subheader>Menus</v-subheader>
-    <v-list-item-group color="primary">
+    <v-list-item-group
+      v-model="menu"
+      color="primary"
+    >
       <v-list-item
         v-for="(item, i) in items"
         :key="i"
+        @click="changeMenu"
       >
         <v-list-item-icon>
           <v-icon v-text="item.icon" />
@@ -24,11 +28,19 @@ import { Component, Vue } from 'vue-property-decorator'
   name: 'BusinessSettingMenu'
 })
 export default class extends Vue {
+  private menu = 0
   private items = [
-    { text: 'Real-Time', icon: 'mdi-clock' },
-    { text: 'Audience', icon: 'mdi-account' },
-    { text: 'Conversions', icon: 'mdi-flag' }
+    { text: 'Design', icon: 'mdi-clock' },
+    { text: 'Language', icon: 'mdi-account' },
+    { text: 'Admin', icon: 'mdi-flag' }
   ]
+
+  /**
+   * changeMenu
+   */
+  public changeMenu() {
+    console.log(this.menu)
+  }
 }
 </script>
 

@@ -2,7 +2,8 @@
   <v-app-bar
     app
     dense
-    :dark="$vuetify.theme.dark"
+    :light="colorSetting.light"
+    :dark="!colorSetting.light"
     color="primary"
   >
     <v-tooltip bottom>
@@ -60,8 +61,8 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import MainIconsWithMenu from './components/iconsWithMenu.vue'
 import Search from './components/search.vue'
-import { DesignSettingModule } from '@/store/modules/designSetting'
-import { DesginColorInterface } from '@/store/data/colors'
+import { getColorFromLocalStorage } from '@/utils/color'
+import { ColorInterface } from '@/types/colors'
 
 @Component({
   name: 'MainAppBar',
@@ -84,21 +85,21 @@ export default class extends Vue {
     this.dark = true
   }
 
-  private get designSetting() : DesginColorInterface {
-    return DesignSettingModule.designColor
+  public get colorSetting() : ColorInterface {
+    return getColorFromLocalStorage()
   }
 
-  onChangeNavigation() {
+  public onChangeNavigation() {
     this.$emit('onChangeNavigation', !this.navigation)
   }
 
-  onClcikMainIcon() {
+  public onClcikMainIcon() {
     if (this.$route.path !== '/business') {
       this.$router.push({ path: '/business' })
     }
   }
 
-  private onClickSearch() {
+  public onClickSearch() {
     this.visibleSearchBar = !this.visibleSearchBar
   }
 }

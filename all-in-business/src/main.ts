@@ -36,11 +36,6 @@ library.add(faUserSecret)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-/** Setting of lodash */
-// import VueLodash from 'vue-lodash'
-// import lodash from 'lodash'
-// Vue.use(VueLodash, { name: 'custom', lodash: lodash })
-
 import Toasted from 'vue-toasted'
 
 Vue.use(Toasted, {

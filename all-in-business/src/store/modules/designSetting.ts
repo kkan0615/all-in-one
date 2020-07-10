@@ -6,6 +6,11 @@ import { DesginColorInterface, designColorList, DesginColorModeEnum } from '../d
 
 /** Minimum mobile size - vuetify is 600 */
 const MOBILEWIDTH = 960
+// const xs = 600
+// const sm = 960
+// const md = 1264
+// const lg = 1904
+// const xl = 1904 => 1904
 
 export interface DesignInterface {
   isMobile: boolean,
@@ -42,24 +47,6 @@ class DesignSetting extends VuexModule implements DesignInterface {
     } else {
       this.SET_ISMOBILE(false)
     }
-  }
-
-  /**
-   * name
-   */
-  @Action
-  public setDesignColor(key: string) {
-    this.SET_DESIGNCOLOR(key)
-  }
-
-  @Action
-  public setDesignColorMode(mode: DesginColorModeEnum) {
-    this.SET_DESIGNCOLOROFMODE(mode)
-  }
-
-  @Action
-  public setDesignColorOther(key: string) {
-    console.log(key)
   }
 }
 

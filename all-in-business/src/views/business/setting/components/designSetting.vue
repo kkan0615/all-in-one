@@ -10,13 +10,26 @@
         @change="setNightMode"
       />
     </v-card-text>
+    <v-card-actions>
+      <v-spacer />
+      <v-btn
+        class="pa-4"
+        color="primary"
+      >
+        Reset
+      </v-btn>
+      <v-color-box
+        label="test"
+      />
+    </v-card-actions>
     <v-card-text>
+
       <v-row>
         <v-col
           v-for="(option, i) in colorOptions"
           :key="i"
         >
-          <v-switch
+          <v-color-box
             :label="option"
           />
         </v-col>
@@ -27,9 +40,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import vColorBox from '@/components/inputBox/vColorBox.vue'
 
 @Component({
-  name: 'DesignSetting'
+  name: 'DesignSetting',
+  components: {
+    vColorBox
+  }
 
 })
 export default class extends Vue {

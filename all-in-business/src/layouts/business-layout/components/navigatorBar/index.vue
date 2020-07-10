@@ -13,16 +13,15 @@
     </v-list>
 
     <v-list v-else>
-      <v-list-item class="px-2" dark>
-        <v-btn block large :color="designSetting.subColorOne" @click="onClcikLoginButton">Login</v-btn>
+      <v-list-item class="px-2">
+        <v-btn block large color="primary" @click="onClcikLoginButton">Login</v-btn>
       </v-list-item>
     </v-list>
 
     <v-divider />
-    <div>
+    <v-subheader>
       NAVIGATION
-      <v-icon x-small>search</v-icon>
-    </div>
+    </v-subheader>
     <div v-for="(menu, i) in allowedMenus" :key="i">
       <v-list v-if="menu.children.length < 1 && !menu.meta.hidden" :expand="false" dense>
         <v-list-item>
@@ -66,7 +65,7 @@
       <div class="pa-2">
         <v-btn
           :to="`/${$route.path.split('/')[1]}/setting`"
-          :color="designSetting.subColorOne"
+          color="primary"
           block
         >Setting</v-btn>
       </div>
@@ -79,6 +78,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { UserModule, UserInterface } from '@/store/modules/uesr'
 import { DesignSettingModule } from '@/store/modules/designSetting'
 import { DesginColorInterface } from '@/store/data/colors'
+import { getPermittedMenus } from '@/utils/menu'
 import { RouteConfig } from 'vue-router'
 
 @Component({
@@ -120,23 +120,7 @@ export default class extends Vue {
   }
 
   private get allowedMenus(): RouteConfig[] {
-    let result = []
-    result = this.menus.filter((e: RouteConfig) => {
-      console.log(e)
-
-      if (!e.meta.roles) {
-        return true
-      }
-      const filteredArr = e.meta.roles.filter((e: string) => UserModule.roles.indexOf(e) !== -1)
-      if (filteredArr) {
-        return true
-      } else {
-        return false
-      }
-    })
-    console.log(result)
-
-    return result
+    return getPermittedMenus(this.menus)
   }
 
   private onClcikLoginButton() {
