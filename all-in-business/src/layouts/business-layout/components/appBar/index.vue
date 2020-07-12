@@ -2,8 +2,8 @@
   <v-app-bar
     app
     dense
-    :light="colorSetting.light"
-    :dark="!colorSetting.light"
+    :light="colorSetting.isLight"
+    :dark="!colorSetting.isLight"
     color="primary"
   >
     <v-tooltip bottom>

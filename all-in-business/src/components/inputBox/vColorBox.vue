@@ -16,12 +16,13 @@
           v-on="on"
         />
         <v-text-field
-          v-if="hideInput"
-          :value="value"
+          v-if="!hideInput"
+          :value="value.toUpperCase()"
           :label="label"
           :rules="rules"
           :readonly="readonly"
           :outlined="outlined"
+          :hide-details="hideDetails"
           v-bind="attrs"
           v-on="on"
         />
@@ -45,6 +46,8 @@ export default class extends Vue {
   @Prop({ default: '290px' }) private minWidth !: string
   @Prop({ default: true }) private readonly !: boolean
   @Prop({ default: false }) private hideInput !: boolean
+  @Prop({ default: false }) private hideDetails !: boolean
+
   @Prop() private value !: string
 
   private dateMenu !: boolean
@@ -58,6 +61,7 @@ export default class extends Vue {
     this.dateMenu = false
     this.$emit('input', date)
     this.$emit('updated:value', date)
+    this.$emit('change', date)
   }
 }
 </script>
