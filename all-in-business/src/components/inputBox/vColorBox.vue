@@ -12,6 +12,7 @@
         <v-avatar
           class="mx-2"
           :color="value"
+          :size="size"
           v-bind="attrs"
           v-on="on"
         />
@@ -47,10 +48,10 @@ export default class extends Vue {
   @Prop({ default: true }) private readonly !: boolean
   @Prop({ default: false }) private hideInput !: boolean
   @Prop({ default: false }) private hideDetails !: boolean
-
+  @Prop({ default: false, type: Number }) private size !: number
   @Prop() private value !: string
 
-  private dateMenu !: boolean
+  public dateMenu !: boolean
 
   constructor() {
     super()

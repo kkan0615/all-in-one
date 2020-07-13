@@ -1,11 +1,11 @@
 <template>
-  <v-card
+  <div
     :style="`width: ${width}; height: ${height};`"
     class="resizeable ma-2"
-    @resize="resizeDrag"
+    @mousemove="resizeDrag"
   >
     <slot />
-  </v-card>
+  </div>
 </template>
 
 <script lang="ts">
@@ -21,7 +21,7 @@ export default class extends Vue {
   @Prop({ default: '100%' }) private height !: string | number
   @Prop({ required: false }) private text !: string
 
-  private resizeDrag(event: any) {
+  public resizeDrag(event: any) {
     console.log(event)
   }
 }
