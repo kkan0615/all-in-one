@@ -48,7 +48,7 @@ export default class extends Vue {
   @Prop({ default: true }) private readonly !: boolean
   @Prop({ default: false }) private hideInput !: boolean
   @Prop({ default: false }) private hideDetails !: boolean
-  @Prop({ default: false, type: Number }) private size !: number
+  @Prop({ default: 48, type: [Number, String] }) private size !: number | string
   @Prop() private value !: string
 
   public dateMenu !: boolean

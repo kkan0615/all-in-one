@@ -143,6 +143,20 @@ const business: RouteConfig[] = [
         meta: { title: 'inlineEditTable', icon: 'note', roles: [], keepAlive: false, hidden: false, fullSize: true }
       }
     ]
+  },
+  {
+    path: '/business/upload',
+    name: 'BusinessUpload',
+    component: () => import('@/layouts/business-layout/index.vue'),
+    meta: { title: 'Upload', icon: 'fas fa-edit', roles: [], keepAlive: false, hidden: false, fullSize: true },
+    children: [
+      {
+        path: 'dragAndDropUpload',
+        name: 'dragAndDropUpload',
+        component: () => import('@/views/business/Upload/DragAndDrop/index.vue'),
+        meta: { title: 'dragAndDropUpload', icon: 'note', roles: [], keepAlive: false, hidden: false, fullSize: true }
+      }
+    ]
   }
 ]
 
