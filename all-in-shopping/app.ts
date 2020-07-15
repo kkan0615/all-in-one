@@ -1,36 +1,21 @@
 import * as express from 'express'
-import graphqlHTTP from 'express-graphql';
-import { buildSchema } from 'graphql'
+import { apiServer as config } from './config'
+import Logger from './src/utils/logger'
+// import graphqlHTTP from 'express-graphql';
+// import { buildSchema } from 'graphql'
 import { ApolloServer, gql } from 'apollo-server-express';
-import { fakeDataUsers } from './src/data/user';
+// import { fakeDataUsers } from './src/data/user';
 import { schema } from './src/graphql/schema';
 import cors from 'cors';
 
 import authRouter from './routes/auth';
 import testRouter from './routes/test';
 
-// const typeDefs = gql`
-//   type User {
-//     userId: String
-//     password: String
-//     userToken: String
-//     nickname: String
-//     avator: String
-//   }
-//   type Query {
-//     allUser: [User]
-//   }
-// `
-
-// const resovler = {
-//   Query: {
-//     allUser: () => fakeDataUsers
-//   }
-// }
+const logger = new Logger(__filename)
 
 /** App class */
 class App {
-  private application: express.Application
+  private readonly application: express.Application
 
   constructor() {
     this.application = express.default()
@@ -54,8 +39,6 @@ app.use(express.json())
 
 /** Appollo Setting */
 const apolloSever = new ApolloServer({
-  // typeDefs,
-  // resolvers: resovler,
   schema,
   playground: true
 })
@@ -66,14 +49,16 @@ apolloSever.applyMiddleware({
 })
 
 /** Set the Port number */
-app.set('port', process.env.PORT || 8001)
+app.set('port', process.env.PORT || config.port || 8001)
 
 /** Create sever */
 app.listen(app.get('port'), () => {
-  console.log(`localhost:${app.get('port')} is running`);
-  console.log(`🚀 localhost:${app.get('port')}/graphql is for graphql`);
+  logger.info(`localhost:${app.get('port')} is running`)
+  logger.info(`🚀 localhost:${app.get('port')}/graphql is for graphql`)
+
 })
 
+/** Collection of routers */
 app.use('/auth', authRouter)
 app.use('/test', testRouter)
 
