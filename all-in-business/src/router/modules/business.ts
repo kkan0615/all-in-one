@@ -2,10 +2,11 @@
  * Meta data
  * title
  * icon
- * roles: Array -
- * hidden: boolean
+ * roles: Array<string> - Roles
+ * hidden: boolean - Hidden this menu
  * fullSize: boolean
  * keepAlive
+ * searchKeyword: Array<string>
  */
 
 import { RouteConfig } from 'vue-router'

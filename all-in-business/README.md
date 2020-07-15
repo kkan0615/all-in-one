@@ -30,7 +30,7 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-## Direectory Structure
+## Directory Structure overview
 ```
 - assets
 - axios # All axios setting will be here
@@ -58,4 +58,27 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - main.ts
 - App.vue
 - apolloClient.ts
+```
+### Naming
+1. Components
+    1. Use pascal case
+    2. If just word, use word without capital letter 
+    3. Ex)ArticleTitle.vue
+  ------  
+2. Folder
+    1. name it to noun type
+    2. Ex) axios, config, layout
+
+
+## Comments
+1. Write following format of comment at the all top of files
+```typescript
+/**
+@author: Youngjin Kwak(kkan0615@gmail.com)
+@contributors: none
+@name: Readme.md
+@description: Overview of this project
+@createdAt: 07-15-2020 # If missing, just write none or missing
+@updatedAt: 07-15-2020
+*/
 ```

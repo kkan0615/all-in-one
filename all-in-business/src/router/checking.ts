@@ -30,7 +30,7 @@ Router.beforeEach(async(to: Route, from: Route, next :Function) => {
       if (UserModule.roles.length < 1) {
         const success = await UserModule.requestDetail()
         if (!success) {
-          UserModule.logout()
+          await UserModule.logout()
           next({ path: `/auth/login?redirect=${to.path}` })
         }
         next()
@@ -46,7 +46,7 @@ Router.beforeEach(async(to: Route, from: Route, next :Function) => {
     }
   } catch (error) {
     console.error(error)
-    UserModule.logout()
+    await UserModule.logout()
     next({ path: `/auth/login` })
   }
 })
