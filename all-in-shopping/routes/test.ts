@@ -13,6 +13,17 @@ router.get('/', (req: expres.Request, res: expres.Response) => {
   res.end()
 })
 
+router.get('/study', (req: expres.Request, res: expres.Response) => {
+  const { price } = req.query
+  // Number type
+  let result = 0
+  if (typeof price !== 'number') {
+    result = parseInt(price)
+  }
+
+  res.status(200).json(result)
+})
+
 router.post('/', (req: expres.Request, res: expres.Response) => {
   let { code } = req.body
   if (!code) {
