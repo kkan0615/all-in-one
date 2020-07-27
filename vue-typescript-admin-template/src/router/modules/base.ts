@@ -14,7 +14,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
     },
     children: [
       {
-        path: 'path',
+        path: 'MainDashboard',
         name: 'MainDashboard',
         component: () => import('@/views/dashboard/main/index.vue'),
         meta: {
