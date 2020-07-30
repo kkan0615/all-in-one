@@ -12,12 +12,10 @@ module.exports = {
     SharedArrayBuffer: 'readonly',
     '$': true
   },
-  parserOptions: {
-    ecmaVersion: 2020,
-    sourceType: 'module',
-    parser: '@typescript-eslint/parser',
-    ecmaFeatures: {
-      "experimentalObjectRestSpread": true
+  'parserOptions': {
+    'ecmaVersion': 6,
+    'ecmaFeatures': {
+      'experimentalObjectRestSpread': true
     }
   },
   rules: {
