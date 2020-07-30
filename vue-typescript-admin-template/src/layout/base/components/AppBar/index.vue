@@ -19,11 +19,11 @@ import {isLight} from '@/utils/color'
     name: 'BaseLayout',
   })
 export default class BaseLayout extends Vue {
-    @Prop() private navigationStatus !: 'open' | 'close'
+    @Prop() private readonly navigationStatus !: boolean
 
     @Emit('changeNavigationStatus')
     public changeNavigationStatus () {
-      return this.navigationStatus === 'open' ? 'close' : 'open'
+      return !this.navigationStatus
     }
 
     public get isLight () {

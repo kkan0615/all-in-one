@@ -3,7 +3,7 @@
     MainDashboard
   </div>
 </template>
-s
+
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
