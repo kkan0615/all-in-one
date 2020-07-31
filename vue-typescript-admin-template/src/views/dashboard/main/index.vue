@@ -3,7 +3,7 @@
     MainDashboard
   </div>
 </template>
-s
+
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
@@ -11,5 +11,8 @@ import { Component, Vue } from 'vue-property-decorator'
     name: 'MainDashboard',
   })
 export default class MainDashboard extends Vue {
+  created () {
+    console.log('hello')
+  }
 }
 </script>

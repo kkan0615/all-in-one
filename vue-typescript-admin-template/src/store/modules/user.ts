@@ -12,7 +12,6 @@ export class User {
   }
 }
 
-// TODO: Snackbar messages should be queued.
 const state = new User()
 
 const mutations = {

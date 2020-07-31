@@ -7,6 +7,7 @@ module.exports = {
     'plugin:vue/essential',
     'eslint:recommended',
     '@vue/typescript/recommended',
+    'plugin:vue/recommended'
   ],
   parserOptions: {
     ecmaVersion: 2020,
@@ -16,7 +17,7 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'generator-star-spacing': 'off',
-    'indent': [ 'error', 2 ],
+    indent: [2, 2, { SwitchCase: 1 }],
     'brace-style': [ 'error', '1tbs' ],
     'no-multiple-empty-lines': [ 'error', { 'max': 2, 'maxBOF': 1 }],
     'no-undef': 'error',
@@ -30,12 +31,35 @@ module.exports = {
       'error',
       'always'
     ],
+    "jsx-quotes": [2, "prefer-single"],
+    "key-spacing": [
+      2,
+      {
+        beforeColon: false,
+        afterColon: true
+      }
+    ],
+    "keyword-spacing": [
+      2,
+      {
+        before: true,
+        after: true
+      }
+    ],
+    "new-cap": [
+      2,
+      {
+        newIsCap: true,
+        capIsNew: false
+      }
+    ],
     'no-empty': 'error',
     'no-duplicate-imports': 'error',
     'semi': ['error', 'never'],
     'no-irregular-whitespace': 'error',
     'no-mixed-spaces-and-tabs': 'error',
-    'no-trailing-spaces': 'error'
+    'no-trailing-spaces': 'error',
+
   },
   overrides: [
     {

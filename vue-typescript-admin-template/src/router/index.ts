@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import {CustomRouteConfig} from '@/types/customRouteConfig'
 import Home from '../views/Home.vue'
-import {searchPermittedRoutes} from '@/utils/permission'
+//TODO: 사용시 변경
+// import {searchPermittedRoutes} from '@/utils/permission'
 import baseRoutes from '@/router/modules/base'
 
 Vue.use(VueRouter)
@@ -28,8 +29,6 @@ const routes: Array<CustomRouteConfig> = [
   }
 ]
 
-console.log(searchPermittedRoutes(baseRoutes))
-
 const createRouter = () => new VueRouter({
   scrollBehavior: (to, from, savedPosition) => {
     if(savedPosition) {
@@ -40,9 +39,14 @@ const createRouter = () => new VueRouter({
   },
   mode: 'history',
   base: process.env.BASE_URL,
-  routes,
+  //TODO: 나중에는 기본으로 깔아두고 Before router로 permitted찾아서 넣을예정
+  routes: routes.concat(baseRoutes),
 })
 
 const router = createRouter()
+//TODO: 사용시 변경, 비사용시 삭제
+// console.log(searchPermittedRoutes(baseRoutes))
+// router.addRoutes(searchPermittedRoutes(baseRoutes))
 
+console.log(router)
 export default router
