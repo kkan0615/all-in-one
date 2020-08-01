@@ -1,14 +1,23 @@
 import { MutationTree, ActionTree, GetterTree } from 'vuex'
 
-export class User {
+interface UserInterface {
+  token: string;
+  nickname: string;
+  role: string;
+  roleName: string;
+}
+
+export class User implements UserInterface {
   declare token: string
   declare nickname: string
   declare role: string // It will be Hex bit
+  declare roleName: string
 
-  constructor () {
-    this.token = ''
-    this.nickname = ''
-    this.role = 'test'
+  constructor (user?: User) {
+    this.token = user?.token || ''
+    this.nickname = user?.nickname || ''
+    this.role = user?.role || ''
+    this.roleName = user?.roleName || ''
   }
 }
 
@@ -16,8 +25,7 @@ const state = new User()
 
 const mutations = {
   SET_USER (state, payload: User) {
-    state.token = payload.token
-    state.nickname = payload.nickname
+    state = new User(payload)
   }
 } as MutationTree<User>
 
