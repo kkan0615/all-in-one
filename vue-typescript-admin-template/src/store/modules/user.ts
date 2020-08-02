@@ -5,19 +5,22 @@ interface UserInterface {
   nickname: string;
   role: string;
   roleName: string;
+  avatar: string;
 }
 
 export class User implements UserInterface {
-  declare token: string
-  declare nickname: string
-  declare role: string // It will be Hex bit
-  declare roleName: string
+  token: string
+  nickname: string
+  role: string // It will be Hex bit
+  roleName: string
+  avatar: string
 
   constructor (user?: User) {
     this.token = user?.token || ''
     this.nickname = user?.nickname || ''
     this.role = user?.role || ''
     this.roleName = user?.roleName || ''
+    this.avatar = user?.avatar || ''
   }
 }
 

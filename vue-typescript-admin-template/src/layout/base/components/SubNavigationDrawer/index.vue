@@ -1,22 +1,23 @@
+<!--
+  Author: Youngjin Kwak
+  CreatedAt: 08-02-2020
+  UpdatedAt: 08-02-2020
+  Description: Sample Vue Page
+-->
+<!--
+TODO
+1. Create Auth menu
+2. Notification menu
+3. Search bar - Autocomplete
+-->
 <template>
   <v-navigation-drawer
-    :mini-variant="navigationStatus && permanentStatus"
-    :expand-on-hover="navigationStatus && permanentStatus"
+    :value="subNavigationStatus"
     app
-    :value="navigationStatus"
+    right
+    temporary
+    @input="changeSubNavigation"
   >
-    <div>
-      <v-spacer />
-      <v-btn
-        text
-        icon
-        @click="changePermanentStatus"
-      >
-        <v-icon>
-          compare_arrows
-        </v-icon>
-      </v-btn>
-    </div>
     <v-list>
       <v-list-item class="px-2">
         <v-list-item-avatar>
@@ -63,21 +64,21 @@
 </template>
 s
 <script lang="ts">
-import { Component, Vue, Prop, Emit } from 'vue-property-decorator'
+import { Component, Vue, Prop } from 'vue-property-decorator'
 
   @Component({
-    name: 'NavigationDrawer',
+    name: 'SubNavigationDrawer',
   })
-export default class NavigationDrawer extends Vue {
-  @Prop() private readonly navigationStatus!: boolean
+export default class SubNavigationDrawer extends Vue {
+    @Prop() private readonly navigationStatus!: boolean
 
-  private get permanentStatus () {
-    console.log(this.$store.state.app.permanentStatus)
-    return this.$store.state.app.permanentStatus
-  }
+    private get subNavigationStatus () {
+      return this.$store.state.app.subNavigatorStatus
+    }
 
-  private changePermanentStatus () {
-    this.$store.dispatch('app/controlPermanentStatus')
-  }
+    private changeSubNavigation (subNavigationStatus: boolean) {
+      this.$store.commit('app/SET_SUBNAVIGATORSTATUS', subNavigationStatus)
+    }
+
 }
 </script>

@@ -2,11 +2,9 @@
   <v-app>
     <AppBar
       :navigation-status="navigationStatus"
-      @changeNavigationStatus="changeNavigationStatus"
     />
     <NavigationDrawer
       :navigation-status="navigationStatus"
-      @changeNavigationStatus="changeNavigationStatus"
     />
     <v-main fulid>
       <v-container
@@ -33,6 +31,7 @@
         </v-row>
       </v-container>
     </v-main>
+    <sub-navigation-drawer />
   </v-app>
 </template>
 
@@ -40,19 +39,20 @@
 import { Component, Vue } from 'vue-property-decorator'
 import AppBar from './components/AppBar/index.vue'
 import NavigationDrawer from './components/NavigationDrawer/index.vue'
+import SubNavigationDrawer from './components/SubNavigationDrawer/index.vue'
 
   @Component({
     name: 'BaseLayout',
     components: {
       AppBar,
-      NavigationDrawer
+      NavigationDrawer,
+      SubNavigationDrawer
     }
   })
 export default class BaseLayout extends Vue {
-  public navigationStatus = true
 
-  public changeNavigationStatus (status: boolean) {
-    this.navigationStatus = status
+  public get navigationStatus () {
+    return this.$store.state.app.navigatorStatus
   }
 }
 </script>

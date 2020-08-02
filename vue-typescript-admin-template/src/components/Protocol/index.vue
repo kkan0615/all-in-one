@@ -1,9 +1,15 @@
+<!--
+  Author: Youngjin Kwak
+  CreatedAt: 08-02-2020
+  UpdatedAt: 08-02-2020
+  Description: Sample Vue Page
+-->
 <template>
   <div>
     {{ propMessage }} / {{ message }}
   </div>
 </template>
-s
+
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 

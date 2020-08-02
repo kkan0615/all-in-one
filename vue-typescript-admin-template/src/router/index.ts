@@ -31,7 +31,7 @@ const routes: Array<CustomRouteConfig> = [
 
 const createRouter = () => new VueRouter({
   scrollBehavior: (to, from, savedPosition) => {
-    if(savedPosition) {
+    if (savedPosition) {
       return savedPosition
     } else {
       return { x: 0, y: 0 }
