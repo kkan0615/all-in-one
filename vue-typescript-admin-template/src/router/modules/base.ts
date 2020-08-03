@@ -3,7 +3,7 @@ import BaseLayout from '@/layout/base/index.vue'
 
 const baseRoutes: Array<CustomRouteConfig> = [
   {
-    path: '/dashboard',
+    path: '/Dashboard',
     name: 'Dashboard',
     component: BaseLayout,
     meta: {
@@ -16,7 +16,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
       {
         path: 'MainDashboard',
         name: 'MainDashboard',
-        component: () => import('@/views/dashboard/main/index.vue'),
+        component: () => import('@/views/Dashboard/Main/index.vue'),
         meta: {
           icon: '',
           margin: 12,
