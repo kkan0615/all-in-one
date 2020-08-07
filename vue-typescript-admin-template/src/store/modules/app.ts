@@ -12,18 +12,23 @@ export interface AppInterface {
 }
 
 export class App implements AppInterface {
-  hint: boolean
-  navigatorStatus: boolean
-  subNavigatorStatus: boolean
-  appBarStatus: boolean
-  permanentStatus: boolean
+  declare hint: boolean
+  declare navigatorStatus: boolean
+  declare subNavigatorStatus: boolean
+  declare appBarStatus: boolean
+  declare permanentStatus: boolean
 
-  constructor () {
-    this.hint = findValueByKey(LOCASTORAGELKEY, 'hint') || false
-    this.navigatorStatus = findValueByKey(LOCASTORAGELKEY, 'navigatorStatus') || false
-    this.subNavigatorStatus = false
-    this.appBarStatus= findValueByKey(LOCASTORAGELKEY, 'appBarStatus') || true
-    this.permanentStatus = findValueByKey(LOCASTORAGELKEY, 'permanentStatus') || false
+  constructor (init?: App) {
+    if (init) {
+      Object.assign(this, init)
+    } else {
+      this.hint = findValueByKey(LOCASTORAGELKEY, 'hint') || false
+      this.navigatorStatus = findValueByKey(LOCASTORAGELKEY, 'navigatorStatus') || false
+      this.subNavigatorStatus = false
+      this.appBarStatus= findValueByKey(LOCASTORAGELKEY, 'appBarStatus') || true
+      this.permanentStatus = findValueByKey(LOCASTORAGELKEY, 'permanentStatus') || false
+    }
+
   }
 }
 

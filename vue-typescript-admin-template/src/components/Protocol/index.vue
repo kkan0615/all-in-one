@@ -6,19 +6,16 @@
 -->
 <template>
   <div>
-    {{ propMessage }} / {{ message }}
+    test
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 
   @Component({
     name: 'Protocol',
   })
 export default class Protocol extends Vue {
-    @Prop() propMessage = 'message Prop'
-
-    public message = 'message'
 }
 </script>
