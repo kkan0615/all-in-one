@@ -1,10 +1,11 @@
-import {RouteConfigMultipleViews, RouteConfigSingleView} from 'vue-router/types/router'
+import { RouteConfigMultipleViews, RouteConfigSingleView } from 'vue-router/types/router'
 
 export interface RouteMetaInfo {
-  title: string
-  icon?: string
-  margin?: number
-  role?: string | number // It will be bit
+  title: string;
+  icon?: string;
+  margin?: number;
+  role?: string | number; // It will be bit
+  description?: string;
 }
 
 interface RouteMetaConfigSingleView extends RouteConfigSingleView {

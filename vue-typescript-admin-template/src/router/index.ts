@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import {CustomRouteConfig} from '@/types/customRouteConfig'
+import { CustomRouteConfig } from '@/types/customRouteConfig'
 import Home from '../views/Home.vue'
 //TODO: 사용시 변경
 // import {searchPermittedRoutes} from '@/utils/permission'
@@ -13,6 +13,10 @@ const routes: Array<CustomRouteConfig> = [
     path: '/',
     name: 'Home',
     component: Home,
+    beforeEnter (to, from, next) {
+      // @TODO: Navigate based on mobile and login
+      next('/dashboard/maindashboard')
+    },
   },
   {
     path: '/about',

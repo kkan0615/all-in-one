@@ -3,19 +3,45 @@
     :mini-variant="navigationStatus && permanentStatus"
     :expand-on-hover="navigationStatus && permanentStatus"
     app
+    clipped
     :value="navigationStatus"
   >
+    <!-- Top buttons -->
     <div>
       <v-spacer />
-      <v-btn
-        text
-        icon
-        @click="changePermanentStatus"
-      >
-        <v-icon>
-          compare_arrows
-        </v-icon>
-      </v-btn>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            text
+            icon
+            v-bind="attrs"
+            v-on="on"
+            @click="changePermanentStatus"
+          >
+            <v-icon>
+              compare_arrows
+            </v-icon>
+          </v-btn>
+        </template>
+        <span>To permanent mode</span>
+      </v-tooltip>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            text
+            icon
+            v-bind="attrs"
+            v-on="on"
+            @click="changeAppBarStatus"
+          >
+            <v-icon>
+              <!--              vertical_align_top, vertical_align_bottom-->
+              {{ appBarStatus ? 'vertical_align_top' : 'vertical_align_bottom' }}
+            </v-icon>
+          </v-btn>
+        </template>
+        <span>{{ appBarStatus ? 'open app bar' : 'close app bar' }}</span>
+      </v-tooltip>
     </div>
     <v-list>
       <v-list-item class="px-2">
@@ -40,11 +66,17 @@
       nav
       dense
     >
-      <v-list-item link>
-        <v-list-item-icon>
+      <v-list-item
+        link
+        two-line
+      >
+        <v-list-item-avatar>
           <v-icon>mdi-folder</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>My Files</v-list-item-title>
+        </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-title>My Files</v-list-item-title>
+          <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
+        </v-list-item-content>
       </v-list-item>
       <v-list-item link>
         <v-list-item-icon>
@@ -63,21 +95,23 @@
 </template>
 s
 <script lang="ts">
-import { Component, Vue, Prop, Emit } from 'vue-property-decorator'
+import { Component, Vue, Prop } from 'vue-property-decorator'
 
-  @Component({
-    name: 'NavigationDrawer',
-  })
+@Component({
+  name: 'NavigationDrawer',
+})
 export default class NavigationDrawer extends Vue {
   @Prop() private readonly navigationStatus!: boolean
-
-  private get permanentStatus () {
-    console.log(this.$store.state.app.permanentStatus)
-    return this.$store.state.app.permanentStatus
-  }
+  @Prop() private readonly permanentStatus!: boolean
+  @Prop() private readonly appBarStatus !: boolean
 
   private changePermanentStatus () {
     this.$store.dispatch('app/controlPermanentStatus')
+  }
+
+  private changeAppBarStatus () {
+    this.$store.dispatch('app/controlAppBarStatus')
+
   }
 }
 </script>

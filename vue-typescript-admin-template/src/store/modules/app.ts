@@ -1,5 +1,5 @@
 import { MutationTree, ActionTree, GetterTree } from 'vuex'
-import {reAllocateStorage, findValueByKey} from '@/utils/localStorage'
+import { reAllocateStorage, findValueByKey } from '@/utils/localStorage'
 
 const LOCASTORAGELKEY = 'application'
 
@@ -25,7 +25,7 @@ export class App implements AppInterface {
       this.hint = findValueByKey(LOCASTORAGELKEY, 'hint') || false
       this.navigatorStatus = findValueByKey(LOCASTORAGELKEY, 'navigatorStatus') || false
       this.subNavigatorStatus = false
-      this.appBarStatus= findValueByKey(LOCASTORAGELKEY, 'appBarStatus') || true
+      this.appBarStatus = findValueByKey(LOCASTORAGELKEY, 'appBarStatus') || true
       this.permanentStatus = findValueByKey(LOCASTORAGELKEY, 'permanentStatus') || false
     }
 
@@ -59,14 +59,17 @@ const getters = {
 } as GetterTree<App, never>
 
 const actions = {
-  controlNavigatorStatus ({state, commit}) {
+  controlNavigatorStatus ({ state, commit }) {
     commit('SET_NAVIGATORSTATUS', !state.navigatorStatus)
   },
-  controlSubNavigationStatus ({state, commit}) {
+  controlSubNavigationStatus ({ state, commit }) {
     commit('SET_SUBNAVIGATORSTATUS', !state.subNavigatorStatus)
   },
-  controlPermanentStatus ({state, commit}) {
+  controlPermanentStatus ({ state, commit }) {
     commit('SET_PERMANENTSTATUS', !state.permanentStatus)
+  },
+  controlAppBarStatus ({ state, commit }) {
+    commit('SET_APPBARSTATUS', !state.appBarStatus)
   }
 } as ActionTree<App, never>
 

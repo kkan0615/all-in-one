@@ -1,10 +1,16 @@
+<!--
+@TODO: Clip-left써도 안됨... app bar가 안들어감 ...
+-->
 <template>
   <v-app>
     <AppBar
       :navigation-status="navigationStatus"
+      :app-bar-status="appBarStatus"
     />
     <NavigationDrawer
       :navigation-status="navigationStatus"
+      :permanent-status="permanentStatus"
+      :app-bar-status="appBarStatus"
     />
     <v-main fulid>
       <v-container
@@ -41,18 +47,27 @@ import AppBar from './components/AppBar/index.vue'
 import NavigationDrawer from './components/NavigationDrawer/index.vue'
 import SubNavigationDrawer from './components/SubNavigationDrawer/index.vue'
 
-  @Component({
-    name: 'BaseLayout',
-    components: {
-      AppBar,
-      NavigationDrawer,
-      SubNavigationDrawer
-    }
-  })
+@Component({
+  name: 'BaseLayout',
+  components: {
+    AppBar,
+    NavigationDrawer,
+    SubNavigationDrawer
+  }
+})
 export default class BaseLayout extends Vue {
-
-  public get navigationStatus () {
+  private get navigationStatus () {
     return this.$store.state.app.navigatorStatus
   }
+
+  private get appBarStatus () {
+    return this.$store.state.app.appBarStatus
+  }
+
+  private get permanentStatus () {
+    console.log(this.$store.state.app.permanentStatus)
+    return this.$store.state.app.permanentStatus
+  }
+
 }
 </script>
