@@ -65,7 +65,6 @@ export default class BaseLayout extends Vue {
   }
 
   private get permanentStatus () {
-    console.log(this.$store.state.app.permanentStatus)
     return this.$store.state.app.permanentStatus
   }
 
