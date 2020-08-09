@@ -38,7 +38,7 @@ class Logger {
                         winston.format.simple(),
                         winston.format.colorize(),
                     ),
-                    filename: config.fileLogging.filename,
+                    filename: config.fileLogging.fileName,
                     maxsize: config.fileLogging.maxSize,
                     maxFiles: config.fileLogging.maxFiles
                 }),
@@ -49,7 +49,7 @@ class Logger {
                         winston.format.simple(),
                         winston.format.colorize(),
                     ),
-                    filename: config.fileErrLogging.filename,
+                    filename: config.fileErrLogging.fileName,
                     maxsize: config.fileErrLogging.maxSize,
                     maxFiles: config.fileErrLogging.maxFiles
                 })

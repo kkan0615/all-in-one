@@ -1,6 +1,6 @@
 export const server = {
   enabled: true,
-  server: '', // If it is '', connect to localhost
+  server: 'http://localhost', // If it is '', connect to localhost
   port: 8001
 }
 
@@ -22,14 +22,14 @@ export const logger = {
     logLevel: 'Info',
     maxSize: 16777216, // 16 mega bytes
     maxFiles: 5,
-    filename: 'server.log'
+    fileName: 'server.log'
   },
   fileErrLogging: {
     enabled: true,
     logLevel: 'Critical',
     maxSize: 16777216, // 16 mega bytes
     maxFiles: 5,
-    filename: 'serverErr.log'
+    fileName: 'serverErr.log'
   },
   options: {
     enabled: true,
