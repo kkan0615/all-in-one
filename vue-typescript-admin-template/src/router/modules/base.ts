@@ -1,4 +1,4 @@
-import {CustomRouteConfig} from '@/types/customRouteConfig'
+import { CustomRouteConfig } from '@/types/customRouteConfig'
 import BaseLayout from '@/layout/base/index.vue'
 
 const baseRoutes: Array<CustomRouteConfig> = [

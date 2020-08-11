@@ -1,5 +1,5 @@
 import store from '@/store'
-import {CustomRouteConfig} from '@/types/customRouteConfig'
+import { CustomRouteConfig } from '@/types/customRouteConfig'
 
 const searchPermittedChildRoutes = (array: Array<CustomRouteConfig>, role: string) => {
   const result: Array<CustomRouteConfig> = []

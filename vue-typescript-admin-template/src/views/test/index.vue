@@ -2,16 +2,16 @@
   <div>
     <v-text-field
       v-model="message"
-    ></v-text-field>
-    <p>{{message}}</p>
+    />
+    <p>{{ message }}</p>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
-  @Component({
-    name: 'Test',
-  })
+@Component({
+  name: 'Test',
+})
 export default class Test extends Vue {
   public message = 'Test Page'
 

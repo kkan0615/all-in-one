@@ -1,9 +1,11 @@
 <template>
   <v-app-bar
     app
+    clipped-left
     color="primary"
     :dark="!isLight"
     :light="isLight"
+    :value="appBarStatus"
   >
     <v-app-bar-nav-icon
       @click="changeNavigationStatus"
@@ -27,29 +29,30 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { isLight } from '@/utils/color'
 import TranslateMenu from './components/Translate.vue'
 
-  @Component({
-    name: 'AppBar',
-    components: {
-      TranslateMenu
-    }
-  })
+@Component({
+  name: 'AppBar',
+  components: {
+    TranslateMenu
+  }
+})
 export default class AppBar extends Vue {
-    @Prop() private readonly navigationStatus !: boolean
+  @Prop() private readonly navigationStatus !: boolean
+  @Prop() private readonly appBarStatus !: boolean
 
-    public get isLight () {
-      const primary = (this.$vuetify.theme.dark ? this.$vuetify.theme.themes.dark.primary || '' : this.$vuetify.theme.themes.light.primary || '').toString()
-      if (!primary) {
-        return this.$vuetify.theme.dark
-      }
-      return isLight(primary)
+  private get isLight () {
+    const primary = (this.$vuetify.theme.dark ? this.$vuetify.theme.themes.dark.primary || '' : this.$vuetify.theme.themes.light.primary || '').toString()
+    if (!primary) {
+      return this.$vuetify.theme.dark
     }
+    return isLight(primary)
+  }
 
-    private changeNavigationStatus () {
-      this.$store.dispatch('app/controlNavigatorStatus')
-    }
+  private changeNavigationStatus () {
+    this.$store.dispatch('app/controlNavigatorStatus')
+  }
 
-    private changeSubNavigation () {
-      this.$store.dispatch('app/controlSubNavigationStatus')
-    }
+  private changeSubNavigation () {
+    this.$store.dispatch('app/controlSubNavigationStatus')
+  }
 }
 </script>
