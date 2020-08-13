@@ -1,3 +1,5 @@
+import { Socket } from '@/types/config'
+
 export const server = {
   enabled: true,
   server: 'http://localhost', // If it is '', connect to localhost
@@ -6,6 +8,27 @@ export const server = {
 
 export const database = {
 //  database config will be here
+}
+
+export const socket: Socket = {
+  // TODO: Default socket such as table change config will be here
+  enabled: false,
+  server: 'http://localhost',
+  port: 8002
+}
+
+export const alertSocket: Socket = {
+  // TODO: Alet socket config will be here
+  enabled: false,
+  server: 'http://localhost',
+  port: 8003
+}
+
+export const chatSocket: Socket = {
+  // TODO: Alet socket config will be here
+  enabled: false,
+  server: 'http://localhost',
+  port: 8004
 }
 
 // @TODO: Change option keys as type
@@ -58,10 +81,14 @@ export const logger = {
   }
 }
 
+// Auth(login) token
 export const authTokenKey = 'AUTH-TOKEN-KEY'
 
 export const config = {
   server,
+  // socket,
+  // alertSocket,
+  // chatSocket,
   logger,
   database,
   authTokenKey
