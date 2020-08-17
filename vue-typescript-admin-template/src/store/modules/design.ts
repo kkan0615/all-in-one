@@ -1,5 +1,5 @@
 import { MutationTree, ActionTree, GetterTree } from 'vuex'
-import {reAllocateStorage} from '@/utils/localStorage'
+import { reAllocateStorage } from '@/utils/localStorage'
 
 const LOCASTORAGELKEY = 'design'
 

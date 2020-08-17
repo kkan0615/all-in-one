@@ -11,6 +11,7 @@
       :navigation-status="navigationStatus"
       :permanent-status="permanentStatus"
       :app-bar-status="appBarStatus"
+      :menus="displayRoutes"
     />
     <v-main fulid>
       <v-container
@@ -56,6 +57,15 @@ import SubNavigationDrawer from './components/SubNavigationDrawer/index.vue'
   }
 })
 export default class BaseLayout extends Vue {
+
+  created () {
+    console.log(this.$router)
+  }
+
+  private get displayRoutes () {
+    return this.$store.state.menu.displayRoutes
+  }
+
   private get navigationStatus () {
     return this.$store.state.app.navigatorStatus
   }

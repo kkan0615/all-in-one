@@ -66,19 +66,19 @@ s
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
-  @Component({
-    name: 'SubNavigationDrawer',
-  })
+@Component({
+  name: 'SubNavigationDrawer',
+})
 export default class SubNavigationDrawer extends Vue {
-    @Prop() private readonly navigationStatus!: boolean
+  @Prop() private readonly navigationStatus!: boolean
 
-    private get subNavigationStatus () {
-      return this.$store.state.app.subNavigatorStatus
-    }
+  private get subNavigationStatus () {
+    return this.$store.state.app.subNavigatorStatus
+  }
 
-    private changeSubNavigation (subNavigationStatus: boolean) {
-      this.$store.commit('app/SET_SUBNAVIGATORSTATUS', subNavigationStatus)
-    }
+  private changeSubNavigation (subNavigationStatus: boolean) {
+    this.$store.commit('app/SET_SUBNAVIGATORSTATUS', subNavigationStatus)
+  }
 
 }
 </script>

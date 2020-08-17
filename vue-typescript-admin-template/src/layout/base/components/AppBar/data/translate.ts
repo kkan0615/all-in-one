@@ -1,4 +1,4 @@
-import {TranslateOption} from '@/layout/base/components/AppBar/types/translate'
+import { TranslateOption } from '@/layout/base/components/AppBar/types/translate'
 
 export const langOptions: Array<TranslateOption> = [
   {
@@ -14,3 +14,4 @@ export const langOptions: Array<TranslateOption> = [
     title: 'Chinese'
   }
 ]
+

@@ -1,22 +1,27 @@
 <template>
   <div>
-    <v-text-field
-      v-model="message"
+    test
+    <DraggableTreeView
+      :list="fakeDraggableTreeViews"
     />
-    <p>{{ message }}</p>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import DraggableTreeView from '@/components/DraggableTreeView/index.vue'
+import { fakeDraggableTreeViews } from '@/components/DraggableTreeView/fakeData'
 
 @Component({
   name: 'Test',
+  components: {
+    DraggableTreeView
+  }
 })
 export default class Test extends Vue {
-  public message = 'Test Page'
+  public fakeDraggableTreeViews = fakeDraggableTreeViews
 
   created () {
-    console.log(this.message)
+    console.log(this.fakeDraggableTreeViews)
   }
 }
 </script>

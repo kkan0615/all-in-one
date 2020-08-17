@@ -23,7 +23,7 @@ export class App implements AppInterface {
       Object.assign(this, init)
     } else {
       this.hint = findValueByKey(LOCASTORAGELKEY, 'hint') || false
-      this.navigatorStatus = findValueByKey(LOCASTORAGELKEY, 'navigatorStatus') || false
+      this.navigatorStatus = findValueByKey(LOCASTORAGELKEY, 'navigatorStatus') || true
       this.subNavigatorStatus = false
       this.appBarStatus = findValueByKey(LOCASTORAGELKEY, 'appBarStatus') || true
       this.permanentStatus = findValueByKey(LOCASTORAGELKEY, 'permanentStatus') || false
@@ -36,16 +36,16 @@ const state = new App()
 
 const mutations = {
   SET_NAVIGATORSTATUS (state, navigatorStatus: boolean) {
-    reAllocateStorage(LOCASTORAGELKEY, state)
     state.navigatorStatus = navigatorStatus
+    reAllocateStorage(LOCASTORAGELKEY, state)
   },
   SET_APPBARSTATUS (state, appBarStatus: boolean) {
-    reAllocateStorage(LOCASTORAGELKEY, state)
     state.appBarStatus = appBarStatus
+    reAllocateStorage(LOCASTORAGELKEY, state)
   },
   SET_PERMANENTSTATUS (state, permanentStatus: boolean) {
-    reAllocateStorage(LOCASTORAGELKEY, state)
     state.permanentStatus = permanentStatus
+    reAllocateStorage(LOCASTORAGELKEY, state)
   },
   SET_SUBNAVIGATORSTATUS (state, subNavigatorStatus: boolean) {
     state.subNavigatorStatus = subNavigatorStatus

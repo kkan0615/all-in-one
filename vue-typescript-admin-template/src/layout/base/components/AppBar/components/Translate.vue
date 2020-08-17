@@ -44,15 +44,15 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { langOptions } from '../data/translate'
 
-  @Component({
-    name: 'TranslateMenu',
-  })
+@Component({
+  name: 'TranslateMenu',
+})
 export default class TranslateMenu extends Vue {
-    public translateOptions = langOptions
+  public translateOptions = langOptions
 
-    private changeLocale (lang: string) {
-      this.$i18n.locale = lang
-      // location.reload()
-    }
+  private changeLocale (lang: string) {
+    this.$i18n.locale = lang
+    // location.reload()
+  }
 }
 </script>

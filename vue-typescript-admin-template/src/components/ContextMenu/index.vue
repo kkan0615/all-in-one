@@ -4,6 +4,9 @@
   UpdatedAt: 08-15-2020
   Description: ContextMenu global Component
 -->
+<!--
+  @TODO: Add some props
+-->
 <template>
   <div
     @contextmenu.prevent="onRightClick"

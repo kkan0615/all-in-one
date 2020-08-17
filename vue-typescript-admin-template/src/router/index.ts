@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { CustomRouteConfig } from '@/types/customRouteConfig'
 import Home from '../views/Home.vue'
+import BaseLayout from '@/layout/base/index.vue'
+
 //TODO: 사용시 변경
 // import {searchPermittedRoutes} from '@/utils/permission'
 import baseRoutes from '@/router/modules/base'
@@ -29,7 +31,26 @@ const routes: Array<CustomRouteConfig> = [
   {
     path: '/test',
     name: 'Test',
-    component: () => import('@/views/test/index.vue')
+    component: BaseLayout,
+    meta: {
+      icon: '',
+      margin: 12,
+      role: '',
+      title: 'Test'
+    },
+    children: [
+      {
+        path: 'Test2',
+        name: 'Test2',
+        component: () => import('@/views/test/index.vue'),
+        meta: {
+          icon: '',
+          margin: 12,
+          role: '',
+          title: 'Test2'
+        }
+      }
+    ]
   }
 ]
 
@@ -52,5 +73,5 @@ const router = createRouter()
 // console.log(searchPermittedRoutes(baseRoutes))
 // router.addRoutes(searchPermittedRoutes(baseRoutes))
 
-console.log(router)
+// console.log(router)
 export default router
