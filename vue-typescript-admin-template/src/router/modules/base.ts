@@ -8,6 +8,8 @@ const baseRoutes: Array<CustomRouteConfig> = [
     component: BaseLayout,
     meta: {
       icon: 'dashboard',
+      isForGroup: true,
+      menuType: 'desktop',
       margin: 12,
       role: '',
       title: 'DashBoard'
@@ -19,6 +21,8 @@ const baseRoutes: Array<CustomRouteConfig> = [
         component: () => import('@/views/Dashboard/Main/index.vue'),
         meta: {
           icon: 'dashboard',
+          isForGroup: false,
+          menuType: 'desktop',
           margin: 12,
           role: '',
           title: 'Main DashBoard'

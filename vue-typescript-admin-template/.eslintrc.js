@@ -33,6 +33,7 @@ module.exports = {
       'error',
       'always'
     ],
+    '@typescript-eslint/no-explicit-any': 'off',
     'comma-spacing': ['error', { 'before': false, 'after': true }],
     '@typescript-eslint/no-empty-function': ['error', { 'allow': ['functions', 'arrowFunctions'] }],
     'no-empty-function': ['error', { 'allow': ['functions', 'arrowFunctions'] }],
@@ -50,7 +51,7 @@ module.exports = {
     'semi': ['error', 'never'],
     'no-irregular-whitespace': 'error',
     'no-mixed-spaces-and-tabs': 'error',
-    'no-trailing-spaces': 'error'
+    'no-trailing-spaces': 'error',
   },
   overrides: [
     {

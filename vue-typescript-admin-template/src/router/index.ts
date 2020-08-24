@@ -35,6 +35,8 @@ const routes: Array<CustomRouteConfig> = [
     meta: {
       icon: '',
       margin: 12,
+      isForGroup: true,
+      menuType: 'desktop',
       role: '',
       title: 'Test'
     },
@@ -46,6 +48,8 @@ const routes: Array<CustomRouteConfig> = [
         meta: {
           icon: '',
           margin: 12,
+          isForGroup: false,
+          menuType: 'desktop',
           role: '',
           title: 'Test2'
         }

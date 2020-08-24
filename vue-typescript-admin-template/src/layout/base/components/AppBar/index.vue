@@ -11,6 +11,7 @@
       @click="changeNavigationStatus"
     />
     <v-spacer />
+    <notification />
     <translate-menu />
     <v-btn
       text
@@ -28,11 +29,13 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { isLight } from '@/utils/color'
 import TranslateMenu from './components/Translate.vue'
+import Notification from './components/Notification.vue'
 
 @Component({
   name: 'AppBar',
   components: {
-    TranslateMenu
+    TranslateMenu,
+    Notification
   }
 })
 export default class AppBar extends Vue {

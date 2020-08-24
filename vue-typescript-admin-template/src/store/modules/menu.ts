@@ -1,6 +1,5 @@
 import { MutationTree, ActionTree, GetterTree } from 'vuex'
 import { CustomRouteConfig } from '@/types/customRouteConfig'
-import BaseLayout from '@/layout/base/index.vue'
 
 export interface MenuStore {
   favoriteRoutes: Array<CustomRouteConfig>;
@@ -16,68 +15,16 @@ export class MenuStore implements MenuStore {
       Object.assign(this, menuStore)
     }
     this.favoriteRoutes = []
-    this.displayRoutes = [
-      {
-        path: '/Dashboard',
-        name: 'Dashboard',
-        component: BaseLayout,
-        meta: {
-          icon: 'dashboard',
-          margin: 12,
-          role: '',
-          title: 'DashBoard',
-          description: 'Parent Dashboard'
-        },
-        children: [
-          {
-            path: 'MainDashboard',
-            name: 'MainDashboard',
-            component: () => import('@/views/Dashboard/Main/index.vue'),
-            meta: {
-              icon: 'view_quilt',
-              margin: 12,
-              role: '',
-              title: 'Main DashBoard',
-              description: 'Main Dashboard'
-            }
-          }
-        ]
-      },
-      {
-        path: '/test',
-        name: 'Test',
-        component: BaseLayout,
-        meta: {
-          icon: 'face',
-          margin: 12,
-          role: '',
-          title: 'Test',
-          description: 'Parent Test menu'
-        },
-        children: [
-          {
-            path: 'Test2',
-            name: 'Test2',
-            component: () => import('@/views/test/index.vue'),
-            meta: {
-              icon: 'face',
-              margin: 12,
-              role: '',
-              title: 'Test2',
-              description: 'test menu'
-
-            }
-          }
-        ]
-      }
-    ]
+    this.displayRoutes = []
   }
 }
 
 const state = new MenuStore()
 
 const mutations = {
-
+  SET_DISPLAY_ROUTES (state, payload: Array<CustomRouteConfig>) {
+    state.displayRoutes = payload
+  }
 } as MutationTree<MenuStore>
 
 const getters = {
@@ -85,6 +32,9 @@ const getters = {
 } as GetterTree<MenuStore, never>
 
 const actions = {
+  updateDisplayRoutes ({ commit }, payload: Array<CustomRouteConfig>) {
+    commit('SET_DISPLAY_ROUTES', payload)
+  }
 } as ActionTree<MenuStore, never>
 
 export default {
