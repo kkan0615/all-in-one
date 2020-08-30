@@ -7,8 +7,8 @@
     <template v-slot:activator="{ on }">
       <v-badge
         color="primary"
-        :content="counts"
-        :value="counts"
+        :content="notifications.length"
+        :value="notifications.length"
         overlap
       >
         <v-icon
@@ -18,7 +18,11 @@
         </v-icon>
       </v-badge>
     </template>
-    <v-card>
+    <v-card
+      class="notification-card"
+      width="400px"
+      max-height="500px"
+    >
       <v-card-title>
         Notifications
         <v-spacer />
@@ -33,9 +37,27 @@
         </v-btn>
       </v-card-title>
       <v-card-text
-        v-if="counts > 0"
+        v-if="notifications.length > 0"
       >
-        test
+        <v-alert
+          v-for="(notification) in notifications"
+          :key="notification.id"
+          :color="notification.color"
+          :type="notification.type ? notification.type : 'info'"
+          dismissible
+          dense
+          @input="readNotification(notification)"
+        >
+          <div class="subtitle-2">
+            {{ notification.title }}
+          </div>
+          <div class="body-1">
+            {{ notification.content }}
+          </div>
+          <div class="caption text-end">
+            {{ notification.date }}
+          </div>
+        </v-alert>
       </v-card-text>
       <v-card-text
         v-else
@@ -48,6 +70,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { NotificationState } from '@/store/modules/alert'
 
 @Component({
   name: 'Notification',
@@ -61,5 +84,19 @@ export default class Notification extends Vue {
   private onClickClose () {
     this.menu = false
   }
+
+  private get notifications (): Array<NotificationState> {
+    return this.$store.state.alert.notifications
+  }
+
+  private readNotification (notification: NotificationState) {
+    this.$store.commit('alert/removeNotification', notification)
+  }
+
 }
 </script>
+<style lang="scss">
+  .notification-card {
+    overflow: auto;
+  }
+</style>

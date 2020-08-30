@@ -67,6 +67,9 @@
     <v-divider />
     <SearchMenu />
 
+    <!-- Favorite menu list-->
+    <favorite-menu />
+    <!-- Program Menu list -->
     <v-list
       dense
       link
@@ -80,92 +83,6 @@
         :menu="menu"
       />
     </v-list>
-    <v-list
-      dense
-    >
-      <v-list-item
-        link
-        two-line
-        class="px-2"
-      >
-        <v-list-item-content>
-          <v-list-item-title>My Files</v-list-item-title>
-          <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-      <context-menu>
-        <template #content>
-          <v-list-item
-            link
-            two-line
-            class="px-2"
-          >
-            <v-list-item-content>
-              <v-list-item-title>My Files</v-list-item-title>
-              <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </template>
-        <template #menu>
-          <v-list>
-            <v-list-item>
-              <v-list-item-title>test</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </template>
-      </context-menu>
-      <!--      <v-list-group-->
-      <!--        prepend-icon="account_circle"-->
-      <!--        value="true"-->
-      <!--      >-->
-      <!--        <template v-slot:activator>-->
-      <!--          <v-list-item-title>Users</v-list-item-title>-->
-      <!--        </template>-->
-
-      <!--        <v-list-group-->
-      <!--          no-action-->
-      <!--          sub-group-->
-      <!--          value="true"-->
-      <!--        >-->
-      <!--          <template v-slot:activator>-->
-      <!--            <v-list-item-content>-->
-      <!--              <v-list-item-title>Admin</v-list-item-title>-->
-      <!--            </v-list-item-content>-->
-      <!--          </template>-->
-
-      <!--          <v-list-item-->
-      <!--            v-for="(admin, i) in admins"-->
-      <!--            :key="i"-->
-      <!--            link-->
-      <!--          >-->
-      <!--            <v-list-item-title v-text="admin[0]" />-->
-      <!--            <v-list-item-icon>-->
-      <!--              <v-icon v-text="admin[1]" />-->
-      <!--            </v-list-item-icon>-->
-      <!--          </v-list-item>-->
-      <!--        </v-list-group>-->
-
-      <!--        <v-list-group-->
-      <!--          sub-group-->
-      <!--          no-action-->
-      <!--        >-->
-      <!--          <template v-slot:activator>-->
-      <!--            <v-list-item-content>-->
-      <!--              <v-list-item-title>Actions</v-list-item-title>-->
-      <!--            </v-list-item-content>-->
-      <!--          </template>-->
-      <!--          <v-list-item-->
-      <!--            v-for="(crud, i) in cruds"-->
-      <!--            :key="i"-->
-      <!--          >-->
-      <!--            <v-list-item-title v-text="crud[0]" />-->
-      <!--            <v-list-item-action>-->
-      <!--              <v-icon v-text="crud[1]" />-->
-      <!--            </v-list-item-action>-->
-      <!--          </v-list-item>-->
-      <!--        </v-list-group>-->
-      <!--      </v-list-group>-->
-    </v-list>
   </v-navigation-drawer>
 </template>
 s
@@ -173,6 +90,7 @@ s
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import SearchMenu from './components/SearchMenu.vue'
 import MenuParent from './components/MenuParent.vue'
+import FavoriteMenu from './components/FavoriteMenu.vue'
 import ContextMenu from '@/components/ContextMenu/index.vue'
 import { CustomRouteConfig } from '@/types/customRouteConfig'
 
@@ -181,6 +99,7 @@ import { CustomRouteConfig } from '@/types/customRouteConfig'
   components: {
     SearchMenu,
     MenuParent,
+    FavoriteMenu,
     ContextMenu
   }
 })

@@ -41,7 +41,6 @@ export default class AlertSnackbar extends Vue {
 
   created () {
     this.$store.subscribe((mutation, state) => {
-      console.log(state)
       if (mutation.type === 'alert/showSnackBar') {
         this.snackbar.content = state.alert.snackbar.content
         this.snackbar.color = state.alert.snackbar.color

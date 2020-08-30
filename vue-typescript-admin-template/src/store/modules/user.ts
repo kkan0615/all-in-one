@@ -4,6 +4,7 @@ import authAxios from '@/axios/auth'
 
 // @TODO: (DELETE) 나중에 삭제하기
 import baseRoutes from '@/router/modules/base'
+import { UserReturnParams } from '@/types/ServerResponse/auth'
 
 export interface UserState {
   token: string;
@@ -11,6 +12,11 @@ export interface UserState {
   role: string;
   roleName: string;
   avatar: string;
+}
+
+export interface UserLoginState {
+  userId: string;
+  password: string;
 }
 
 export class UserState implements UserState {
@@ -34,13 +40,16 @@ export class UserState implements UserState {
 const state = new UserState()
 
 const mutations = {
-  SET_USER (state, payload: UserState) {
+  SET_USER (state, payload?: UserState) {
+    if (payload) {
+      state = new UserState()
+      return
+    }
     if (!state) {
       state = new UserState(payload)
     } else {
       state = Object.assign(state, payload)
     }
-    state.isLoaded = true
   }
 } as MutationTree<UserState>
 
@@ -51,17 +60,30 @@ const getters = {
 } as GetterTree<UserState, never>
 
 const actions = {
-  async login ({ commit }) {
+  async login ({ state, commit }, payload: UserLoginState) {
     const params = {
-      HASHED_PASSWORD: 'TEST'
+      ...payload,
+      hashedPassword: 'adminpass01@'
     }
-
-    const user = (await authAxios.post('/api/auth/login', params)).data as UserState
-    commit('SET_USER', user)
+    console.log(params)
+    const user = (await authAxios.post('/auth/login', params)).data as UserReturnParams
+    if (user) {
+      commit('SET_USER', user.user)
+      console.log(user.user)
+      state.isLoaded = true
+      return true
+    } else {
+      throw new Error('Error: NO DATA')
+    }
   },
-  logout ({ state }) {
-    state.isLoaded = false
-    console.log('logout')
+  async logout ({ state, commit }) {
+    const loggoedOut = (await authAxios.post('/auth/logout')).data as UserReturnParams
+    if (loggoedOut.code === 200) {
+      state.isLoaded = false
+      commit('SET_USER')
+    } else {
+      throw new Error('Error: NO DATA')
+    }
   },
   async updateDetail ({ commit, dispatch }) {
     // const token = Vue.$cookies.get('authToken')
@@ -72,7 +94,6 @@ const actions = {
     //
     // const userDetail = (await authAxios.post('/api/auth/token')).data
     // await commit('login', userDetail)
-    console.log('test')
     await this.dispatch('menu/updateDisplayRoutes', baseRoutes)
   }
 } as ActionTree<UserState, never>

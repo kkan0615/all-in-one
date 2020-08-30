@@ -3,10 +3,12 @@
 * */
 import { MutationTree, ActionTree, GetterTree } from 'vuex'
 
-interface NotificationState {
+export interface NotificationState {
+  id: string | number;
   title: string;
-  message: string;
+  content: string;
   color: string;
+  type: 'info' | 'success' | 'warning' | 'error';
   userId?: string;
   date: string;
 }
@@ -48,9 +50,9 @@ const mutations = {
     state.notifications.push(payload)
   },
   removeNotification (state, payload: NotificationState) {
-    const targartIndex = state.notifications.indexOf(payload)
-    if (targartIndex > -1) {
-      state.notifications.splice(targartIndex, 1)
+    const targetIndex = state.notifications.indexOf(payload)
+    if (targetIndex > -1) {
+      state.notifications.splice(targetIndex, 1)
     }
   },
   showSnackBar (state, payload: SnackbarState) {

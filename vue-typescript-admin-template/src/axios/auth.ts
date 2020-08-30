@@ -35,7 +35,6 @@ auth.interceptors.request.use((config: AxiosRequestConfig) => {
   //   /** Default */
   //   config.headers['locale'] = userLang
   // }
-
   return config
 }, (error) => {
   console.error(error)

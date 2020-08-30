@@ -11,20 +11,6 @@
     @click="clickItem"
   >
     <template v-slot:activator>
-      <!--      <v-list-item-avatar><v-icon>{{ menu.meta.icon }}</v-icon></v-list-item-avatar>-->
-      <!--      <v-btn-->
-      <!--        icon-->
-      <!--        text-->
-      <!--        @click.prevent.stop="clicked"-->
-      <!--      >-->
-      <!--        <v-icon-->
-      <!--          x-small-->
-      <!--        >-->
-      <!--          settings-->
-      <!--        </v-icon>-->
-      <!--      </v-btn>-->
-
-
       <context-menu>
         <template #content>
           <v-list-item-content>
@@ -41,6 +27,7 @@
               <v-btn
                 icon
                 text
+                @click="toFavoriteMenu"
               >
                 <v-icon>
                   favorite
@@ -93,8 +80,8 @@ export default class NestedDraggableChild extends Vue {
     return this.menu
   }
 
-  private clicked () {
-    console.log('test')
+  private toFavoriteMenu () {
+    this.$store.dispatch('menu/addFavoriteRoutes', this.menu)
   }
 }
 </script>

@@ -17,6 +17,8 @@
       <template #content>
         <v-list-item
           selectable
+          link
+          :to="{ name: menu.name }"
           dense
           @click="clickItem"
         >
@@ -29,16 +31,13 @@
       </template>
       <template #menu>
         <v-card>
-          <v-card-text>
+          <v-card-text
+            @click="toFavoriteMenu"
+          >
             Favorite
-            <v-btn
-              icon
-              text
-            >
-              <v-icon>
-                favorite
-              </v-icon>
-            </v-btn>
+            <v-icon>
+              favorite
+            </v-icon>
           </v-card-text>
         </v-card>
       </template>
@@ -53,14 +52,14 @@ import ContextMenu from '@/components/ContextMenu/index.vue'
 import { CustomRouteConfig } from '@/types/customRouteConfig'
 
 @Component({
-  name: 'NestedDraggableContent',
+  name: 'MenuParent',
   components: {
     MenuChild,
     ContextMenu
   }
 })
 
-export default class NestedDraggableContent extends Vue {
+export default class MenuParent extends Vue {
   // @Prop() private list!: Array<unknown>
   @Prop() private menu!: CustomRouteConfig
 
@@ -68,6 +67,10 @@ export default class NestedDraggableContent extends Vue {
   @Emit('click:item')
   private clickItem () {
     return this.menu
+  }
+
+  private toFavoriteMenu () {
+    this.$store.dispatch('menu/addFavoriteRoutes', this.menu)
   }
 }
 </script>

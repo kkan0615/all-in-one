@@ -24,6 +24,12 @@ const state = new MenuStore()
 const mutations = {
   SET_DISPLAY_ROUTES (state, payload: Array<CustomRouteConfig>) {
     state.displayRoutes = payload
+  },
+  SET_FAVORITE_ROUTES (state, payload: Array<CustomRouteConfig>) {
+    state.favoriteRoutes = payload
+  },
+  addFavoriteRoutes (state, payload: CustomRouteConfig) {
+    state.favoriteRoutes.push(payload)
   }
 } as MutationTree<MenuStore>
 
@@ -34,6 +40,14 @@ const getters = {
 const actions = {
   updateDisplayRoutes ({ commit }, payload: Array<CustomRouteConfig>) {
     commit('SET_DISPLAY_ROUTES', payload)
+  },
+  updateFavoriteRoutes ({ commit }, payload: Array<CustomRouteConfig>) {
+    commit('SET_FAVORITE_ROUTES', payload)
+  },
+  addFavoriteRoutes ({ commit, state }, payload: CustomRouteConfig) {
+    const foundIndex = state.favoriteRoutes.indexOf(payload)
+    if (foundIndex === -1)
+      commit('addFavoriteRoutes', payload)
   }
 } as ActionTree<MenuStore, never>
 

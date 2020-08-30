@@ -13,9 +13,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
-  @Component({
-    name: 'Protocol',
-  })
+/**
+ * @author - Youngjin Kwak
+ * @description -
+ */
+@Component({
+  name: 'Protocol',
+})
 export default class Protocol extends Vue {
 }
 </script>

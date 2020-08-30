@@ -13,6 +13,7 @@
     <v-spacer />
     <notification />
     <translate-menu />
+    <auth-app-bar />
     <v-btn
       text
       icon
@@ -30,12 +31,14 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { isLight } from '@/utils/color'
 import TranslateMenu from './components/Translate.vue'
 import Notification from './components/Notification.vue'
+import AuthAppBar from './components/Auth.vue'
 
 @Component({
   name: 'AppBar',
   components: {
     TranslateMenu,
-    Notification
+    Notification,
+    AuthAppBar
   }
 })
 export default class AppBar extends Vue {

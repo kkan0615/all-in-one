@@ -10,6 +10,12 @@ import VueCookies from 'vue-cookies'
 import http from './plugins/http'
 import '@/router/beforeRoutes'
 
+/* Devexpress css setting */
+// import 'roboto-fontface/css/roboto/roboto-fontface.css'
+// import '@fortawesome/fontawesome-free/css/all.css'
+import 'devextreme/dist/css/dx.common.css'
+import 'devextreme/dist/css/dx.material.teal.light.compact.css'
+
 /**
  * Solve For Error: Material icon is not working
  * https://stackoverflow.com/questions/57053728/vuetify-icon-not-showing
