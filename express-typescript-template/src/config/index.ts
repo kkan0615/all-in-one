@@ -82,7 +82,9 @@ export const logger = {
 }
 
 // Auth(login) token
-export const authTokenKey = 'AUTH-TOKEN-KEY'
+export const jwtTokenKey = 'REQUIEM-JWT-TOKEN-KEY'
+
+export const cookieKey = 'REQUIEM-COOKIE-TOKEN-KEY'
 
 export const config = {
   server,
@@ -91,7 +93,8 @@ export const config = {
   // chatSocket,
   logger,
   database,
-  authTokenKey
+  jwtTokenKey,
+  cookieKey
 }
 
 export default config
