@@ -4,6 +4,7 @@ import {User, users} from '@/models/user'
 
 export const passportConfig = (passport: PassportStatic) => {
   passport.serializeUser((user: User, done) => {
+    console.log('passport js', user)
     done(null, user.token)
   })
 

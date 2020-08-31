@@ -43,7 +43,7 @@ import { DxDataGrid, DxColumn, DxPager, DxPaging } from 'devextreme-vue/data-gri
 import { NotificationState, SnackbarState } from '@/store/modules/alert'
 import moment from 'moment'
 import { UserLoginState } from '@/store/modules/user'
-import axiosSetting from '@/axios/default'
+import authAxios from '@/axios/auth'
 
 @Component({
   name: 'Test',
@@ -297,7 +297,7 @@ export default class Test extends Vue {
   }
 
   private async testDetail () {
-    await axiosSetting.post('/auth/getDetail')
+    await authAxios.post('/auth/getDetail')
   }
 }
 </script>

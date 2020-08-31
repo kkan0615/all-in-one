@@ -23,10 +23,10 @@ export class LocalPassport {
       }, jwtTokenKey, { expiresIn: '2h' })
       exUser.token = authToken
 
-      done(null, exUser, { message: 'Success to pass' })
+      console.log('token - localpassport', authToken)
+      done(null, exUser)
     }))
 
-    return passport
   }
 }
 

@@ -7,9 +7,10 @@ import baseRoutes from '@/router/modules/base'
 import { UserReturnParams } from '@/types/ServerResponse/auth'
 
 export interface UserState {
+  id: number;
   token: string;
   nickname: string;
-  role: string;
+  role: any;
   roleName: string;
   avatar: string;
 }
@@ -21,19 +22,23 @@ export interface UserLoginState {
 
 export class UserState implements UserState {
   isLoaded: boolean
+  id: number
   token: string
   nickname: string
-  role: string // It will be Hex bit
+  role: any // It will be Hex bit
   roleName: string
   avatar: string
 
   constructor (user?: UserState) {
     this.isLoaded = false
+    this.id = user?.id || 0
     this.token = user?.token || ''
     this.nickname = user?.nickname || ''
-    this.role = user?.role || ''
+    this.role = user?.role || {}
     this.roleName = user?.roleName || ''
     this.avatar = user?.avatar || ''
+    console.log(this.token)
+
   }
 }
 
@@ -41,15 +46,13 @@ const state = new UserState()
 
 const mutations = {
   SET_USER (state, payload?: UserState) {
-    if (payload) {
-      state = new UserState()
-      return
-    }
     if (!state) {
       state = new UserState(payload)
     } else {
       state = Object.assign(state, payload)
     }
+
+    console.log(state)
   }
 } as MutationTree<UserState>
 
@@ -67,9 +70,9 @@ const actions = {
     }
     console.log(params)
     const user = (await authAxios.post('/auth/login', params)).data as UserReturnParams
+    console.log(user)
     if (user) {
       commit('SET_USER', user.user)
-      console.log(user.user)
       state.isLoaded = true
       return true
     } else {

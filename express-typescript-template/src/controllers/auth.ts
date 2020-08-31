@@ -18,19 +18,19 @@ class AuthController {
      */
   public static login (req: Request, res: Response, next: NextFunction) {
     passport.authenticate('local', (authError, user, info) => {
-      console.log(info)
+      console.log('user', authError)
       if (!user)
         return res.status(403).json({
           code: 403,
-          message: info.message,
+          message: info.message || '',
           user: user
         } as UserReturnParams)
 
+      res.cookie('test', 'test')
+      console.log(req.cookies)
       return req.login(user, (loginError) => {
-        console.log(user)
         if (loginError)
           return next(loginError)
-
         return res.json({
           code: 200,
           message: 'Success to Login',
@@ -47,6 +47,7 @@ class AuthController {
      * @param next - Next
      */
   public static logout (req: Request, res: Response, next: NextFunction) {
+    console.log(req.cookies)
     console.log(req.user)
     req.logout()
 
@@ -66,7 +67,10 @@ class AuthController {
      */
   public static getDetail (req: Request, res: Response, next: NextFunction) {
     console.log('------------------')
-    console.log(req.user)
+    console.log(req.headers['x-token'])
+    console.log(req.cookies)
+    console.log(req.isAuthenticated())
+
 
     // const exUser = users.find(user => user.token === userToken)
     // if (!exUser) {

@@ -15,34 +15,33 @@ import session from 'express-session'
 const app = express()
 
 /* Session for passport */
-// app.use(session({
-//   secret: cookieKey,
+// const sessionMiddleware = session({
 //   resave: false,
 //   saveUninitialized: false,
+//   secret: cookieKey,
 //   cookie: {
-//     secure: true, //set true later
 //     httpOnly: true,
-//     maxAge: 2 * 60 * 60 * 1000
-//   }
-// }))
+//     secure: false,
+//   },
+// })
+// app.use(sessionMiddleware)
 
 /* Body parser */
 app.use(express.urlencoded({ parameterLimit: 100000, limit: '10mb', extended: true}))
 app.use(express.json())
 // /* Cookie Session Management for passport */
-app.use(cookieSession({
-  name: 'session',
-  keys: [cookieKey],
-  secure: true,
-  secret: cookieKey,
-
-  // Cookie Options
-  // maxAge: 24 * 60 * 60 * 1000 // 24 hours
-  maxAge: 2 * 60 * 60 * 1000 // 2 hours
-}))
+// app.use(cookieSession({
+//   name: 'session',
+//   secure: true,
+//   secret: cookieKey,
+//
+//   // Cookie Options
+//   // maxAge: 24 * 60 * 60 * 1000 // 24 hours
+//   maxAge: 2 * 60 * 60 * 1000 // 2 hours
+// }))
 
 /* Cookie parser */
-app.use(cookieParser(cookieKey))
+app.use(cookieParser())
 
 /* Cors error handler */
 app.use(cors({
@@ -67,4 +66,4 @@ app.get('/', (req, res) => {
 /* Set the port number */
 app.set('port', process.env.PORT || serverConfig.port)
 
-export default  app
+export default app

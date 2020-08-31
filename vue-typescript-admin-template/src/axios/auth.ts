@@ -1,17 +1,11 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+import store from '@/store'
 
 const auth = axios.create(({
   baseURL: process.env.VUE_APP_BASE_API || 'http://127.0.0.1:8001/',
   timeout: 5000,
   withCredentials: true
 }))
-
-auth.defaults.baseURL = 'http://127.0.0.1:8001/'
-
-/* Set timeout to 5 seconds */
-auth.defaults.timeout = 5000
-
-auth.defaults.withCredentials = true
 
 /* Handle response from server */
 /* @TODO: Change it! */
@@ -21,9 +15,17 @@ auth.interceptors.response.use((config: AxiosResponse) => {
 
 /* Handle request to server */
 auth.interceptors.request.use((config: AxiosRequestConfig) => {
-  // if (getAuthToken()) {
-  //   config.headers['X-Token'] = getAuthToken()
-  // }
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  if (store.state.user.token) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    config.headers['X-Token'] = store.state.user.token
+  }
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  console.log(store.state.user.token)
+  console.log(config.headers)
   //
   // const cookieLang = getLanguageCookie()
   // if (cookieLang) {
