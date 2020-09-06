@@ -7,7 +7,7 @@ import BaseLayout from '@/layout/base/index.vue'
 //TODO: 사용시 변경
 // import {searchPermittedRoutes} from '@/utils/permission'
 import baseRoutes from '@/router/modules/base'
-
+import authRoutes from '@/router/modules/auth'
 Vue.use(VueRouter)
 
 const routes: Array<CustomRouteConfig> = [
@@ -69,13 +69,9 @@ const createRouter = () => new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   //TODO: 나중에는 기본으로 깔아두고 Before router로 permitted찾아서 넣을예정
-  routes: routes.concat(baseRoutes),
+  routes: routes.concat(baseRoutes).concat(authRoutes),
 })
 
 const router = createRouter()
-//TODO: 사용시 변경, 비사용시 삭제
-// console.log(searchPermittedRoutes(baseRoutes))
-// router.addRoutes(searchPermittedRoutes(baseRoutes))
 
-// console.log(router)
 export default router

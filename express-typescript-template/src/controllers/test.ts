@@ -1,5 +1,5 @@
-import {NextFunction, Request, Response} from 'express'
-import {TestResponse} from '@/types/testResponse'
+import { NextFunction, Request, Response } from 'express'
+import { TestResponse } from '@/types/testResponse'
 
 class Test {
   /**
@@ -10,9 +10,9 @@ class Test {
      */
   public static getHandler (req: Request, res: Response, next: NextFunction) {
     const { params, status } = req.body as {
-          params: any
-          status: number
-      }
+      params: any
+      status: number
+    }
     const response: TestResponse = {
       code: status,
       response: params
@@ -24,9 +24,9 @@ class Test {
 
   public static postHandler (req: Request, res: Response, next: NextFunction) {
     const { params, status } = req.body as {
-            params: any
-            status: number
-        }
+      params: any
+      status: number
+    }
 
     const response: TestResponse = {
       code: status,
@@ -39,9 +39,9 @@ class Test {
 
   public static putHandler (req: Request, res: Response, next: NextFunction) {
     const { params, status } = req.body as {
-            params: any
-            status: number
-        }
+      params: any
+      status: number
+    }
 
     const response: TestResponse = {
       code: status,
@@ -54,9 +54,9 @@ class Test {
 
   public static deleteHandler (req: Request, res: Response, next: NextFunction) {
     const { params, status } = req.body as {
-            params: any
-            status: number
-        }
+      params: any
+      status: number
+    }
 
     const response: TestResponse = {
       code: status,

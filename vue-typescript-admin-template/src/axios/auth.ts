@@ -1,4 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+import Cookies from 'js-cookie'
+
 import store from '@/store'
 
 const auth = axios.create(({
@@ -20,25 +22,11 @@ auth.interceptors.request.use((config: AxiosRequestConfig) => {
   if (store.state.user.token) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
-    config.headers['X-Token'] = store.state.user.token
+    config.headers['ACCESS-TOKEN'] = store.state.user.token || Cookies.get('X-TOKEN')
   }
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  console.log(store.state.user.token)
-  console.log(config.headers)
-  //
-  // const cookieLang = getLanguageCookie()
-  // if (cookieLang) {
-  //   config.headers['locale'] = cookieLang
-  // } else {
-  //   /** If there is no set cookie */
-  //   const userLang = navigator.language.toLowerCase()
-  //
-  //   /** Default */
-  //   config.headers['locale'] = userLang
-  // }
   return config
 }, (error) => {
+  console.error(error.message)
   console.error(error)
 })
 

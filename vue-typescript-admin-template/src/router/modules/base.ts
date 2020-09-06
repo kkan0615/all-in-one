@@ -52,7 +52,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
           isForGroup: false,
           menuType: 'desktop',
           margin: 12,
-          role: '',
+          role: '1111111111111',
           title: 'Grid with form'
         }
       }

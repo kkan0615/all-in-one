@@ -1,16 +1,14 @@
 import LocalPassport from '@/utils/localPassport'
-import {PassportStatic} from 'passport'
-import {User, users} from '@/models/user'
+import { PassportStatic } from 'passport'
+import { User, users } from '@/models/user'
 
 export const passportConfig = (passport: PassportStatic) => {
   passport.serializeUser((user: User, done) => {
-    console.log('passport js', user)
-    done(null, user.token)
+    done(null, user.refreshToken)
   })
 
   passport.deserializeUser((token, done) => {
-    console.log('test2', token)
-    const exUser = users.find((user => user.token === token))
+    const exUser = users.find((user => user.refreshToken === token))
     if (exUser) {
       done(null, exUser)
     }

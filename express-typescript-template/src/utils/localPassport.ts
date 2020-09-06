@@ -1,6 +1,6 @@
 import { Strategy } from 'passport-local'
 import { PassportStatic } from 'passport'
-import {jwtTokenKey} from '@/config'
+import { jwtTokenKey } from '@/config'
 import { users } from '@/models/user'
 import jwt from 'jsonwebtoken'
 
@@ -13,7 +13,7 @@ export class LocalPassport {
 
       const exUser = users.find(user => user.userId === userId && user.password === password)
       if (!exUser) {
-        return done(null, false,{ message: 'User is not existed'})
+        return done(null, false, { message: 'User is not existed' })
       }
 
       /* Set the Token */
@@ -21,7 +21,7 @@ export class LocalPassport {
         id: exUser.id,
         userId: exUser.userId
       }, jwtTokenKey, { expiresIn: '2h' })
-      exUser.token = authToken
+      exUser.refreshToken = authToken
 
       console.log('token - localpassport', authToken)
       done(null, exUser)

@@ -3,8 +3,8 @@ import { CustomRouteConfig } from '@/types/customRouteConfig'
 
 const searchPermittedChildRoutes = (array: Array<CustomRouteConfig>, role: string) => {
   const result: Array<CustomRouteConfig> = []
-
-  for (let i  = 0; i < array.length; i ++) {
+  console.log(role)
+  for (let i = 0; i < array.length; i++) {
     const element = array[i]
     if (!role) {
       if (element.meta?.role === '') {
@@ -15,7 +15,6 @@ const searchPermittedChildRoutes = (array: Array<CustomRouteConfig>, role: strin
     } else {
       result.push(element)
     }
-
     if (element.children && element.children.length > 0) {
       element.children = searchPermittedChildRoutes(element.children, role)
     }
@@ -24,7 +23,8 @@ const searchPermittedChildRoutes = (array: Array<CustomRouteConfig>, role: strin
 }
 
 export const searchPermittedRoutes = (array: Array<CustomRouteConfig>) => {
-  const role = store.getters['user/role']
+  const role = store.getters['user/roleGrade']
+  console.log(role)
   let filteredArray
   if (!role) {
     filteredArray = array.filter(route => route.meta?.role === '')
@@ -34,7 +34,7 @@ export const searchPermittedRoutes = (array: Array<CustomRouteConfig>) => {
 
   const permittedArray: Array<CustomRouteConfig> = []
   for (let i = 0; i < filteredArray.length; i++) {
-    const element = filteredArray[0]
+    const element = filteredArray[i]
     if (element.children && element.children.length > 0) {
       element.children = searchPermittedChildRoutes(element.children, role)
     }

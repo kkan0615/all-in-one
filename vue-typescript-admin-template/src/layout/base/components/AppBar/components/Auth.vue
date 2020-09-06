@@ -12,7 +12,10 @@
       </v-btn>
     </template>
     <v-list>
-      <v-list-item>
+      <v-list-item
+        link
+        :to="{ name: 'login' }"
+      >
         <v-list-item-title
           class="cursor-pointer"
         >

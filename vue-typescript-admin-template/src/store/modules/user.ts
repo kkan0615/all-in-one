@@ -1,5 +1,5 @@
 import { MutationTree, ActionTree, GetterTree } from 'vuex'
-import { Vue } from 'vue-property-decorator'
+import Cookie from 'js-cookie'
 import authAxios from '@/axios/auth'
 
 // @TODO: (DELETE) 나중에 삭제하기
@@ -11,6 +11,7 @@ export interface UserState {
   token: string;
   nickname: string;
   role: any;
+  roleGrade: string;
   roleName: string;
   avatar: string;
 }
@@ -25,20 +26,20 @@ export class UserState implements UserState {
   id: number
   token: string
   nickname: string
-  role: any // It will be Hex bit
+  role: any // @TODO: Change it to specific type
+  roleGrade: string // HEX String will be here
   roleName: string
   avatar: string
 
   constructor (user?: UserState) {
     this.isLoaded = false
     this.id = user?.id || 0
-    this.token = user?.token || ''
+    this.token = user?.token || Cookie.get('X-TOKEN') || ''
     this.nickname = user?.nickname || ''
     this.role = user?.role || {}
+    this.roleGrade = user?.roleGrade || ''
     this.roleName = user?.roleName || ''
     this.avatar = user?.avatar || ''
-    console.log(this.token)
-
   }
 }
 
@@ -52,13 +53,23 @@ const mutations = {
       state = Object.assign(state, payload)
     }
 
-    console.log(state)
+  },
+  SET_TOKEN (state, payload: string) {
+    state.token = payload
+    Cookie.set('X-TOKEN', payload)
   }
 } as MutationTree<UserState>
 
 const getters = {
+  isLoaded (state) {
+    return state.isLoaded
+  },
   role (state) {
     return state.role
+  },
+  token (state) {
+    return state.token
+
   }
 } as GetterTree<UserState, never>
 
@@ -68,11 +79,11 @@ const actions = {
       ...payload,
       hashedPassword: 'adminpass01@'
     }
-    console.log(params)
+
     const user = (await authAxios.post('/auth/login', params)).data as UserReturnParams
-    console.log(user)
     if (user) {
       commit('SET_USER', user.user)
+      commit('SET_TOKEN', user.accessToken)
       state.isLoaded = true
       return true
     } else {
@@ -84,19 +95,15 @@ const actions = {
     if (loggoedOut.code === 200) {
       state.isLoaded = false
       commit('SET_USER')
+      commit('SET_TOKEN', '')
     } else {
       throw new Error('Error: NO DATA')
     }
   },
   async updateDetail ({ commit, dispatch }) {
-    // const token = Vue.$cookies.get('authToken')
-    // if (!token) {
-    //   await dispatch('logout')
-    //   return
-    // }
-    //
-    // const userDetail = (await authAxios.post('/api/auth/token')).data
-    // await commit('login', userDetail)
+    const user = (await authAxios.post('/auth/getDetail')).data as UserReturnParams
+    commit('SET_USER', user.user)
+    commit('SET_TOKEN', user.accessToken)
     await this.dispatch('menu/updateDisplayRoutes', baseRoutes)
   }
 } as ActionTree<UserState, never>
