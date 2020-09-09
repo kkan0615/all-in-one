@@ -81,6 +81,15 @@ export const logger = {
   }
 }
 
+export const mongoDB = {
+  server: '',
+  userId: '',
+  password: '',
+  dbName: '',
+  userNewUrlParser: true,
+  useCreateIndex: true
+}
+
 // Auth(login) token
 export const jwtTokenKey = 'REQUIEM-JWT-TOKEN-KEY'
 
