@@ -1,7 +1,7 @@
 export interface Role {
-    id: number
-    name: string
-    remark: string
+  id: number
+  name: string
+  remark: string
 }
 
 export const roles: Array<Role> = [

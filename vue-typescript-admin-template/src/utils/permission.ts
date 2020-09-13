@@ -3,7 +3,6 @@ import { CustomRouteConfig } from '@/types/customRouteConfig'
 
 const searchPermittedChildRoutes = (array: Array<CustomRouteConfig>, role: string) => {
   const result: Array<CustomRouteConfig> = []
-  console.log(role)
   for (let i = 0; i < array.length; i++) {
     const element = array[i]
     if (!role) {

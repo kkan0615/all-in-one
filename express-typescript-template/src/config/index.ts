@@ -82,12 +82,14 @@ export const logger = {
 }
 
 export const mongoDB = {
-  server: '',
-  userId: '',
-  password: '',
-  dbName: '',
+  enabled: true,
+  server: 'localhost:27017/admin',
+  userId: 'superAdmin2',
+  password: 'admin0615',
+  dbName: 'allInOne',
   userNewUrlParser: true,
-  useCreateIndex: true
+  useCreateIndex: true,
+  reconnectInterval: 2000 // ms
 }
 
 // Auth(login) token

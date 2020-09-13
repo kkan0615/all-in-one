@@ -2,9 +2,16 @@ import { NextFunction, Request, Response } from 'express'
 import { ResponseParam } from '@/types/responseParam'
 import _jwt from '@/utils/jwt'
 import { users } from '@/models/user'
+import User from '@/schemas/user'
 import moment from 'moment'
+import { error } from 'winston'
 
 const jwt = new _jwt()
+
+interface IJwtPayload {
+  _id: string,
+  userId: string
+}
 
 interface UserReturnParams {
   code: number
@@ -26,33 +33,65 @@ class AuthController {
    * @param res - Response
    * @param next - Next
    */
-  public static login (req: Request, res: Response, next: NextFunction) {
+  public static async login (req: Request, res: Response, next: NextFunction) {
     const { userId, hashedPassword } = req.body
+
     console.log(req.body)
-    console.log(users)
-    const exUser = users.find(user => user.userId === userId && user.password === hashedPassword)
-    if (!exUser) {
-      return res.status(403).json({
-        code: 403,
-        accessToken: '',
-        message: 'UserId and Password are not matched',
-        user: exUser
+
+    try {
+      const exUser = await User.findOne({
+        userId,
+        password: hashedPassword
+      })
+
+      console.log('42', exUser)
+      if (!exUser) {
+        return res.status(403).json({
+          code: 403,
+          accessToken: '',
+          message: 'UserId and Password are not matched',
+          user: exUser
+        } as UserReturnParams)
+      }
+      /* Create accessToken */
+      // const accessToken2 = jwt.signToken(exUser2, '2h')
+      /* Create refreshToken */
+      // exUser2.refreshToken = jwt.signToken(exUser2, '24h')
+
+
+      // exUser2.lastTime = moment().format('MMMM Do YYYY, h:mm:ss a')
+      const updatedUser = await User.findOneAndUpdate({
+        _id: exUser._id
+      }, {
+        refreshToken: jwt.signToken({
+          _id: exUser._id,
+          userId: exUser.userId
+        }, '24h'),
+        lastTime: moment().format('MMMM Do YYYY, h:mm:ss a')
+      }).populate('roleId')
+      console.log('test', updatedUser)
+      if (!updatedUser) {
+        return res.status(403).json({
+          code: 403,
+          accessToken: '',
+          message: 'UserId and Password are not matched',
+          user: exUser
+        } as UserReturnParams)
+      }
+      const accessToken = jwt.signToken({
+        _id: updatedUser._id,
+        userId: updatedUser.userId
+      }, '2h')
+      console.log('token', accessToken)
+      return res.json({
+        code: 200,
+        accessToken: accessToken,
+        message: 'Success to Login',
+        user: updatedUser
       } as UserReturnParams)
+    } catch (e) {
+      error(e)
     }
-    /* Create accessToken */
-    const accessToken = jwt.signToken(exUser, '2h')
-    /* Create refreshToken */
-    exUser.refreshToken = jwt.signToken(exUser, '24h')
-
-
-    exUser.lastTime = moment().format('MMMM Do YYYY, h:mm:ss a')
-    console.log(exUser)
-    return res.json({
-      code: 200,
-      accessToken: accessToken,
-      message: 'Success to Login',
-      user: exUser
-    } as UserReturnParams)
   }
 
   /**
@@ -92,8 +131,11 @@ class AuthController {
      * @param res - Response
      * @param next - Next
      */
-  public static getDetail (req: Request, res: Response, next: NextFunction) {
+  public static async getDetail (req: Request, res: Response, next: NextFunction) {
+    console.log('pass')
     const token = req.headers['access-token'] as string
+
+    console.log(token)
     if (!token) {
       return res.status(403).json({
         code: 403,
@@ -104,18 +146,21 @@ class AuthController {
     }
 
     const decoded = jwt.verifyToken(token)
-    console.log('-------------------------------------')
-    console.log(decoded)
     const nowValueOf = moment().valueOf()
-    const exUser = users.find(user => user.id === decoded.id)
-
+    console.log(decoded)
+    // const exUser = users.find(user => user.id === decoded.id)
+    const exUser = await User.findOne({
+      _id: decoded._id
+    }).populate('roleId')
+    console.log(exUser)
+    console.log('------------------')
     /* Access Token is expired */
     if (nowValueOf < decoded.exp * 1000) {
       if(!exUser) {
         return res.status(403).json({
           code: 403,
           accessToken: '',
-          message: 'User is not existed',
+          message: 'User is not existed or token is expired',
           user: exUser
         } as UserReturnParams)
       }
@@ -126,13 +171,20 @@ class AuthController {
         const newAccessToken = jwt.signToken(exUser, '2h')
 
         /* Reset Refresh token */
-        exUser.refreshToken = jwt.signToken(exUser, '24h')
+        const updatedUser = await User.findOneAndUpdate({
+          _id: exUser._id
+        }, {
+          refreshToken: jwt.signToken({
+            _id: exUser._id,
+            userId: exUser.userId
+          } as IJwtPayload, '24h')
+        }).populate('roleId')
 
         return res.json({
           code: 200,
           accessToken: newAccessToken,
-          message: 'Success to Login',
-          user: exUser
+          message: 'Success to get detail',
+          user: updatedUser
         } as UserReturnParams)
       } else {
         exUser.refreshToken = ''

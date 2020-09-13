@@ -271,8 +271,8 @@ export default class Test extends Vue {
   private async login () {
     try {
       await this.$store.dispatch('user/login', {
-        userId: 'admin',
-        password: 'adminpass01@@'
+        userId: 'superAdmin',
+        password: 'admin'
       } as UserLoginState)
 
     } catch (error) {
@@ -297,7 +297,12 @@ export default class Test extends Vue {
   }
 
   private async testDetail () {
-    await authAxios.post('/auth/getDetail')
+    try {
+      const test = await authAxios.post('/auth/getDetail')
+      console.log(test)
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 </script>

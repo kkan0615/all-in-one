@@ -15,9 +15,11 @@ class jwt {
      * @param time - expried date
      */
   public signToken (data: Record<string, any>, time: string): string {
-    return _jwt.sign({
+    const token = _jwt.sign({
       ...data
     }, jwtTokenKey, { expiresIn: time })
+
+    return token
   }
 
   /**
@@ -26,7 +28,6 @@ class jwt {
    */
   public verifyToken (token: string): any {
     try {
-      console.log(token)
       return _jwt.verify(token, jwtTokenKey)
     } catch (error) {
       console.log(token)

@@ -8,12 +8,19 @@ import { UserReturnParams } from '@/types/ServerResponse/auth'
 
 export interface UserState {
   id: number;
+  _id: string;
   token: string;
   nickname: string;
-  role: any;
-  roleGrade: string;
-  roleName: string;
+  email: string;
+  roleId: RoleState;
   avatar: string;
+}
+
+export interface RoleState {
+  _id: string;
+  name: string;
+  grade: number;
+  remark: string;
 }
 
 export interface UserLoginState {
@@ -26,9 +33,8 @@ export class UserState implements UserState {
   id: number
   token: string
   nickname: string
-  role: any // @TODO: Change it to specific type
-  roleGrade: string // HEX String will be here
-  roleName: string
+  email: string
+  roleId: RoleState // @TODO: Change it to specific type
   avatar: string
 
   constructor (user?: UserState) {
@@ -36,9 +42,13 @@ export class UserState implements UserState {
     this.id = user?.id || 0
     this.token = user?.token || Cookie.get('X-TOKEN') || ''
     this.nickname = user?.nickname || ''
-    this.role = user?.role || {}
-    this.roleGrade = user?.roleGrade || ''
-    this.roleName = user?.roleName || ''
+    this.email = user?.email || ''
+    this.roleId = user?.roleId || {
+      _id: '',
+      grade: -1,
+      name: '',
+      remark: ''
+    }
     this.avatar = user?.avatar || ''
   }
 }
@@ -52,7 +62,7 @@ const mutations = {
     } else {
       state = Object.assign(state, payload)
     }
-
+    console.log(state)
   },
   SET_TOKEN (state, payload: string) {
     state.token = payload
@@ -65,11 +75,13 @@ const getters = {
     return state.isLoaded
   },
   role (state) {
-    return state.role
+    return state.roleId
   },
   token (state) {
     return state.token
-
+  },
+  roleGrade (state) {
+    return state.roleId.grade
   }
 } as GetterTree<UserState, never>
 
@@ -77,11 +89,12 @@ const actions = {
   async login ({ state, commit }, payload: UserLoginState) {
     const params = {
       ...payload,
-      hashedPassword: 'adminpass01@'
+      hashedPassword: 'admin'
     }
 
     const user = (await authAxios.post('/auth/login', params)).data as UserReturnParams
     if (user) {
+      console.log(user)
       commit('SET_USER', user.user)
       commit('SET_TOKEN', user.accessToken)
       state.isLoaded = true

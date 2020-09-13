@@ -1,6 +1,8 @@
-import { Router } from 'express'
+import { NextFunction, Request, Response, Router } from 'express'
 import Test from '@/controllers/test'
 import TestMiddleware from '@/middlewares/test'
+import Role from '@/schemas/role'
+import User from '@/schemas/user'
 
 const router = Router()
 
@@ -22,5 +24,20 @@ router.put('/', Test.putHandler)
 
 router.delete('/', Test.deleteHandler)
 
+router.get('/addTestData', async (req: Request, res: Response, next: NextFunction) => {
+  // await Role.findOneAndUpdate({
+  //   _id: '5f5cb87a35e00f1d64406547'
+  // }, {
+  //   grade: 0
+  // })
+
+  const users = await  User.find()
+  const roles = await Role.find()
+
+  res.json({
+    users,
+    roles,
+  })
+})
 
 export default router
