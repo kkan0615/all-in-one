@@ -168,7 +168,10 @@ class AuthController {
 
       /* Refresh token is not expired */
       if (nowValueOf <= refreshTokenDecoded.exp * 1000) {
-        const newAccessToken = jwt.signToken(exUser, '2h')
+        const newAccessToken = jwt.signToken({
+          _id: exUser._id,
+          userId: exUser.userId
+        }, '2h')
 
         /* Reset Refresh token */
         const updatedUser = await User.findOneAndUpdate({
