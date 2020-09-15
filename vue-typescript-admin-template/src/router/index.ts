@@ -72,6 +72,8 @@ const createRouter = () => new VueRouter({
   routes: routes.concat(baseRoutes).concat(authRoutes),
 })
 
+console.log(routes.concat(baseRoutes).concat(authRoutes))
+
 const router = createRouter()
 
 export default router

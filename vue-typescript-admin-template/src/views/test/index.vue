@@ -298,7 +298,7 @@ export default class Test extends Vue {
 
   private async testDetail () {
     try {
-      const test = await authAxios.post('/auth/getDetail')
+      const test = await this.$store.dispatch('user/updateDetail')
       console.log(test)
     } catch (error) {
       console.error(error)

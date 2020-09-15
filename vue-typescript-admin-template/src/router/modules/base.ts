@@ -39,7 +39,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
       isForGroup: true,
       menuType: 'desktop',
       margin: 12,
-      role: '',
+      role: '255',
       title: 'Sample layouts'
     },
     children: [
@@ -52,8 +52,21 @@ const baseRoutes: Array<CustomRouteConfig> = [
           isForGroup: false,
           menuType: 'desktop',
           margin: 12,
-          role: '1111111111111',
+          role: '',
           title: 'Grid with form'
+        }
+      },
+      {
+        path: 'GridFormTEST',
+        name: 'GridFormTEST',
+        component: () => import('@/views/Sample/GridForm/index.vue'),
+        meta: {
+          icon: 'vertical_split',
+          isForGroup: false,
+          menuType: 'desktop',
+          margin: 12,
+          role: '3',
+          title: 'GridFormTEST'
         }
       }
     ]

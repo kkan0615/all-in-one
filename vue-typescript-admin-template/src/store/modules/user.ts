@@ -117,6 +117,7 @@ const actions = {
     const user = (await authAxios.post('/auth/getDetail')).data as UserReturnParams
     commit('SET_USER', user.user)
     commit('SET_TOKEN', user.accessToken)
+    console.log('baseRoutes', baseRoutes)
     await this.dispatch('menu/updateDisplayRoutes', baseRoutes)
   }
 } as ActionTree<UserState, never>

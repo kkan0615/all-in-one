@@ -28,7 +28,9 @@ const state = new MenuStore()
 
 const mutations = {
   SET_DISPLAY_ROUTES (state, payload: Array<CustomRouteConfig>) {
+    console.log('payload', payload)
     const permittedRoutes = searchPermittedRoutes(payload)
+    console.log(permittedRoutes)
     state.displayRoutes = permittedRoutes
     state.isLoadedDisplayRoutes = true
   },
