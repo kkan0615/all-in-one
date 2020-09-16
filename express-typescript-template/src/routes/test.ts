@@ -25,12 +25,6 @@ router.put('/', Test.putHandler)
 router.delete('/', Test.deleteHandler)
 
 router.get('/addTestData', async (req: Request, res: Response, next: NextFunction) => {
-  // await Role.findOneAndUpdate({
-  //   _id: '5f5cb87a35e00f1d64406547'
-  // }, {
-  //   grade: 0
-  // })
-
   const users = await  User.find()
   const roles = await Role.find()
 

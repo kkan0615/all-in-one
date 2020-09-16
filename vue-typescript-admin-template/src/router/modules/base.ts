@@ -39,7 +39,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
       isForGroup: true,
       menuType: 'desktop',
       margin: 12,
-      role: '255',
+      role: 'ff',
       title: 'Sample layouts'
     },
     children: [

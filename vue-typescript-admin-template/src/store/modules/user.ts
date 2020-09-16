@@ -93,11 +93,12 @@ const actions = {
     }
 
     const user = (await authAxios.post('/auth/login', params)).data as UserReturnParams
-    if (user) {
+    if (user && user.code === 200) {
       console.log(user)
       commit('SET_USER', user.user)
       commit('SET_TOKEN', user.accessToken)
       state.isLoaded = true
+      await this.dispatch('menu/updateDisplayRoutes', baseRoutes)
       return true
     } else {
       throw new Error('Error: NO DATA')
@@ -113,11 +114,11 @@ const actions = {
       throw new Error('Error: NO DATA')
     }
   },
-  async updateDetail ({ commit, dispatch }) {
+  async updateDetail ({ state, commit, dispatch }) {
     const user = (await authAxios.post('/auth/getDetail')).data as UserReturnParams
     commit('SET_USER', user.user)
     commit('SET_TOKEN', user.accessToken)
-    console.log('baseRoutes', baseRoutes)
+    state.isLoaded = true
     await this.dispatch('menu/updateDisplayRoutes', baseRoutes)
   }
 } as ActionTree<UserState, never>

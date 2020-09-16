@@ -8,9 +8,10 @@ export function toHex (hexString: string) {
 }
 
 /**
- * hex to decimal
+ *
  * @param hexString
+ * @return number - parsed decimal
  */
-export function hexTodDecimal (hexString: string) {
-  return (parseInt(hexString, 16).toString(2)).padStart(8, '0')
+export function hexTodDecimal (hexString: string): number {
+  return parseInt(hexString, 16)
 }

@@ -3,6 +3,7 @@ import { IRole } from './role'
 
 export interface IUser extends mongoose.Document{
   refreshToken: string
+  nickname: string
   userId: string
   email:string
   password: string
@@ -13,6 +14,7 @@ export interface IUser extends mongoose.Document{
 
 const UserSchema = new mongoose.Schema({
   refreshToken: { type: mongoose.Schema.Types.String, required: false, unique: true },
+  nickname: { type: mongoose.Schema.Types.String, required: true, unique: true },
   userId: { type: mongoose.Schema.Types.String, required: true, unique: true },
   email: { type: mongoose.Schema.Types.String, required: true, unique: true },
   password: { type: mongoose.Schema.Types.String, required: true },

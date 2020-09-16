@@ -36,15 +36,12 @@ class AuthController {
   public static async login (req: Request, res: Response, next: NextFunction) {
     const { userId, hashedPassword } = req.body
 
-    console.log(req.body)
-
     try {
       const exUser = await User.findOne({
         userId,
         password: hashedPassword
       })
 
-      console.log('42', exUser)
       if (!exUser) {
         return res.status(403).json({
           code: 403,
@@ -53,13 +50,7 @@ class AuthController {
           user: exUser
         } as UserReturnParams)
       }
-      /* Create accessToken */
-      // const accessToken2 = jwt.signToken(exUser2, '2h')
-      /* Create refreshToken */
-      // exUser2.refreshToken = jwt.signToken(exUser2, '24h')
 
-
-      // exUser2.lastTime = moment().format('MMMM Do YYYY, h:mm:ss a')
       const updatedUser = await User.findOneAndUpdate({
         _id: exUser._id
       }, {
@@ -102,13 +93,22 @@ class AuthController {
    */
   public static logout (req: Request, res: Response, next: NextFunction) {
     const token = req.headers['access-token'] as string
+    console.log(token)
+    if (!token) {
+      return res.status(403).json({
+        code: 403,
+        accessToken: '',
+        message: 'token is not existed',
+        user: {}
+      } as UserReturnParams)
+    }
     const decoded = jwt.verifyToken(token)
     const exUser = users.find(user => user.id === decoded.id)
 
     /* User is not existed */
     if (!exUser) {
-      return res.status(403).json({
-        code: 403,
+      return res.status(405).json({
+        code: 405,
         accessToken: '',
         message: 'User is not existed',
         user: exUser
@@ -132,9 +132,7 @@ class AuthController {
      * @param next - Next
      */
   public static async getDetail (req: Request, res: Response, next: NextFunction) {
-    console.log('pass')
     const token = req.headers['access-token'] as string
-
     console.log(token)
     if (!token) {
       return res.status(403).json({
@@ -147,13 +145,10 @@ class AuthController {
 
     const decoded = jwt.verifyToken(token)
     const nowValueOf = moment().valueOf()
-    console.log(decoded)
     // const exUser = users.find(user => user.id === decoded.id)
     const exUser = await User.findOne({
       _id: decoded._id
     }).populate('roleId')
-    console.log(exUser)
-    console.log('------------------')
     /* Access Token is expired */
     if (nowValueOf < decoded.exp * 1000) {
       if(!exUser) {

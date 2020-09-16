@@ -19,7 +19,7 @@ router.beforeEach(async (to: Route, from: Route, next) => {
   }
 
   if (isLoaded) {
-    console.log(isLoaded)
+    await store.dispatch('menu/updateDisplayRoutes', baseRoutes)
   } else {
     await store.dispatch('user/updateDetail')
   }

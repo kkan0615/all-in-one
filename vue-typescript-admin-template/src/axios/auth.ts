@@ -12,9 +12,18 @@ const auth = axios.create(({
 // auth.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
 /* Handle response from server */
-/* @TODO: Change it! */
 auth.interceptors.response.use((config: AxiosResponse) => {
   return config
+}, async (error) => {
+  /* Error Handler 403 - Token or auth error */
+  if (error.response.status === 403) {
+    await store.dispatch('user/logout')
+  } else if(error.response.status === 405) {
+    /* 405 Error is happend when logout is failed */
+    console.log('Make 405 error handler')
+  }
+
+  return Promise.reject(error.response)
 })
 
 /* Handle request to server */
