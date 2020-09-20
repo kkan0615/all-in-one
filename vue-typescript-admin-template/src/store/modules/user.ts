@@ -5,11 +5,13 @@ import authAxios from '@/axios/auth'
 // @TODO: (DELETE) 나중에 삭제하기
 import baseRoutes from '@/router/modules/base'
 import { UserReturnParams } from '@/types/ServerResponse/auth'
+import router from '@/router'
 
 export interface UserState {
   id: number;
   _id: string;
   token: string;
+  refreshToken: string;
   nickname: string;
   email: string;
   roleId: RoleState;
@@ -32,6 +34,7 @@ export class UserState implements UserState {
   isLoaded: boolean
   id: number
   token: string
+  refreshToken: string
   nickname: string
   email: string
   roleId: RoleState // @TODO: Change it to specific type
@@ -41,6 +44,7 @@ export class UserState implements UserState {
     this.isLoaded = false
     this.id = user?.id || 0
     this.token = user?.token || Cookie.get('X-TOKEN') || ''
+    this.refreshToken = user?.refreshToken || Cookie.get('REFRESH-TOKEN') || ''
     this.nickname = user?.nickname || ''
     this.email = user?.email || ''
     this.roleId = user?.roleId || {
@@ -67,6 +71,10 @@ const mutations = {
   SET_TOKEN (state, payload: string) {
     state.token = payload
     Cookie.set('X-TOKEN', payload)
+  },
+  SET_REFRESH_TOKEN (state, payload: string) {
+    state.refreshToken = payload
+    Cookie.set('REFRESH-TOKEN', payload)
   }
 } as MutationTree<UserState>
 
@@ -89,7 +97,8 @@ const actions = {
   async login ({ state, commit }, payload: UserLoginState) {
     const params = {
       ...payload,
-      hashedPassword: 'admin'
+      // TODO: Changed with bcryptjs
+      hashedPassword: payload.password
     }
 
     const user = (await authAxios.post('/auth/login', params)).data as UserReturnParams
@@ -97,11 +106,13 @@ const actions = {
       console.log(user)
       commit('SET_USER', user.user)
       commit('SET_TOKEN', user.accessToken)
+      commit('SET_REFRESH_TOKEN', user.refreshToken)
       state.isLoaded = true
       await this.dispatch('menu/updateDisplayRoutes', baseRoutes)
       return true
     } else {
-      throw new Error('Error: NO DATA')
+      // throw new Error('Error: NO DATA')
+      return false
     }
   },
   async logout ({ state, commit }) {
@@ -110,14 +121,18 @@ const actions = {
       state.isLoaded = false
       commit('SET_USER')
       commit('SET_TOKEN', '')
+      commit('SET_REFRESH_TOKEN', '')
+      await router.push({ name: 'login' })
     } else {
       throw new Error('Error: NO DATA')
     }
   },
-  async updateDetail ({ state, commit, dispatch }) {
+  async updateDetail ({ state, commit }) {
     const user = (await authAxios.post('/auth/getDetail')).data as UserReturnParams
+    console.log(user)
     commit('SET_USER', user.user)
     commit('SET_TOKEN', user.accessToken)
+    commit('SET_REFRESH_TOKEN', user.refreshToken)
     state.isLoaded = true
     await this.dispatch('menu/updateDisplayRoutes', baseRoutes)
   }

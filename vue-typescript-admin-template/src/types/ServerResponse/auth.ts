@@ -1,15 +1,16 @@
 export interface UserReturnParams {
   code: number;
   accessToken: string;
+  refreshToken: string;
   message: string;
   user?: any;
 }
 
-export interface ResponseParam {
+export interface ResponseParam<T> {
   code: number;
   message: string;
-  recordSet?: any;
-  recordSets?: Array<any>;
+  recordSet?: T;
+  recordSets?: Array<T>;
 }
 
 export interface ErrorResponseParam {

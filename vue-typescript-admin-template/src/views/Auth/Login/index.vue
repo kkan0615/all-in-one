@@ -1,11 +1,14 @@
 <!--
   Author: Youngjin Kwak
   CreatedAt: 09-05-2020
-  UpdatedAt: 09-05-2020
-  Description: Login page
+  UpdatedAt: 09-19-2020
+  Description: Login index page
 -->
 <template>
-  <div class="fill-height">
+  <v-container
+    class="fill-height"
+    fluid
+  >
     <video
       id="myVideo"
       ref="backgroundVideo"
@@ -14,7 +17,7 @@
       loop
     >
       <source
-        src="http://thenewcode.com/assets/videos/polina.mp4"
+        src="@/assets/video/loginBackground.mp4"
         type="video/mp4"
       >
     </video>
@@ -38,7 +41,7 @@
         </v-row>
       </v-container>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">

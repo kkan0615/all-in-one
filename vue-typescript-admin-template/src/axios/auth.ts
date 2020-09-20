@@ -2,6 +2,8 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
 
 import store from '@/store'
+import { SnackbarState } from '@/store/modules/alert'
+import router from '@/router'
 
 const auth = axios.create(({
   baseURL: process.env.VUE_APP_BASE_API || 'http://127.0.0.1:8001/',
@@ -20,8 +22,15 @@ auth.interceptors.response.use((config: AxiosResponse) => {
     await store.dispatch('user/logout')
   } else if(error.response.status === 405) {
     /* 405 Error is happend when logout is failed */
-    console.log('Make 405 error handler')
+    Cookies.remove('X-TOKEN')
+    await router.push({ name: 'login' })
   }
+
+  console.log(error.response)
+  store.commit('alert/showSnackBar', {
+    content: error.response.data.message,
+    color: error.response.status >= 400 ? 'error' : 'info',
+  } as SnackbarState)
 
   return Promise.reject(error.response)
 })
@@ -35,6 +44,7 @@ auth.interceptors.request.use((config: AxiosRequestConfig) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     config.headers['ACCESS-TOKEN'] = store.state.user.token || Cookies.get('X-TOKEN')
+    config.headers['REFRESH-TOKEN'] = Cookies.get('REFRESH-TOKEN')
     // console.log(config.headers)
   }
 

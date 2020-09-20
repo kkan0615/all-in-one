@@ -7,7 +7,7 @@
 <template>
   <div>
     <v-card
-      class="ma-5 pa-2"
+      class="my-3"
     >
       <v-card-title>
         Log in
@@ -22,6 +22,8 @@
             label="ID"
             prepend-inner-icon="mdi-account"
             outlined
+            :rules="rules.userId"
+            required
             @keyup.enter="onEnterUserId"
           />
           <v-text-field
@@ -30,8 +32,15 @@
             label="PASSWORD"
             outlined
             prepend-inner-icon="mdi-lock"
+            :rules="rules.password"
+            required
             @keyup.enter="login"
           />
+          <div class="font-weight-black text-right">
+            <router-link to="#">
+              Forgot password?
+            </router-link>
+          </div>
           <v-checkbox
             v-model="remember"
             label="Remember id"
@@ -49,11 +58,24 @@
         </v-btn>
       </v-card-actions>
     </v-card>
+    <v-card>
+      <v-card-title
+        class="justify-center"
+      >
+        <div class="mx-2">
+          New to here?
+        </div>
+        <router-link to="">
+          Create an account.
+        </router-link>
+      </v-card-title>
+    </v-card>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Ref, Vue } from 'vue-property-decorator'
+import { UserLoginState } from '@/store/modules/user'
 
 /**
  * @author - Youngjin Kwak
@@ -70,6 +92,10 @@ export default class LoginCard extends Vue {
   @Ref('passwordField')
   private readonly passwordField!: HTMLInputElement
 
+  mounted () {
+    this.userIdField.focus()
+  }
+
   private userId = ''
   private password = ''
   private showPassword = ''
@@ -77,7 +103,10 @@ export default class LoginCard extends Vue {
 
   private rules = {
     userId: [
-
+      (v: string) => !!v || 'UserId is required',
+    ],
+    password: [
+      (v: string) => !!v || 'Password is required',
     ]
   }
 
@@ -85,10 +114,17 @@ export default class LoginCard extends Vue {
     this.passwordField.focus()
   }
 
-  private login () {
-    console.log('login')
+  private async login () {
     const valid = this.loginForm.validate()
-    console.log(valid)
+    if (valid) {
+      const success = await this.$store.dispatch('user/login', {
+        userId: this.userId,
+        password: this.password
+      } as UserLoginState)
+      if (success) {
+        await this.$router.push({ name: 'MainDashboard' })
+      }
+    }
   }
 }
 </script>

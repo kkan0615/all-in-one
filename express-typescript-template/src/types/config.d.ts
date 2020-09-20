@@ -1,8 +1,8 @@
 export interface Config {
-    enabled: boolean
+  enabled: boolean
 }
 
 export interface Socket extends Config{
-    server: string
-    port: number
+  server: string
+  port: number
 }

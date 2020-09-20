@@ -1,8 +1,8 @@
-export interface ResponseParam {
-  code: number
-  message: string
-  recordSet?: any
-  recordSets?: Array<any>
+export interface ResponseParam<T> {
+  code: number;
+  message: string;
+  recordSet?: T;
+  recordSets?: Array<T>;
 }
 
 export interface ErrorResponseParam {
