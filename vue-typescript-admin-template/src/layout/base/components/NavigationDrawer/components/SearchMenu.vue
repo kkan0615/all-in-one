@@ -28,22 +28,23 @@
       <v-card-title class="headline grey lighten-2">
         Search Menu
       </v-card-title>
-
+      <v-divider />
       <v-card-text>
         <v-text-field
           ref="searchRefKey"
           v-model="searchText"
+          label="Search"
+          dense
           class="my-2"
           outlined
         />
       </v-card-text>
 
-      <v-divider />
       <v-card-text>
         <!-- @TODO menu list -->
         Menu list will be here
       </v-card-text>
-
+      <v-divider />
       <v-card-actions>
         <v-spacer />
         <v-btn

@@ -11,37 +11,21 @@
       :menu="menu"
       @click:item="clickItem"
     />
-    <context-menu
+    <v-list-item
       v-else
+      color="accent"
+      link
+      :to="{ name: menu.name }"
+      dense
+      exact
+      @click="clickItem"
     >
-      <template #content>
-        <v-list-item
-          selectable
-          link
-          :to="{ name: menu.name }"
-          dense
-          @click="clickItem"
-        >
-          <v-list-item-avatar><v-icon>{{ menu.meta.icon }}</v-icon></v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>{{ menu.meta.title }}</v-list-item-title>
-            <v-list-item-subtitle>{{ menu.meta.description }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </template>
-      <template #menu>
-        <v-card>
-          <v-card-text
-            @click="toFavoriteMenu"
-          >
-            Favorite
-            <v-icon>
-              favorite
-            </v-icon>
-          </v-card-text>
-        </v-card>
-      </template>
-    </context-menu>
+      <v-list-item-avatar><v-icon>{{ menu.meta.icon }}</v-icon></v-list-item-avatar>
+      <v-list-item-content>
+        <v-list-item-title>{{ menu.meta.title }}</v-list-item-title>
+        <v-list-item-subtitle>{{ menu.meta.description }}</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
   </div>
 </template>
 

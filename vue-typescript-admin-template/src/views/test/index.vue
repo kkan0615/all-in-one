@@ -1,22 +1,37 @@
 <template>
   <div>
-    <DxDataGrid
+    <dx-data-grid
       :data-source="dataSource"
       :show-borders="true"
+      :show-row-lines="true"
+      :row-alternation-enabled="true"
+      :remote-operations="false"
+      :allow-column-reordering="true"
+      :show-info="true"
     >
-      <DxPaging :page-size="10" />
-      <DxPager
+      <dx-paging :page-size="10" />
+      <dx-pager
         :show-page-size-selector="true"
         :allowed-page-sizes="pageSizes"
-        :show-info="true"
       />
-
-      <DxColumn data-field="CompanyName" />
-      <DxColumn data-field="City" />
-      <DxColumn data-field="State" />
-      <DxColumn data-field="Phone" />
-      <DxColumn data-field="Fax" />
-    </DxDataGrid>
+      <dx-group-panel :visible="true" />
+      <dx-search-panel
+        :visible="true"
+        :highlight-case-sensitive="true"
+      />
+      <dx-column-chooser
+        mode="select"
+        :allow-search="true"
+        :enabled="true"
+        :height="400"
+      />
+      <dx-grouping :auto-expand-all="false" />
+      <dx-column data-field="CompanyName" />
+      <dx-column data-field="City" />
+      <dx-column data-field="State" />
+      <dx-column data-field="Phone" />
+      <dx-column data-field="Fax" />
+    </dx-data-grid>
 
     <v-btn
       @click="login"
@@ -39,7 +54,16 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { DxDataGrid, DxColumn, DxPager, DxPaging } from 'devextreme-vue/data-grid'
+import {
+  DxDataGrid,
+  DxColumn,
+  DxPager,
+  DxPaging,
+  DxGroupPanel,
+  DxSearchPanel,
+  DxGrouping,
+  DxColumnChooser
+} from 'devextreme-vue/data-grid'
 import { NotificationState, SnackbarState } from '@/store/modules/alert'
 import moment from 'moment'
 import { UserLoginState } from '@/store/modules/user'
@@ -48,7 +72,14 @@ import authAxios from '@/axios/auth'
 @Component({
   name: 'Test',
   components: {
-    DxDataGrid, DxColumn, DxPager, DxPaging
+    DxDataGrid,
+    DxColumn,
+    DxPager,
+    DxPaging,
+    DxGroupPanel,
+    DxSearchPanel,
+    DxGrouping,
+    DxColumnChooser
   }
 })
 export default class Test extends Vue {

@@ -68,6 +68,34 @@ const baseRoutes: Array<CustomRouteConfig> = [
           role: '3',
           title: 'GridFormTEST'
         }
+      },
+    ]
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: BaseLayout,
+    meta: {
+      icon: '',
+      margin: 12,
+      isForGroup: true,
+      menuType: 'desktop',
+      role: '',
+      title: 'Test'
+    },
+    children: [
+      {
+        path: 'Test2',
+        name: 'Test2',
+        component: () => import('@/views/test/index.vue'),
+        meta: {
+          icon: '',
+          margin: 12,
+          isForGroup: false,
+          menuType: 'desktop',
+          role: '',
+          title: 'Test2'
+        }
       }
     ]
   }

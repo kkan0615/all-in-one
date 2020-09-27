@@ -21,6 +21,7 @@ import 'devextreme/dist/css/dx.material.teal.light.compact.css'
  * https://stackoverflow.com/questions/57053728/vuetify-icon-not-showing
  */
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import 'devextreme/dist/css/dx.material.blue.dark.css'
 
 Vue.config.productionTip = false
 

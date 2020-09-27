@@ -7,7 +7,8 @@ export interface IUser extends mongoose.Document{
   userId: string
   email:string
   password: string
-  roleId: IRole['_id']
+  roleId: IRole['_id'],
+  avatar: string
   lastIpAddress: string
   lastTime: string
 }
@@ -19,6 +20,7 @@ const UserSchema = new mongoose.Schema({
   email: { type: mongoose.Schema.Types.String, required: true, unique: true },
   password: { type: mongoose.Schema.Types.String, required: true },
   roleId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Role' },
+  avatar: { type: mongoose.Schema.Types.String, required: false },
   lastIpAddress: { type: mongoose.Schema.Types.String, required: false },
   lastTime: { type: mongoose.Schema.Types.String, required: false }
 })

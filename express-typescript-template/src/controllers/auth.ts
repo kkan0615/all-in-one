@@ -1,7 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { ResponseParam } from '@/types/responseParam'
 import _jwt from '@/utils/jwt'
-import { users } from '@/models/user'
 import User from '@/schemas/user'
 import moment from 'moment'
 import { error } from 'winston'
@@ -37,7 +35,6 @@ class AuthController {
    */
   public static async login (req: Request, res: Response, next: NextFunction) {
     const { userId, hashedPassword } = req.body
-    console.log(hashedPassword)
     try {
       const exUser = await User.findOne({
         userId,
@@ -56,7 +53,8 @@ class AuthController {
       const refreshToken = jwt.signToken({
         _id: exUser._id,
         userId: exUser.userId
-      }, '3m')
+      }, '12h')
+
       const updatedUser = await User.findOneAndUpdate({
         _id: exUser._id
       }, {
@@ -75,8 +73,11 @@ class AuthController {
       const accessToken = jwt.signToken({
         _id: updatedUser._id,
         userId: updatedUser.userId
-      }, '1m')
+      }, '1h')
 
+      /* Set the headers */
+      res.setHeader('ACCESS-TOKEN', accessToken)
+      res.setHeader('REFRESH-TOKEN', refreshToken)
 
       return res.json({
         code: 200,
@@ -96,7 +97,7 @@ class AuthController {
    * @param res - Response
    * @param next - Next
    */
-  public static async logout (req: Request, res: Response, next: NextFunction) {
+  public static async logout (req: Request, res: Response, next: NextFunction): Promise<Response> {
     const refreshToken = req.headers['refresh-token'] as string
 
     if (refreshToken) {
@@ -113,6 +114,10 @@ class AuthController {
       }
     }
 
+    /* Set the headers */
+    res.setHeader('ACCESS-TOKEN', '')
+    res.setHeader('REFRESH-TOKEN', '')
+
     return res.json({
       code: 200,
       accessToken: '',
@@ -128,9 +133,10 @@ class AuthController {
      * @param res - Response
      * @param next - Next
      */
-  public static async getDetail (req: Request, res: Response, next: NextFunction) {
+  public static async getDetail (req: Request, res: Response, next: NextFunction): Promise<Response> {
     const token = req.headers['access-token'] as string
     const refreshToken = req.headers['refresh-token'] as string
+
     if (!token) {
       return res.status(403).json({
         code: 403,
@@ -155,10 +161,10 @@ class AuthController {
       } as UserReturnParams)
     }
 
+    /* Access token is expired */
     if (decoded.name === 'TokenExpiredError') {
       const decodedRefresh = jwt.verifyToken(refreshToken)
-      console.log('exp')
-      if (!decodedRefresh || decoded.name === 'TokenExpiredError') {
+      if (!decodedRefresh || decodedRefresh.name === 'TokenExpiredError') {
         return res.status(StatusCode.TokenError).json({
           code: StatusCode.TokenError,
           accessToken: '',
@@ -187,6 +193,9 @@ class AuthController {
         userId: exUser.userId
       } as IJwtPayload, '2h')
 
+      res.setHeader('ACCESS-TOKEN', newAccessToken)
+      res.setHeader('REFRESH-TOKEN', refreshToken)
+
       return res.json({
         code: 200,
         accessToken: newAccessToken,
@@ -200,6 +209,9 @@ class AuthController {
         _id: decoded._id,
       }).populate('roleId')
 
+      res.setHeader('ACCESS-TOKEN', token)
+      res.setHeader('REFRESH-TOKEN', refreshToken)
+
       return res.json({
         code: 200,
         accessToken: token,
@@ -208,69 +220,6 @@ class AuthController {
         user: exUser
       } as UserReturnParams)
     }
-
-
-    // if (decoded.name === 'TokenExpiredError') {
-    //   console.log('test')
-    // }
-    //
-    // // const exUser = users.find(user => user.id === decoded.id)
-    // const exUser = await User.findOne({
-    //   _id: decoded._id
-    // }).populate('roleId')
-    // /* Access Token is expired */
-    // if (nowValueOf < decoded.exp * 1000) {
-    //   if(!exUser) {
-    //     return res.status(403).json({
-    //       code: 403,
-    //       accessToken: '',
-    //       message: 'User is not existed or token is expired',
-    //       user: exUser
-    //     } as UserReturnParams)
-    //   }
-    //   const refreshTokenDecoded = jwt.verifyToken(exUser.refreshToken)
-    //
-    //   /* Refresh token is not expired */
-    //   if (nowValueOf <= refreshTokenDecoded.exp * 1000) {
-    //     const newAccessToken = jwt.signToken({
-    //       _id: exUser._id,
-    //       userId: exUser.userId
-    //     }, '2h')
-    //
-    //     /* Reset Refresh token */
-    //     const updatedUser = await User.findOneAndUpdate({
-    //       _id: exUser._id
-    //     }, {
-    //       refreshToken: jwt.signToken({
-    //         _id: exUser._id,
-    //         userId: exUser.userId
-    //       } as IJwtPayload, '24h')
-    //     }).populate('roleId')
-    //
-    //     return res.json({
-    //       code: 200,
-    //       accessToken: newAccessToken,
-    //       message: 'Success to get detail',
-    //       user: updatedUser
-    //     } as UserReturnParams)
-    //   } else {
-    //     exUser.refreshToken = ''
-    //
-    //     return res.json({
-    //       code: 200,
-    //       accessToken: '',
-    //       message: 'Success to Logout',
-    //       user: {}
-    //     } as UserReturnParams)
-    //   }
-    // }
-
-    return res.json({
-      code: 200,
-      accessToken: token,
-      message: 'Success to get detail',
-      // user: exUser
-    } as UserReturnParams)
   }
 }
 

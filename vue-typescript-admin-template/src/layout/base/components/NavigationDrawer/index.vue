@@ -1,75 +1,90 @@
 <template>
   <v-navigation-drawer
-    :mini-variant="navigationStatus && permanentStatus"
-    :expand-on-hover="navigationStatus && permanentStatus"
+    color="secondary"
     app
-    clipped
     :value="navigationStatus"
-    @update:mini-variant="updateMiniVariant"
   >
-    <!-- Top buttons -->
-    <div :class="{ 'text-right': !permanentStatus, 'text-center': permanentStatus }">
-      <!--      @TODO: There is bug, stop using temporary-->
-      <v-spacer />
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            text
-            icon
-            v-bind="attrs"
-            v-on="on"
-            @click="changePermanentStatus"
-          >
-            <v-icon>
-              compare_arrows
-            </v-icon>
-          </v-btn>
-        </template>
-        <span>To permanent mode</span>
-      </v-tooltip>
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            text
-            icon
-            v-bind="attrs"
-            v-on="on"
-            @click="changeAppBarStatus"
-          >
-            <v-icon>
-              <!-- vertical_align_top, vertical_align_bottom -->
-              {{ appBarStatus ? 'vertical_align_top' : 'vertical_align_bottom' }}
-            </v-icon>
-          </v-btn>
-        </template>
-        <span>{{ appBarStatus ? 'open app bar' : 'close app bar' }}</span>
-      </v-tooltip>
-    </div>
-
-    <!--  List of Menus  -->
-    <v-list
-      dense
-    >
-      <v-list-item class="px-2">
-        <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/women/85.jpg" />
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title class="title">
-            Sandra Adams
-          </v-list-item-title>
-          <v-list-item-subtitle>
-            sandra_a88@gmail.com
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
+    <!-- Top place -->
+    <v-list>
+      <v-subheader>
+        <div
+          class="font-weight-black"
+          @click="moveToHome"
+        >
+          Vue-Admin-Template
+        </div>
+        <v-spacer />
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              text
+              icon
+              v-bind="attrs"
+              v-on="on"
+              @click="changePermanentStatus"
+            >
+              <v-icon>
+                compare_arrows
+              </v-icon>
+            </v-btn>
+          </template>
+          <span>To permanent mode</span>
+        </v-tooltip>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              text
+              icon
+              v-bind="attrs"
+              v-on="on"
+              @click="changeAppBarStatus"
+            >
+              <v-icon>
+                <!-- vertical_align_top, vertical_align_bottom -->
+                {{ appBarStatus ? 'vertical_align_top' : 'vertical_align_bottom' }}
+              </v-icon>
+            </v-btn>
+          </template>
+          <span>{{ appBarStatus ? 'open app bar' : 'close app bar' }}</span>
+        </v-tooltip>
+      </v-subheader>
     </v-list>
+    <v-divider />
+    <!--  List of Menus  -->
+    <div
+      v-if="isLoggedIn"
+      class="text-center ma-2"
+    >
+      <v-avatar
+        class="my-2"
+        size="102"
+        color="primary"
+      >
+        <v-img
+          v-if="userInfo.avatar"
+          :src="userInfo.avatar"
+        />
+        <span
+          v-else
+          class="white--text text-h3"
+        >
+          {{ userInfo.nickname.substring(0,2) }}
+        </span>
+      </v-avatar>
+      <div
+        class="my-2 text-h6"
+      >
+        {{ userInfo.nickname }}
+      </div>
+    </div>
     <v-divider />
     <SearchMenu />
 
     <!-- Favorite menu list-->
+    <v-divider />
     <favorite-menu />
     <!-- Program Menu list -->
+    <v-divider />
     <v-list
       dense
       link
@@ -83,16 +98,18 @@
         :menu="menu"
       />
     </v-list>
+    <v-divider />
   </v-navigation-drawer>
 </template>
 s
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Prop, Mixins } from 'vue-property-decorator'
 import SearchMenu from './components/SearchMenu.vue'
 import MenuParent from './components/MenuParent.vue'
 import FavoriteMenu from './components/FavoriteMenu.vue'
 import ContextMenu from '@/components/ContextMenu/index.vue'
 import { CustomRouteConfig } from '@/types/customRouteConfig'
+import { UserStateHandler } from '@/mixins/userStateHandler'
 
 @Component({
   name: 'NavigationDrawer',
@@ -103,26 +120,11 @@ import { CustomRouteConfig } from '@/types/customRouteConfig'
     ContextMenu
   }
 })
-export default class NavigationDrawer extends Vue {
+export default class NavigationDrawer extends Mixins(UserStateHandler) {
   @Prop() private readonly navigationStatus!: boolean
   @Prop() private readonly permanentStatus!: boolean
   @Prop() private readonly appBarStatus !: boolean
-  // @TODO: Change any to specific type
   @Prop() private readonly menus !: Array<CustomRouteConfig>
-
-  // @TODO: SAMPLE, IT SHOULD BE REMOVED IN THE FUTURE
-  private admins = [
-    ['Management', 'people_outline'],
-    ['Settings', 'settings'],
-  ]
-
-  private cruds = [
-    ['Create', 'add'],
-    ['Read', 'insert_drive_file'],
-    ['Update', 'update'],
-    ['Delete', 'delete'],
-  ]
-
 
   private changePermanentStatus () {
     this.$store.dispatch('app/controlPermanentStatus')
@@ -132,8 +134,9 @@ export default class NavigationDrawer extends Vue {
     this.$store.dispatch('app/controlAppBarStatus')
   }
 
-  private updateMiniVariant () {
-    console.log('updateMiniVariant')
+  private async moveToHome () {
+    await this.$router.push({ name: 'MainDashboard' })
   }
+
 }
 </script>

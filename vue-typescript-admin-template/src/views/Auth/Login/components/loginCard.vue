@@ -1,12 +1,14 @@
 <!--
   Author: Youngjin Kwak
-  CreatedAt: 08-02-2020
-  UpdatedAt: 08-02-2020
+  CreatedAt: 09-19-2020
+  UpdatedAt: 09-27-2020
   Description: Sample Vue Page
 -->
 <template>
   <div>
+    <!-- Login form card -->
     <v-card
+      color="secondary"
       class="my-3"
     >
       <v-card-title>
@@ -29,11 +31,14 @@
           <v-text-field
             ref="passwordField"
             v-model="password"
+            :type="showPassword ? 'text' : 'password'"
+            :append-icon="showPassword ? 'visibility' : 'visibility_off'"
             label="PASSWORD"
             outlined
             prepend-inner-icon="mdi-lock"
             :rules="rules.password"
             required
+            @click:append-icon="showPassword = !showPassword"
             @keyup.enter="login"
           />
           <div class="font-weight-black text-right">
@@ -58,7 +63,10 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-    <v-card>
+    <!-- Bottom Register card -->
+    <v-card
+      color="secondary"
+    >
       <v-card-title
         class="justify-center"
       >
@@ -76,6 +84,13 @@
 <script lang="ts">
 import { Component, Ref, Vue } from 'vue-property-decorator'
 import { UserLoginState } from '@/store/modules/user'
+import Cookies from 'js-cookie'
+
+/*
+* Const variable
+* @description Use it to set 'Remember id'
+*/
+const REMEMBER_COOKIE_ID = 'REMEMBER-ID'
 
 /**
  * @author - Youngjin Kwak
@@ -92,13 +107,21 @@ export default class LoginCard extends Vue {
   @Ref('passwordField')
   private readonly passwordField!: HTMLInputElement
 
+  created () {
+    const rememberedId = Cookies.get(REMEMBER_COOKIE_ID)
+    if (rememberedId) {
+      this.userId = rememberedId
+      this.remember = true
+    }
+  }
+
   mounted () {
     this.userIdField.focus()
   }
 
   private userId = ''
   private password = ''
-  private showPassword = ''
+  private showPassword = false
   private remember = false
 
   private rules = {
@@ -122,6 +145,13 @@ export default class LoginCard extends Vue {
         password: this.password
       } as UserLoginState)
       if (success) {
+        /* Save the remember id */
+        if (this.remember)
+          Cookies.set(REMEMBER_COOKIE_ID, this.userId)
+        else
+          Cookies.remove(REMEMBER_COOKIE_ID)
+
+        /* Go to main page */
         await this.$router.push({ name: 'MainDashboard' })
       }
     }

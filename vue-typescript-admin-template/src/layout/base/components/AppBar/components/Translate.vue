@@ -10,7 +10,9 @@
         <v-icon>translate</v-icon>
       </v-btn>
     </template>
-    <v-list>
+    <v-list
+      color="secondary"
+    >
       <v-list-item
         v-for="lang in translateOptions"
         :key="lang.lang"

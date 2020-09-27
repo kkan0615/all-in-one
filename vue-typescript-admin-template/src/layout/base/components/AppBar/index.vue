@@ -1,10 +1,9 @@
 <template>
   <v-app-bar
     app
-    clipped-left
-    color="primary"
-    :dark="!isLight"
-    :light="isLight"
+    flat
+    dense
+    color="background"
     :value="appBarStatus"
   >
     <v-app-bar-nav-icon

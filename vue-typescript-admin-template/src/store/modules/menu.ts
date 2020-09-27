@@ -1,6 +1,5 @@
-import { MutationTree, ActionTree, GetterTree } from 'vuex'
+import { ActionTree, GetterTree, MutationTree } from 'vuex'
 import { CustomRouteConfig } from '@/types/customRouteConfig'
-import baseRoutes from '@/router/modules/base'
 import { searchPermittedRoutes } from '@/utils/permission'
 
 export interface MenuStore {
@@ -28,10 +27,7 @@ const state = new MenuStore()
 
 const mutations = {
   SET_DISPLAY_ROUTES (state, payload: Array<CustomRouteConfig>) {
-    console.log('payload', payload)
-    const permittedRoutes = searchPermittedRoutes(payload)
-    console.log(permittedRoutes)
-    state.displayRoutes = permittedRoutes
+    state.displayRoutes = searchPermittedRoutes(payload)
     state.isLoadedDisplayRoutes = true
   },
   SET_FAVORITE_ROUTES (state, payload: Array<CustomRouteConfig>) {
@@ -65,6 +61,9 @@ const actions = {
     const foundIndex = state.favoriteRoutes.indexOf(payload)
     if (foundIndex === -1)
       commit('addFavoriteRoutes', payload)
+  },
+  createAsyncRoutes ({ commit, state }, payload: CustomRouteConfig) {
+    console.log('{ commit, state }, payload: CustomRouteConfig')
   }
 } as ActionTree<MenuStore, never>
 

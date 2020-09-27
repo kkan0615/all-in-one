@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
-import { en } from 'vuetify/src/locale'
+import { en, ko } from 'vuetify/src/locale'
 
 Vue.use(Vuetify)
 
 export const vuetify = new Vuetify({
   theme: {
-    dark: false,
+    dark: true,
     options: {
       customProperties: true
     },
@@ -18,22 +18,25 @@ export const vuetify = new Vuetify({
         error: '#FF5252',
         info: '#2196F3',
         success: '#4CAF50',
-        warning: '#FFC107'
+        warning: '#FFC107',
+        anchor: '',
       },
       dark: {
-        primary: '#455D8C',
-        secondary: '#7394BF',
-        accent: '#222C40',
-        error: '#FF5252',
-        info: '#2196F3',
-        success: '#4CAF50',
-        warning: '#FFC107'
+        primary: '#696ffb',
+        secondary: '#1f2940',
+        accent: '#696ffb',
+        info: '#696ffb',
+        success: '#4cceac',
+        warning: '#ff6f59',
+        error: '#a94442',
+        anchor: '',
+        background: '#141b2d'
       }
     }
   },
   lang: {
-    locales: { en },
-    current: 'ko'
+    locales: { en, ko },
+    current: 'en'
   }
 })
 

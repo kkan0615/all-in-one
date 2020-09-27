@@ -1,14 +1,13 @@
 import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
-import { passportConfig } from '@/utils/passport'
 import { server as serverConfig, mongoDB as mongoDBConfig } from  './config'
 import moment from 'moment'
-import passport from 'passport'
 
 /* Collection of routes */
 import testRoutes from './routes/test'
 import authRoutes from '@/routes/auth'
+import menuRoutes from '@/routes/menu'
 
 const app = express()
 
@@ -22,18 +21,15 @@ app.use(cookieParser())
 /* Cors error handler */
 app.use(cors({
   origin: 'http://localhost:8080',
+  exposedHeaders: ['ACCESS-TOKEN', 'REFRESH-TOKEN'],
   credentials: true,
 }))
 
 
-/* passport setting */
-passportConfig(passport)
-app.use(passport.initialize())
-app.use(passport.session())
-
 /* Collection of routes */
 app.use('/test', testRoutes)
 app.use('/auth', authRoutes)
+app.use('/menu', menuRoutes)
 
 /* Check server is running */
 app.get('/', (req, res) => {

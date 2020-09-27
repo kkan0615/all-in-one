@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <alert-snackbar />
-    <router-view />
+    <router-view :style="themeStyle" />
   </v-app>
 </template>
 
@@ -16,6 +16,13 @@ import AlertSnackbar from '@/components/Alert/Snackbar/index.vue'
   }
 })
 export default class App extends Vue {
+  /**
+   * @description Use it to set the style in script tag
+   * @return string - completed string of style
+   */
+  private get themeStyle (): string {
+    return `background: ${this.$vuetify.theme.currentTheme.background}`
+  }
 }
 </script>
 

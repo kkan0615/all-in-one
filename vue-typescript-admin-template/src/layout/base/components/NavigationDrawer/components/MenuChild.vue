@@ -7,42 +7,23 @@
 <template>
   <v-list-group
     absolute
+    color=""
     :prepend-icon="menu.meta.icon"
     @click="clickItem"
   >
     <template v-slot:activator>
-      <context-menu>
-        <template #content>
-          <v-list-item-content>
-            <v-list-item-title>{{ menu.meta.title }}</v-list-item-title>
-            <v-list-item-subtitle>
-              {{ menu.meta.description }}
-            </v-list-item-subtitle>
-          </v-list-item-content>
-        </template>
-        <template #menu>
-          <v-card>
-            <v-card-text>
-              Favorite
-              <v-btn
-                icon
-                text
-                @click="toFavoriteMenu"
-              >
-                <v-icon>
-                  favorite
-                </v-icon>
-              </v-btn>
-            </v-card-text>
-          </v-card>
-        </template>
-      </context-menu>
+      <v-list-item-content>
+        <v-list-item-title>{{ menu.meta.title }}</v-list-item-title>
+        <v-list-item-subtitle>
+          {{ menu.meta.description }}
+        </v-list-item-subtitle>
+      </v-list-item-content>
     </template>
 
     <v-list
       dense
-      subheader
-      nav
+      class="pa-0"
+      color="background"
       @click="clickItem"
     >
       <menu-parent

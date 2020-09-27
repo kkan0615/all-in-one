@@ -57,11 +57,6 @@ import SubNavigationDrawer from './components/SubNavigationDrawer/index.vue'
   }
 })
 export default class BaseLayout extends Vue {
-
-  created () {
-    console.log(this.$router)
-  }
-
   private get displayRoutes () {
     return this.$store.state.menu.displayRoutes
   }

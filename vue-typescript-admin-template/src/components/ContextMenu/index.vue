@@ -9,6 +9,7 @@
 -->
 <template>
   <div
+    v-click-outside="show = !show"
     @contextmenu.prevent="onRightClick"
   >
     <slot name="content" />

@@ -8,7 +8,6 @@ import { UserReturnParams } from '@/types/ServerResponse/auth'
 import router from '@/router'
 
 export interface UserState {
-  id: number;
   _id: string;
   token: string;
   refreshToken: string;
@@ -32,7 +31,7 @@ export interface UserLoginState {
 
 export class UserState implements UserState {
   isLoaded: boolean
-  id: number
+  _id: string
   token: string
   refreshToken: string
   nickname: string
@@ -42,7 +41,7 @@ export class UserState implements UserState {
 
   constructor (user?: UserState) {
     this.isLoaded = false
-    this.id = user?.id || 0
+    this._id = user?._id || ''
     this.token = user?.token || Cookie.get('X-TOKEN') || ''
     this.refreshToken = user?.refreshToken || Cookie.get('REFRESH-TOKEN') || ''
     this.nickname = user?.nickname || ''
@@ -70,11 +69,9 @@ const mutations = {
   },
   SET_TOKEN (state, payload: string) {
     state.token = payload
-    Cookie.set('X-TOKEN', payload)
   },
   SET_REFRESH_TOKEN (state, payload: string) {
     state.refreshToken = payload
-    Cookie.set('REFRESH-TOKEN', payload)
   }
 } as MutationTree<UserState>
 
@@ -86,7 +83,7 @@ const getters = {
     return state.roleId
   },
   token (state) {
-    return state.token
+    return state.token || Cookie.get('X-TOKEN')
   },
   roleGrade (state) {
     return state.roleId.grade
@@ -129,7 +126,6 @@ const actions = {
   },
   async updateDetail ({ state, commit }) {
     const user = (await authAxios.post('/auth/getDetail')).data as UserReturnParams
-    console.log(user)
     commit('SET_USER', user.user)
     commit('SET_TOKEN', user.accessToken)
     commit('SET_REFRESH_TOKEN', user.refreshToken)

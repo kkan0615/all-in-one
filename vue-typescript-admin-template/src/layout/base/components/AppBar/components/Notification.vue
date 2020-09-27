@@ -20,6 +20,7 @@
     </template>
     <v-card
       class="notification-card"
+      color="secondary"
       width="400px"
       max-height="500px"
     >

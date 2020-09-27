@@ -44,7 +44,9 @@ class MongoDB {
 
       this._instance._connected = true
       this._instance._connectionPool = connectionPool
+      /* Info: It's success to connect with Database */
       logger.info('MongoDB has been connected at ' + fullServerPath)
+
       return this._instance
     } catch (error) {
       console.error(error)
