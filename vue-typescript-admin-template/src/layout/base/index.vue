@@ -15,7 +15,6 @@
     />
     <v-main fulid>
       <v-container
-        class="fill-height"
         app
         fluid
       >
@@ -23,12 +22,12 @@
           align="center"
           justify="center"
           no-gutters
-          class="mb-6"
+          class="pa-6"
         >
           <v-col
             cols="12"
             sm="12"
-            md="11"
+            md="12"
           >
             <!--            <transition name="fade-transform" mode="out-in" appear>-->
             <router-view />

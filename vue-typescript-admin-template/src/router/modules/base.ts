@@ -11,7 +11,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
       isForGroup: true,
       menuType: 'desktop',
       margin: 12,
-      role: '',
+      role: undefined,
       title: 'DashBoard'
     },
     children: [
@@ -24,7 +24,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
           isForGroup: false,
           menuType: 'desktop',
           margin: 12,
-          role: '',
+          role: undefined,
           title: 'Main DashBoard'
         }
       }
@@ -39,7 +39,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
       isForGroup: true,
       menuType: 'desktop',
       margin: 12,
-      role: 'ff',
+      role: undefined,
       title: 'Sample layouts'
     },
     children: [
@@ -52,7 +52,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
           isForGroup: false,
           menuType: 'desktop',
           margin: 12,
-          role: '',
+          role: undefined,
           title: 'Grid with form'
         }
       },
@@ -65,7 +65,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
           isForGroup: false,
           menuType: 'desktop',
           margin: 12,
-          role: '3',
+          role: Buffer.from('FFFFFFFFFFFFF', 'binary'),
           title: 'GridFormTEST'
         }
       },
@@ -80,7 +80,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
       margin: 12,
       isForGroup: true,
       menuType: 'desktop',
-      role: '',
+      role: undefined,
       title: 'Test'
     },
     children: [
@@ -93,7 +93,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
           margin: 12,
           isForGroup: false,
           menuType: 'desktop',
-          role: '',
+          role: undefined,
           title: 'Test2'
         }
       }

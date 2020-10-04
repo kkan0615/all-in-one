@@ -14,7 +14,7 @@ export interface IUser extends mongoose.Document{
 }
 
 const UserSchema = new mongoose.Schema({
-  refreshToken: { type: mongoose.Schema.Types.String, required: false, unique: true },
+  refreshToken: { type: mongoose.Schema.Types.String, required: false },
   nickname: { type: mongoose.Schema.Types.String, required: true, unique: true },
   userId: { type: mongoose.Schema.Types.String, required: true, unique: true },
   email: { type: mongoose.Schema.Types.String, required: true, unique: true },

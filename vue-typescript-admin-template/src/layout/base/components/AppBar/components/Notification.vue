@@ -1,6 +1,7 @@
 <template>
   <v-menu
     v-model="menu"
+    max-height="500px"
     offset-y
     :close-on-content-click="false"
   >
@@ -22,7 +23,7 @@
       class="notification-card"
       color="secondary"
       width="400px"
-      max-height="500px"
+      height="500px"
     >
       <v-card-title>
         Notifications
@@ -97,7 +98,5 @@ export default class Notification extends Vue {
 }
 </script>
 <style lang="scss">
-  .notification-card {
-    overflow: auto;
-  }
+
 </style>

@@ -20,7 +20,11 @@
       exact
       @click="clickItem"
     >
-      <v-list-item-avatar><v-icon>{{ menu.meta.icon }}</v-icon></v-list-item-avatar>
+      <v-list-item-avatar>
+        <v-icon>
+          {{ menu.meta.icon }}
+        </v-icon>
+      </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>{{ menu.meta.title }}</v-list-item-title>
         <v-list-item-subtitle>{{ menu.meta.description }}</v-list-item-subtitle>

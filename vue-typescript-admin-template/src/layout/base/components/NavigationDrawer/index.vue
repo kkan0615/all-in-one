@@ -101,7 +101,7 @@
     <v-divider />
   </v-navigation-drawer>
 </template>
-s
+
 <script lang="ts">
 import { Component, Prop, Mixins } from 'vue-property-decorator'
 import SearchMenu from './components/SearchMenu.vue'
@@ -121,10 +121,14 @@ import { UserStateHandler } from '@/mixins/userStateHandler'
   }
 })
 export default class NavigationDrawer extends Mixins(UserStateHandler) {
-  @Prop() private readonly navigationStatus!: boolean
-  @Prop() private readonly permanentStatus!: boolean
-  @Prop() private readonly appBarStatus !: boolean
-  @Prop() private readonly menus !: Array<CustomRouteConfig>
+  @Prop({ type: Boolean, required: true })
+  private readonly navigationStatus!: boolean
+  @Prop({ type: Boolean, required: true })
+  private readonly permanentStatus!: boolean
+  @Prop({ type: Boolean, required: true })
+  private readonly appBarStatus !: boolean
+  @Prop()
+  private readonly menus !: Array<CustomRouteConfig>
 
   private changePermanentStatus () {
     this.$store.dispatch('app/controlPermanentStatus')

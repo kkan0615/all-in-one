@@ -54,7 +54,8 @@ module.exports = {
     'no-mixed-spaces-and-tabs': 'error',
     'no-trailing-spaces': 'error',
     '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/ban-ts-ignore': 'off'
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/no-namespace': 'off'
   },
   overrides: [
     {

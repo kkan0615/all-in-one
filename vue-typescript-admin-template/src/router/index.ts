@@ -28,34 +28,6 @@ const routes: Array<CustomRouteConfig> = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
-  {
-    path: '/test',
-    name: 'Test',
-    component: BaseLayout,
-    meta: {
-      icon: '',
-      margin: 12,
-      isForGroup: true,
-      menuType: 'desktop',
-      role: '',
-      title: 'Test'
-    },
-    children: [
-      {
-        path: 'Test2',
-        name: 'Test2',
-        component: () => import('@/views/test/index.vue'),
-        meta: {
-          icon: '',
-          margin: 12,
-          isForGroup: false,
-          menuType: 'desktop',
-          role: '',
-          title: 'Test2'
-        }
-      }
-    ]
-  }
 ]
 
 const createRouter = () => new VueRouter({
@@ -71,8 +43,6 @@ const createRouter = () => new VueRouter({
   //TODO: 나중에는 기본으로 깔아두고 Before router로 permitted찾아서 넣을예정
   routes: routes.concat(baseRoutes).concat(authRoutes),
 })
-
-console.log(routes.concat(baseRoutes).concat(authRoutes))
 
 const router = createRouter()
 

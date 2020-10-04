@@ -11,10 +11,8 @@ import http from './plugins/http'
 import '@/router/beforeRoutes'
 
 /* Devexpress css setting */
-// import 'roboto-fontface/css/roboto/roboto-fontface.css'
-// import '@fortawesome/fontawesome-free/css/all.css'
 import 'devextreme/dist/css/dx.common.css'
-import 'devextreme/dist/css/dx.material.teal.light.compact.css'
+// import 'devextreme/dist/css/dx.material.teal.light.compact.css'
 
 /**
  * Solve For Error: Material icon is not working
@@ -22,6 +20,11 @@ import 'devextreme/dist/css/dx.material.teal.light.compact.css'
  */
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'devextreme/dist/css/dx.material.blue.dark.css'
+
+/**
+ * Custom scss
+ */
+import '@/styles/global.scss'
 
 Vue.config.productionTip = false
 

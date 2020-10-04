@@ -11,7 +11,7 @@ const authRoutes: Array<CustomRouteConfig> = [
       isForGroup: true,
       menuType: 'desktop',
       margin: 12,
-      role: '',
+      role: undefined,
       title: 'Auth page'
     },
     children: [
@@ -24,7 +24,7 @@ const authRoutes: Array<CustomRouteConfig> = [
           isForGroup: false,
           menuType: 'desktop',
           margin: 12,
-          role: '',
+          role: undefined,
           title: 'Login'
         }
       }

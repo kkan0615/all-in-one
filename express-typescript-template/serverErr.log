@@ -5648,3 +5648,19 @@ Critical: [30m{"ok":0,"code":18,"codeName":"AuthenticationFailed","name":"Mongo
 	[35mfrom src\mongoose.ts at 2020-09-12 12:19:56 PM[39m
 Critical: [30m{"ok":0,"code":18,"codeName":"AuthenticationFailed","name":"MongoError"}[39m
 	[35mfrom src\mongoose.ts at 2020-09-12 03:14:59 PM[39m
+Critical: [30m{"message":"connect ECONNREFUSED 127.0.0.1:27017","reason":{"type":"Single","setName":null,"maxSetVe ...[39m
+	[35mfrom src\mongoose.ts at 2020-10-01 11:31:24 AM[39m
+Critical: [30m{"message":"connect ECONNREFUSED 127.0.0.1:27017","reason":{"type":"Single","setName":null,"maxSetVe ...[39m
+	[35mfrom src\mongoose.ts at 2020-10-01 11:32:03 AM[39m
+Critical: [30m{"message":"connect ECONNREFUSED 127.0.0.1:27017","reason":{"type":"Single","setName":null,"maxSetVe ...[39m
+	[35mfrom src\mongoose.ts at 2020-10-01 11:32:35 AM[39m
+Critical: [30m{"message":"connect ECONNREFUSED 127.0.0.1:27017","reason":{"type":"Single","setName":null,"maxSetVe ...[39m
+	[35mfrom src\mongoose.ts at 2020-10-01 11:33:09 AM[39m
+Critical: [30m{"message":"connect ECONNREFUSED 127.0.0.1:27017","reason":{"type":"Single","setName":null,"maxSetVe ...[39m
+	[35mfrom src\mongoose.ts at 2020-10-01 11:36:03 AM[39m
+Critical: [30m{"message":"connect ECONNREFUSED 127.0.0.1:27017","reason":{"type":"Single","setName":null,"maxSetVe ...[39m
+	[35mfrom src\mongoose.ts at 2020-10-01 11:36:35 AM[39m
+Critical: [30m{"message":"connect ECONNREFUSED 127.0.0.1:27017","reason":{"type":"Single","setName":null,"maxSetVe ...[39m
+	[35mfrom src\mongoose.ts at 2020-10-01 11:37:26 AM[39m
+Critical: [30m{"message":"connect ECONNREFUSED 127.0.0.1:27017","reason":{"type":"Single","setName":null,"maxSetVe ...[39m
+	[35mfrom src\mongoose.ts at 2020-10-01 11:38:06 AM[39m

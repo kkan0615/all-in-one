@@ -12,8 +12,10 @@ router.beforeEach(async (to: Route, from: Route, next) => {
   }
 
   const isLoaded = store.getters['user/isLoaded']
-  if (!isLoaded && Cookies.get('X-TOKEN'))
+  if (!isLoaded && Cookies.get('X-TOKEN')) {
     await store.dispatch('user/updateDetail')
+    await store.dispatch('menu/createAsyncRoutes')
+  }
 
   /* If Routes is not required login */
   if (!to.meta.role || to.meta.role === '') {
