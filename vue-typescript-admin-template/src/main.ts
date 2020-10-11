@@ -8,6 +8,8 @@ import vuetify from './plugins/vuetify'
 import VueCookies from 'vue-cookies'
 /* Default setting of axios */
 import http from './plugins/http'
+import { AxiosStatic } from 'axios'
+import notiSocketPlugin from '@/plugins/notiSocket'
 import '@/router/beforeRoutes'
 
 /* Devexpress css setting */
@@ -25,11 +27,20 @@ import 'devextreme/dist/css/dx.material.blue.dark.css'
  * Custom scss
  */
 import '@/styles/global.scss'
+/* Notification Socket */
 
 Vue.config.productionTip = false
 
 Vue.use(http)
 Vue.use(VueCookies)
+Vue.use(notiSocketPlugin)
+
+declare module 'vue/types/vue' {
+  interface Vue {
+    $http: AxiosStatic;
+    $notiSocket: SocketIOClient.Socket;
+  }
+}
 
 new Vue({
   router,

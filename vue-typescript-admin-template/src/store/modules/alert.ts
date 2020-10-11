@@ -4,12 +4,13 @@
 import { MutationTree, ActionTree, GetterTree } from 'vuex'
 
 export interface NotificationState {
-  id: string | number;
+  _id: string | number;
   title: string;
   content: string;
-  color: string;
   type: 'info' | 'success' | 'warning' | 'error';
-  userId?: string;
+  userId: string;
+  authorId?: string;
+  read: boolean;
   date: string;
 }
 
@@ -40,8 +41,8 @@ export class AlertStore {
 const state = new AlertStore()
 
 const mutations = {
-  SET_NOTIFICATION (state, payload: AlertStore) {
-    state = new AlertStore(payload)
+  SET_NOTIFICATION (state, payload: Array<NotificationState>) {
+    state.notifications = payload
   },
   addNotification (state, payload: NotificationState) {
     if (state.notifications.length > 20) {

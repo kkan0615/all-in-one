@@ -12,7 +12,7 @@ export const database = {
 
 export const socket: Socket = {
   // TODO: Default socket such as table change config will be here
-  enabled: false,
+  enabled: true,
   server: 'http://localhost',
   port: 8002
 }
@@ -97,15 +97,18 @@ export const jwtTokenKey = 'REQUIEM-JWT-TOKEN-KEY'
 
 export const cookieKey = 'REQUIEM-COOKIE-TOKEN-KEY'
 
+export const DATEDEFAULTFORMAT = 'llll'
+
 export const config = {
   server,
-  // socket,
+  socket,
   // alertSocket,
   // chatSocket,
   logger,
   database,
   jwtTokenKey,
-  cookieKey
+  cookieKey,
+  DATEDEFAULTFORMAT
 }
 
 export default config

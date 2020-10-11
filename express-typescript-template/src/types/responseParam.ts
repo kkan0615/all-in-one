@@ -2,7 +2,7 @@ export interface ResponseParam<T> {
   code: number;
   message: string;
   recordSet?: T;
-  recordSets?: Array<T>;
+  recordSets?: Array<any>;
 }
 
 export interface ErrorResponseParam {

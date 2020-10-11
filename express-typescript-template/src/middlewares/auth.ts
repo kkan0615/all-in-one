@@ -19,6 +19,7 @@ class AuthMiddleware {
     }
 
     const decoded = jwt.verifyToken(accessToken)
+    req.user = decoded
     console.log(decoded)
     next()
   }

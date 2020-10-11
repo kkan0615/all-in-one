@@ -15,7 +15,7 @@ class MongoDB {
 
   public static get instance (): Promise<MongoDB> {
     return (async () => {
-      return (this._instance && this._instance._connectionPool && this._instance._connectionPool)
+      return (this._instance && this._instance._connectionPool)
         ? this._instance : (this._instance = await MongoDB.connect())
     })()
   }

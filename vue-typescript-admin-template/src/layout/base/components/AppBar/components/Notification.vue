@@ -73,15 +73,44 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { NotificationState } from '@/store/modules/alert'
+import io from 'socket.io-client'
+import moment from 'moment'
+import { ResponseParam } from '@/types/ServerResponse/auth'
 
 @Component({
   name: 'Notification',
 })
 export default class Notification extends Vue {
   //  @TODO: Create store subscribe And Socket
-
+  // private notiIo: SocketIOClient.Socket = io('http://localhost:8002/notification').connect()
   private counts = 0
   private menu = false
+
+  async created () {
+    // this.$notiSocket.connect()
+    const res = (await this.$http.get<ResponseParam<NotificationState>>('/notification/unreadAll')).data
+    console.log(res)
+    this.$store.commit('alert/SET_NOTIFICATION', res.recordSet)
+    console.log(this.$store.state.alert)
+  }
+
+  mounted () {
+    // this.$notiSocket.on('addNotification', (newNoti: NotificationState) => {
+    //   this.$store.commit('alert/addNotification', newNoti)
+    // })
+    //
+    // this.$notiSocket.emit('sendNotification', {
+    //   _id: new Date().toISOString(),
+    //   type: 'info',
+    //   date: moment().format('llll'),
+    //   title: 'Test Through',
+    //   content: 'Test Content... hello !'
+    // } as NotificationState)
+  }
+
+  beforeDestroy () {
+    // this.$notiSocket.disconnect()
+  }
 
   private onClickClose () {
     this.menu = false
@@ -92,6 +121,8 @@ export default class Notification extends Vue {
   }
 
   private readNotification (notification: NotificationState) {
+    console.log(notification)
+    // this.$notiSocket.emit('readNotification', notification)
     this.$store.commit('alert/removeNotification', notification)
   }
 

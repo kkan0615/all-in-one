@@ -5664,3 +5664,5 @@ Critical: [30m{"message":"connect ECONNREFUSED 127.0.0.1:27017","reason":{"type
 	[35mfrom src\mongoose.ts at 2020-10-01 11:37:26 AM[39m
 Critical: [30m{"message":"connect ECONNREFUSED 127.0.0.1:27017","reason":{"type":"Single","setName":null,"maxSetVe ...[39m
 	[35mfrom src\mongoose.ts at 2020-10-01 11:38:06 AM[39m
+Critical: [30mCannot read property 'headers' of undefined[39m
+	[35mfrom src\socketIo.ts at 2020-10-11 12:37:22 AM[39m
