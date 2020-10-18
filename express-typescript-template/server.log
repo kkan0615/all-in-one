@@ -20522,3 +20522,409 @@ Info: [30mSocketIo is connecting ...[39m
 	[35mfrom src\socketIo.ts at 2020-10-11 01:16:04 AM[39m
 Info: [30mThe socket server has been connected at :http://localhost:8002[39m
 	[35mfrom src\socketIo.ts at 2020-10-11 01:16:04 AM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-16 08:47:16 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-16 08:47:16 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-16 08:47:16 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:47:16 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:47:16 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:47:16 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:47:16 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-16 08:48:07 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-16 08:48:07 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-16 08:48:07 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:48:07 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:48:07 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:48:07 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:48:07 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-16 08:48:35 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-16 08:48:35 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-16 08:48:35 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:48:35 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:48:35 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:48:35 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:48:35 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-16 08:57:40 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-16 08:57:40 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-16 08:57:40 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:57:40 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:57:40 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:57:40 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-16 08:57:40 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:09:17 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:09:17 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:09:17 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:09:17 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:09:17 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:09:17 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:09:17 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:26:42 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:26:42 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:26:42 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:26:42 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:26:42 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:26:42 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:26:42 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:34:45 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:34:45 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:34:45 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:34:45 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:34:45 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:34:45 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:34:45 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:34:56 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:34:56 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:34:56 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:34:56 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:34:56 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:34:56 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:34:56 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:35:41 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:35:41 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:35:41 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:35:41 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:35:41 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:35:41 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:35:41 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:35:48 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:35:48 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:35:48 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:35:48 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:35:48 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:35:48 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:35:48 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:36:30 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:36:30 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:36:30 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:36:30 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:36:30 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:36:30 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:36:30 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:41:09 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:41:09 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:41:09 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:41:09 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:41:09 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:41:09 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:41:09 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:44:06 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:44:06 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:44:07 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:44:07 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:44:07 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:44:07 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:44:07 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:45:04 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:45:04 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:45:04 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:45:04 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:45:04 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:45:04 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:45:04 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:45:34 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:45:34 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:45:34 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:45:34 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:45:34 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:45:34 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:45:34 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:46:04 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:46:04 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:46:04 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:46:04 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:46:04 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:46:04 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:46:04 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:48:32 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:48:32 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:48:32 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:48:32 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:48:32 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:48:32 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:48:32 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:49:04 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:49:04 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:49:04 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:49:04 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:49:04 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:49:04 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:49:04 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:49:19 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:49:19 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:49:19 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:49:19 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:49:19 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:49:19 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:49:19 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:49:40 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:49:40 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:49:40 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:49:40 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:49:40 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:49:40 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:49:40 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 01:50:35 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:50:35 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 01:50:35 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:50:35 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:50:35 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:50:35 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 01:50:35 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 10:10:18 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 10:10:18 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 10:10:18 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:10:18 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:10:18 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:10:18 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:10:18 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 10:15:46 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 10:15:46 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 10:15:46 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:15:46 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:15:46 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:15:46 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:15:46 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 10:20:47 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 10:20:47 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 10:20:47 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:20:47 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:20:47 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:20:47 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:20:47 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 10:22:49 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 10:22:49 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 10:22:49 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:22:49 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:22:49 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:22:49 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:22:49 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 10:27:23 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 10:27:23 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 10:27:23 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:27:23 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:27:23 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:27:23 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 10:27:23 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 11:19:45 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 11:19:45 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 11:19:45 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 11:19:45 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 11:19:45 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 11:19:45 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 11:19:45 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 11:19:49 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 11:19:49 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 11:19:49 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 11:19:49 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 11:19:49 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 11:19:49 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 11:19:49 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-17 11:20:10 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 11:20:10 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-17 11:20:10 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 11:20:10 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 11:20:10 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 11:20:10 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-17 11:20:10 PM[39m

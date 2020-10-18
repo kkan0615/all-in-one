@@ -20,18 +20,11 @@ axiosSetting.defaults.withCredentials = true
 
 /* Handle request to server */
 axiosSetting.interceptors.request.use((config: AxiosRequestConfig) => {
-  // config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  if (store.state.user.token) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
+  if (Cookies.get('X-TOKEN') && Cookies.get('REFRESH-TOKEN')) {
     config.headers['ACCESS-TOKEN'] = Cookies.get('X-TOKEN')
     config.headers['REFRESH-TOKEN'] = Cookies.get('REFRESH-TOKEN')
-    // console.log(config.headers)
   }
 
-  // config.headers['ACCESS-TOKEN'] = store.state.user.token || Cookies.get('X-TOKEN')
   return config
 }, (error) => {
   console.error(error.message)
@@ -40,16 +33,11 @@ axiosSetting.interceptors.request.use((config: AxiosRequestConfig) => {
 
 /* Handle response from server */
 axiosSetting.interceptors.response.use((config: AxiosResponse) => {
-  if (!config.headers['access-token'])
-    Cookies.remove('X-TOKEN')
-  else
+  if (config.headers['access-token'])
     Cookies.set('X-TOKEN', config.headers['access-token'])
 
-  if (!config.headers['refresh-token'])
-    Cookies.remove('REFRESH-TOKEN')
-  else
+  if (config.headers['refresh-token'])
     Cookies.set('REFRESH-TOKEN', config.headers['refresh-token'])
-
 
   return config
 }, async (error) => {

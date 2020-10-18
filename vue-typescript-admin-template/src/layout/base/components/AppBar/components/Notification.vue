@@ -1,3 +1,7 @@
+<!--
+ @TODO
+  1. If disconnected, refresh
+-->
 <template>
   <v-menu
     v-model="menu"
@@ -39,7 +43,17 @@
         </v-btn>
       </v-card-title>
       <v-card-text
-        v-if="notifications.length > 0"
+        v-if="!$notiSocket.connected"
+      >
+        <p>
+          Notification server is disconnected.
+        </p>
+        <p>
+          Please Press F5 to refresh
+        </p>
+      </v-card-text>
+      <v-card-text
+        v-else-if="notifications.length > 0"
       >
         <v-alert
           v-for="(notification) in notifications"
@@ -76,6 +90,7 @@ import { NotificationState } from '@/store/modules/alert'
 import io from 'socket.io-client'
 import moment from 'moment'
 import { ResponseParam } from '@/types/ServerResponse/auth'
+import store from '@/store'
 
 @Component({
   name: 'Notification',
@@ -87,30 +102,30 @@ export default class Notification extends Vue {
   private menu = false
 
   async created () {
-    // this.$notiSocket.connect()
+    // if (this.$notiSocket.connected) {
+    //   this.$notiSocket.disconnect()
+    // }
+
+    this.$notiSocket.connect()
+
+    this.$notiSocket.emit('joinRooms', {
+      userId: store.getters['user/userId'],
+      roleId: store.getters['user/role']._id
+    })
+
     const res = (await this.$http.get<ResponseParam<NotificationState>>('/notification/unreadAll')).data
-    console.log(res)
     this.$store.commit('alert/SET_NOTIFICATION', res.recordSet)
-    console.log(this.$store.state.alert)
   }
 
   mounted () {
-    // this.$notiSocket.on('addNotification', (newNoti: NotificationState) => {
-    //   this.$store.commit('alert/addNotification', newNoti)
-    // })
-    //
-    // this.$notiSocket.emit('sendNotification', {
-    //   _id: new Date().toISOString(),
-    //   type: 'info',
-    //   date: moment().format('llll'),
-    //   title: 'Test Through',
-    //   content: 'Test Content... hello !'
-    // } as NotificationState)
+    this.$notiSocket.on('addNotification', (newNoti: NotificationState) => {
+      this.$store.commit('alert/addNotification', newNoti)
+    })
   }
 
-  beforeDestroy () {
-    // this.$notiSocket.disconnect()
-  }
+  // beforeDestroy () {
+  //   this.$notiSocket.disconnect()
+  // }
 
   private onClickClose () {
     this.menu = false

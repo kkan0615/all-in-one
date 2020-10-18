@@ -87,6 +87,9 @@ const getters = {
   },
   roleGrade (state) {
     return state.roleId.grade
+  },
+  userId (state) {
+    return state._id
   }
 } as GetterTree<UserState, never>
 

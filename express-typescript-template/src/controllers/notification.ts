@@ -10,6 +10,7 @@ export class Notification {
    * @param next - Next
    */
   public static async getAllUnreadNotifications (req: Request, res: Response, next: NextFunction) {
+    console.log(req.headers)
     const response = await NotificationSchema.find({
       read: false
     })

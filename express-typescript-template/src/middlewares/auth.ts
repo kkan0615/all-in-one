@@ -38,4 +38,4 @@ class AuthMiddleware {
   }
 }
 
-export default new AuthMiddleware()
+export default AuthMiddleware

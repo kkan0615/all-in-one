@@ -2,14 +2,17 @@ import io from 'socket.io'
 import http from 'http'
 import { socket as socketConfig } from '@/config'
 import Logger from '@/utils/logger'
-import User from '@/schemas/user'
+import User, { IUser } from '@/schemas/user'
 
 import Notification, { INotification } from '@/schemas/notification'
+// import user from '@/schemas/user'
 
 const logger = new Logger(__filename)
 
-declare namespace socket {
-  namespace notification {
+declare namespace NSocket {
+  interface IRooms {
+    userId: string,
+    roleId: string
   }
 }
 
@@ -38,8 +41,8 @@ export default class SocketIo {
     logger.info('Server socket established.')
 
     // 커넥션
-    // const notiSocket = this._instance._connectionPool.of('/notification')
-    // await SocketIo.createNotiConnection(notiSocket)
+    const notiSocket = this._instance._connectionPool.of('/notification')
+    await SocketIo.createNotiConnection(notiSocket)
     // await SocketIo.setPayload(this._instance._connectionPool)
 
     try {
@@ -104,26 +107,62 @@ export default class SocketIo {
    */
   private static async createNotiConnection (notiSocket: io.Namespace) {
     notiSocket.on('connection', async (clientSocket: io.Socket) => {
-      console.log(clientSocket.id)
-      const userId = clientSocket.handshake.query.userId
-      let user
-      if (userId) user = await User.findById(userId)
-      if (user) {
-        /* Personal(user) notification */
-        // clientSocket.join(userId)
-        /* Role notification */
-        // clientSocket.join(user.roleId)
-      }
+      clientSocket.on('joinRooms', async (rooms: NSocket.IRooms) => {
+        const userId = rooms.userId
+        if (userId) clientSocket.join(userId)
+
+        const roleId = rooms.roleId
+        if (roleId) clientSocket.join(roleId)
+
+        console.log('join rooms', rooms)
+        console.log('rooms', clientSocket.rooms)
+      })
+
       clientSocket.on('sendNotification', async (data: INotification) => {
-        console.log(data)
-        console.log(clientSocket.request.headers)
         const newNoti = await Notification.create({
           ...data
         })
-        clientSocket.emit('addNotification', newNoti)
-        // if (개인 alarm 이라면) {
-        //   notiSocket.to(userId).emit('addNotification', newNoti)
-        // }
+        notiSocket.emit('addNotification', newNoti)
+      })
+
+      clientSocket.on('sendUserNotification', async (data: INotification, userId: string) => {
+        const user = await User.findById(userId)
+        if (user) {
+          const newNoti = await Notification.create({
+            ...data,
+            userId: user._id
+          })
+
+          // @TODO: 자기가 자기에게 보내지못하도록 하기
+
+          notiSocket.to(user._id).emit('addNotification', newNoti)
+        }
+      })
+
+      clientSocket.on('sendRoleNotification', async (data: INotification, roleId: string) => {
+        const users = await User.find({
+          roleId: roleId
+        })
+
+        users.map(async (user: IUser) => {
+          await Notification.create({
+            ...data,
+            userId: user._id
+          })
+        })
+
+        // console.log('test1', data)
+        // console.log('rooms', clientSocket.rooms)
+        // console.log(roleId)
+        const exRoom = clientSocket.adapter.rooms[roleId]
+        console.log(exRoom)
+        if (exRoom) {
+          notiSocket.to(roleId).emit('addNotification', data)
+        } else {
+          clientSocket.join(roleId)
+          notiSocket.to(roleId).emit('addNotification', data)
+          clientSocket.leave(roleId)
+        }
       })
 
       clientSocket.on('readNotification', async (data: INotification) => {
@@ -132,11 +171,11 @@ export default class SocketIo {
         }, {
           read: true
         })
-        clientSocket.emit('addNotification', updatedNoti)
+        notiSocket.emit('addNotification', updatedNoti)
       })
 
       clientSocket.on('forceDisconnect', () => {
-        clientSocket.emit('disconnect')
+        notiSocket.emit('disconnect')
       })
 
       clientSocket.on('disconnect', () => {

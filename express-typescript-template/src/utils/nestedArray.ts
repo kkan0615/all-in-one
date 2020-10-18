@@ -24,3 +24,25 @@ export function createNestedArray<T extends INestedArray<T>> (items: Array<T>, p
 
   return nested
 }
+
+export function createNestedMenu (array: Array<any>, parentIdExpr: number | string, keyIdExpr: number | string) {
+  const topArray = array.filter(e => {
+    return !e[parentIdExpr]
+  })
+
+  topArray.map(e => {
+    e.children = createChildNestedMenu(array, parentIdExpr, keyIdExpr, e)
+  })
+}
+
+export function createChildNestedMenu (array: Array<any>, parentIdExpr: number | string, keyIdExpr: number | string, parent: any) {
+  const children = array.filter(e => {
+    return e[parentIdExpr] === parent[keyIdExpr]
+  })
+
+  children.map(child => {
+    child.children = createChildNestedMenu(array, parentIdExpr, keyIdExpr, child)
+  })
+
+  return children
+}

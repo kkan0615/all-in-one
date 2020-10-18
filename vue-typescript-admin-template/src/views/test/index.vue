@@ -1,21 +1,36 @@
 <template>
   <div>
     <p>{{ testValue }}</p>
+    <v-text-field
+      v-model="title"
+      label="title"
+      outlined
+    />
+    <v-text-field
+      v-model="content"
+      label="content"
+      outlined
+    />
+    <v-text-field
+      v-model="toWho"
+      label="ID"
+      outlined
+    />
     <v-btn
-      @click="onClickTestButton"
+      @click="onClickToRole"
     >
       Test Socket
     </v-btn>
-    <v-btn
-      @click="pingPongConnect"
-    >
-      ping
-    </v-btn>
-    <v-btn
-      @click="anotherWord"
-    >
-      anotherWord
-    </v-btn>
+    <!--    <v-btn-->
+    <!--      @click="pingPongConnect"-->
+    <!--    >-->
+    <!--      ping-->
+    <!--    </v-btn>-->
+    <!--    <v-btn-->
+    <!--      @click="anotherWord"-->
+    <!--    >-->
+    <!--      anotherWord-->
+    <!--    </v-btn>-->
   </div>
 </template>
 
@@ -31,63 +46,47 @@ import moment from 'moment'
   }
 })
 export default class Test extends Vue {
-  private testIo: SocketIOClient.Socket | null = null
   private testValue: any = 'hi'
-
-  created () {
-    // this.testIo = io('http://localhost:8002')
-  }
+  private content = ''
+  private title = ''
+  private toWho = this.$store.getters['user/role']._id
 
   mounted () {
-    if(!this.testIo) return
-    console.log(this.testIo)
-    this.testIo.on('testPong', (data: any) => {
+    this.$notiSocket.on('addNotification', (data: NotificationState) => {
       console.log(data)
-      this.testValue = data
     })
 
-    this.testIo.on('anotherWordRes', (data: any) => {
-      console.log(data)
-      this.testValue = data
-    })
   }
 
-  beforeDestroy () {
-    if (this.testIo) {
-      this.testIo.disconnect()
-    }
+  // private onClickTestButton () {
+  //   this.testIo = io('http://localhost:8002', {
+  //     transports: ['websocket'],
+  //     upgrade: false,
+  //     forceNew: true,
+  //   })
+  //   this.testIo.on('testPong', (data: any) => {
+  //     console.log(data)
+  //     this.testValue = data
+  //   })
+  //
+  //   this.testIo.on('anotherWordRes', (data: any) => {
+  //     console.log(data)
+  //     this.testValue = data
+  //   })
+  //   console.log(this.testIo)
+  // }
+
+  private onClickToRole () {
+    if (!this.title || !this.content) return
+    this.$notiSocket.emit('sendRoleNotification', {
+      type: 'info',
+      date: moment().format('llll'),
+      authorId: this.$store.state.user._id,
+      title: this.title,
+      content: this.content
+    } as NotificationState, this.toWho)
   }
 
-  private onClickTestButton () {
-    this.testIo = io('http://localhost:8002', {
-      transports: ['websocket'],
-      upgrade: false,
-      forceNew: true,
-    })
-    this.testIo.on('testPong', (data: any) => {
-      console.log(data)
-      this.testValue = data
-    })
-
-    this.testIo.on('anotherWordRes', (data: any) => {
-      console.log(data)
-      this.testValue = data
-    })
-    console.log(this.testIo)
-  }
-
-  private pingPongConnect () {
-    if (!this.testIo) return
-    console.log('ping pong')
-    console.log(this.testIo.id)
-    this.testIo.emit('testPing', { test: 'from client' })
-  }
-
-  private anotherWord () {
-    if (!this.testIo) return
-    console.log('anotherWord!')
-    this.testIo.emit('anotherWord', { anotherWord: 'anotherWord' })
-  }
 
   // private pingPongConnect () {
   // this.$notiSocket.emit('sendNotification', {
