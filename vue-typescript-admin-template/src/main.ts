@@ -29,16 +29,22 @@ import 'devextreme/dist/css/dx.material.blue.dark.css'
 import '@/styles/global.scss'
 /* Notification Socket */
 
+/* Confirm dialog */
+import { ConfirmDialogPlugin, ConfirmDialog } from '@/plugins/confirm'
+
+
 Vue.config.productionTip = false
 
 Vue.use(http)
 Vue.use(VueCookies)
 Vue.use(notiSocketPlugin)
+Vue.use(ConfirmDialogPlugin)
 
 declare module 'vue/types/vue' {
   interface Vue {
     $http: AxiosStatic;
     $notiSocket: SocketIOClient.Socket;
+    $confirm: ConfirmDialog;
   }
 }
 
