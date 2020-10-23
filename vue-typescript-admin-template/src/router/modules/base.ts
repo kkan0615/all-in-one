@@ -98,6 +98,34 @@ const baseRoutes: Array<CustomRouteConfig> = [
         }
       }
     ]
+  },
+  {
+    path: '/confirm',
+    name: 'confirm',
+    component: BaseLayout,
+    meta: {
+      icon: 'check',
+      margin: 12,
+      isForGroup: true,
+      menuType: 'desktop',
+      role: undefined,
+      title: 'confirmDialog'
+    },
+    children: [
+      {
+        path: 'confirmDialog',
+        name: 'confirmDialog',
+        component: () => import('@/views/ConfirmDialog/index.vue'),
+        meta: {
+          icon: 'check',
+          margin: 12,
+          isForGroup: false,
+          menuType: 'desktop',
+          role: undefined,
+          title: 'confirmDialog'
+        }
+      }
+    ]
   }
 ]
 
