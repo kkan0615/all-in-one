@@ -1,5 +1,5 @@
 import vue from 'vue'
-import ConfirmDialogComponent from '@/components/confirm-dialog/index.vue'
+import ConfirmDialogComponent from '@/components/ConfirmDialog/index.vue'
 import vuetify from '@/plugins/vuetify'
 
 export interface ConfirmDialogOption {
@@ -22,22 +22,8 @@ export interface ConfirmDialogOption {
 }
 
 export class ConfirmDialog  {
-  // Constructor에서만 바인딩해주기에 readonly를 사용 할 것을 권장받음
-  private readonly _vue: typeof vue | null = null
-
-  constructor (vueCons: typeof vue) {
-    if (!this._vue) this._vue = vueCons
-  }
-
   public async confirm (message: string, option = {} as ConfirmDialogOption) {
-    return new Promise(((resolve, reject) => {
-      if (!this._vue) {
-        reject({
-          message: 'No vue has been passed'
-        })
-        return
-      }
-
+    return new Promise<boolean>(((resolve, reject) => {
       const data =  {
         content: message,
         ...option,
@@ -45,7 +31,7 @@ export class ConfirmDialog  {
       }
 
 
-      const ComponentClass = this._vue.extend(ConfirmDialogComponent)
+      const ComponentClass = vue.extend(ConfirmDialogComponent)
       const ConfirmDialogInstance = new ComponentClass({
         vuetify,
         data,
@@ -61,7 +47,7 @@ export class ConfirmDialog  {
 }
 
 export function ConfirmDialogPlugin (Vue: typeof vue): void {
-  Vue.prototype.$confirm = new ConfirmDialog(Vue)
+  Vue.prototype.$confirm = new ConfirmDialog()
 }
 
 export default ConfirmDialogPlugin
