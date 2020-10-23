@@ -20928,3 +20928,17 @@ Info: [30mSocketIo is connecting ...[39m
 	[35mfrom src\socketIo.ts at 2020-10-17 11:20:10 PM[39m
 Info: [30mThe socket server has been connected at :http://localhost:8002[39m
 	[35mfrom src\socketIo.ts at 2020-10-17 11:20:10 PM[39m
+Info: [30m[36m✨[30m Sever is running at 8001 [36m✨[30m[39m
+	[35mfrom ystem at 2020-10-23 10:26:26 PM[39m
+Info: [30mMongoDB is connecting to mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-23 10:26:26 PM[39m
+Info: [30mMongoDB has been connected at mongodb://superAdmin2:admin0615@localhost:27017/admin[39m
+	[35mfrom src\mongoose.ts at 2020-10-23 10:26:26 PM[39m
+Info: [30mTrying to establish socket.io server ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-23 10:26:26 PM[39m
+Info: [30mServer socket established.[39m
+	[35mfrom src\socketIo.ts at 2020-10-23 10:26:26 PM[39m
+Info: [30mSocketIo is connecting ...[39m
+	[35mfrom src\socketIo.ts at 2020-10-23 10:26:26 PM[39m
+Info: [30mThe socket server has been connected at :http://localhost:8002[39m
+	[35mfrom src\socketIo.ts at 2020-10-23 10:26:26 PM[39m
