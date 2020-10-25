@@ -95,6 +95,11 @@ export const mongoDB = {
 // Auth(login) token
 export const jwtTokenKey = 'REQUIEM-JWT-TOKEN-KEY'
 
+export const tokenRule = {
+  accessTokenTime: '2h',
+  refreshTokenTime: '24h'
+}
+
 export const cookieKey = 'REQUIEM-COOKIE-TOKEN-KEY'
 
 export const DATEDEFAULTFORMAT = 'llll'

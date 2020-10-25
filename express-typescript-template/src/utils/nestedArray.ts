@@ -1,47 +1,37 @@
-export interface INestedArray<T> {
-  [key: string]: any;
-  children: Array<T>
+import { IMenu } from '@/schemas/menu'
+
+export interface INestedMenu extends IMenu{
+  children?: Array<IMenu>
 }
 
-export function createNestedArray<T extends INestedArray<T>> (items: Array<T>, parent: number | string, keyExpr: string, parentKeyExpr: string): Array<T> {
-  const nested: Array<T> = []
-
-  if (keyExpr || !parentKeyExpr) {
-    throw new Error('keyExpr or parentKeyExpr are not exited')
-  }
-
-  Object.values(items).forEach(item => {
-    if (item[parentKeyExpr] === parent) {
-      const children = createNestedArray(items, parent, keyExpr, parentKeyExpr)
-
-      if (children.length) {
-        item.children = children
-      }
-
-      nested.push(item)
-    }
+export async function createNestedMenu (array: Array<INestedMenu>): Promise<Array<INestedMenu>> {
+  console.log(array)
+  const topArray = array.filter(menu => {
+    return !menu.parentMenuId || !menu.parentMenuId._id
   })
 
-  return nested
+  topArray.map(async parent => {
+    parent.children = await createChildNestedMenu(array, parent)
+  })
+
+  console.log('Top', topArray)
+  return topArray
 }
 
-export function createNestedMenu (array: Array<any>, parentIdExpr: number | string, keyIdExpr: number | string) {
-  const topArray = array.filter(e => {
-    return !e[parentIdExpr]
-  })
-
-  topArray.map(e => {
-    e.children = createChildNestedMenu(array, parentIdExpr, keyIdExpr, e)
-  })
-}
-
-export function createChildNestedMenu (array: Array<any>, parentIdExpr: number | string, keyIdExpr: number | string, parent: any) {
+export async function createChildNestedMenu (array: Array<INestedMenu>, parent: INestedMenu): Promise<Array<INestedMenu>> {
+  console.log('parent', parent)
   const children = array.filter(e => {
-    return e[parentIdExpr] === parent[keyIdExpr]
+    if (!e.parentMenuId) return false
+    console.log('current of parent id:', e.parentMenuId._id)
+    console.log('current Parent:', parent._id.toString())
+    console.log(e.parentMenuId._id.toString() === parent._id.toString())
+    return e.parentMenuId._id.toString() === parent._id.toString()
   })
 
-  children.map(child => {
-    child.children = createChildNestedMenu(array, parentIdExpr, keyIdExpr, child)
+  console.log('children', children)
+
+  children.map(async child => {
+    child.children = await createChildNestedMenu(array, child)
   })
 
   return children

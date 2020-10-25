@@ -30,7 +30,6 @@ export class ConfirmDialog  {
         status: false
       }
 
-
       const ComponentClass = vue.extend(ConfirmDialogComponent)
       const ConfirmDialogInstance = new ComponentClass({
         vuetify,
@@ -43,7 +42,6 @@ export class ConfirmDialog  {
       ConfirmDialogInstance.$mount()
     }))
   }
-
 }
 
 export function ConfirmDialogPlugin (Vue: typeof vue): void {

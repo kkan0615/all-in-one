@@ -114,8 +114,8 @@ export default class SocketIo {
         const roleId = rooms.roleId
         if (roleId) clientSocket.join(roleId)
 
-        console.log('join rooms', rooms)
-        console.log('rooms', clientSocket.rooms)
+        // console.log('join rooms', rooms)
+        // console.log('rooms', clientSocket.rooms)
       })
 
       clientSocket.on('sendNotification', async (data: INotification) => {
@@ -151,11 +151,8 @@ export default class SocketIo {
           })
         })
 
-        // console.log('test1', data)
-        // console.log('rooms', clientSocket.rooms)
-        // console.log(roleId)
         const exRoom = clientSocket.adapter.rooms[roleId]
-        console.log(exRoom)
+        // console.log(exRoom)
         if (exRoom) {
           notiSocket.to(roleId).emit('addNotification', data)
         } else {

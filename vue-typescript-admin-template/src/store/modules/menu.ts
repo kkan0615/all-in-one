@@ -88,6 +88,7 @@ const actions = {
   },
   async createAsyncRoutes ({ commit, state }, payload: Array<any>) {
     const res = await axiosSetting.get('/menu')
+    console.log(res)
     console.log(payload)
   },
   resetMenuState ({ commit }) {

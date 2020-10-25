@@ -4,6 +4,8 @@ import User from '@/schemas/user'
 import moment from 'moment'
 import { error } from 'winston'
 import { StatusCode } from '@/types/statusCode'
+import { setTokenToHeader } from '@/utils/auth'
+import { tokenRule } from '@/config'
 
 const jwt = new _jwt()
 
@@ -50,10 +52,11 @@ class AuthController {
         } as UserReturnParams)
       }
 
+      /* Sign refresh token */
       const refreshToken = jwt.signToken({
         _id: exUser._id,
         userId: exUser.userId
-      }, '12h')
+      }, tokenRule.refreshTokenTime)
 
       const updatedUser = await User.findOneAndUpdate({
         _id: exUser._id
@@ -73,7 +76,7 @@ class AuthController {
       const accessToken = jwt.signToken({
         _id: updatedUser._id,
         userId: updatedUser.userId
-      }, '1h')
+      }, tokenRule.accessTokenTime)
 
       /* Set the headers */
       res.setHeader('ACCESS-TOKEN', accessToken)
@@ -147,11 +150,8 @@ class AuthController {
     }
 
     const decoded = jwt.verifyToken(token)
-    const decodedRefresh2 = jwt.verifyToken(refreshToken)
-    console.log('decoded', decoded)
-    console.log('moment(decodedRefresh.exp)', moment(decodedRefresh2.exp * 1000).fromNow())
-    console.log('substract', moment(decodedRefresh2.exp * 1000).subtract(1, 'hour'))
 
+    /* If there is no data from decoded token */
     if (!decoded) {
       return res.status(StatusCode.TokenError).json({
         code: StatusCode.TokenError,
@@ -185,19 +185,19 @@ class AuthController {
         } as UserReturnParams)
       }
 
-      console.log(decodedRefresh.exp)
-      console.log('moment(decodedRefresh.exp)', moment(decodedRefresh.exp))
-
+      /* Sign new access token */
       const newAccessToken = jwt.signToken({
         _id: exUser._id,
         userId: exUser.userId
-      } as IJwtPayload, '2h')
+      } as IJwtPayload, tokenRule.accessTokenTime)
 
-      res.setHeader('ACCESS-TOKEN', newAccessToken)
-      res.setHeader('REFRESH-TOKEN', refreshToken)
+      // res.setHeader('ACCESS-TOKEN', newAccessToken)
+      // res.setHeader('REFRESH-TOKEN', refreshToken)
+
+      setTokenToHeader(res, newAccessToken, refreshToken)
 
       return res.json({
-        code: 200,
+        code: StatusCode.Success,
         accessToken: newAccessToken,
         refreshToken: refreshToken,
         message: 'Success to get detail',
@@ -213,7 +213,7 @@ class AuthController {
       res.setHeader('REFRESH-TOKEN', refreshToken)
 
       return res.json({
-        code: 200,
+        code: StatusCode.Success,
         accessToken: token,
         refreshToken: refreshToken,
         message: 'Success to get detail',
