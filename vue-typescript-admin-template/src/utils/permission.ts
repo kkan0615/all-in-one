@@ -2,6 +2,14 @@ import store from '@/store'
 import { CustomRouteConfig } from '@/types/customRouteConfig'
 import { hexTodDecimal } from '@/utils/bitwise'
 
+/*
+@commnet example...
+* const grade = 1 << 700
+const decimal = parseInt('FFFFFFFFFFFFF', 16)
+const result = decimal & grade
+console.log(result)
+* */
+
 /**
  * Check the user role is permitted in this page
  * @param routeRole - Route role

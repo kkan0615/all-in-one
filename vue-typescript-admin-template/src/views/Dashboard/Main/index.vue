@@ -4,6 +4,7 @@
 
     <p>Cookies: {{ cookiesInfo }}</p>
     <p>Users: {{ users }}</p>
+    <p>{{ 'FF' & 'FF' }}</p>
   </div>
 </template>
 
