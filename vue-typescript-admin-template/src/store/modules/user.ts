@@ -133,7 +133,7 @@ const actions = {
     commit('SET_TOKEN', user.accessToken)
     commit('SET_REFRESH_TOKEN', user.refreshToken)
     state.isLoaded = true
-    await this.dispatch('menu/updateDisplayRoutes', baseRoutes)
+    // await this.dispatch('menu/updateDisplayRoutes', baseRoutes)
   }
 } as ActionTree<UserState, never>
 

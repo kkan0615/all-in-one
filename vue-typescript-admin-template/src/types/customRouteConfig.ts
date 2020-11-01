@@ -8,7 +8,7 @@ export interface RouteMetaInfo {
   isForGroup: boolean; // For the group like folder
   icon?: string;
   margin?: number;
-  role?: Buffer; // It will be bit
+  role?: string; // It will be bit
   description?: string;
 }
 

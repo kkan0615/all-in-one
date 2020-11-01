@@ -1,7 +1,7 @@
 import { IMenu } from '@/schemas/menu'
 
 export interface INestedMenu extends IMenu{
-  children?: Array<IMenu>
+  children: Array<IMenu>
 }
 
 export async function createNestedMenu (array: Array<INestedMenu>): Promise<Array<INestedMenu>> {

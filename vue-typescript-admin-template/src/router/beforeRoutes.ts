@@ -6,19 +6,19 @@ import Cookies from 'js-cookie'
 import { checkPermission } from '@/utils/permission'
 
 router.beforeEach(async (to: Route, from: Route, next) => {
-  const isLoadedDisplayRoutes = store.getters['menu/isLoadedDisplayRoutes']
-  if (!isLoadedDisplayRoutes) {
-    await store.dispatch('menu/updateDisplayRoutes', baseRoutes)
-  }
-
   const isLoaded = store.getters['user/isLoaded']
   if (!isLoaded && Cookies.get('X-TOKEN')) {
     await store.dispatch('user/updateDetail')
     await store.dispatch('menu/createAsyncRoutes')
   }
 
+  const isLoadedDisplayRoutes = store.getters['menu/isLoadedDisplayRoutes']
+  if (!isLoadedDisplayRoutes) {
+    await store.dispatch('menu/updateDisplayRoutes', baseRoutes)
+  }
+
   /* If Routes is not required login */
-  if (!to.meta.role || to.meta.role === '') {
+  if (!to.meta.role) {
     next()
     return
   } else {

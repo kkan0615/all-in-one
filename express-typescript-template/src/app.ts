@@ -9,6 +9,7 @@ import testRoutes from './routes/test'
 import authRoutes from '@/routes/auth'
 import menuRoutes from '@/routes/menu'
 import notificationRoutes from '@/routes/notification'
+import userRoutes from '@/routes/user'
 
 const app = express()
 
@@ -32,6 +33,7 @@ app.use('/test', testRoutes)
 app.use('/auth', authRoutes)
 app.use('/menu', menuRoutes)
 app.use('/notification', notificationRoutes)
+app.use('/user', userRoutes)
 
 /* Check server is running */
 app.get('/', (req, res) => {

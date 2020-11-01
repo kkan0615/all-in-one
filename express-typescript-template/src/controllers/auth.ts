@@ -81,7 +81,7 @@ class AuthController {
       /* Set the headers */
       res.setHeader('ACCESS-TOKEN', accessToken)
       res.setHeader('REFRESH-TOKEN', refreshToken)
-      console.log('accessToken ', accessToken, ' refreshToken ', refreshToken)
+      // console.log('accessToken ', accessToken, ' refreshToken ', refreshToken)
       return res.json({
         code: 200,
         accessToken: accessToken,

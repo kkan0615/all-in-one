@@ -30,7 +30,6 @@ class jwt {
     try {
       return _jwt.verify(token, jwtTokenKey)
     } catch (error) {
-      console.log('error', token)
       if (error.name === 'TokenExpiredError') {
         return error
       }

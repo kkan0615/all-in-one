@@ -49,9 +49,6 @@ MenuSchema.pre('save', function (next: HookNextFunction) {
   //   const alloc = Buffer.from('FFFFFFFFFFFFF', 'binary')
   //   this.set('role', alloc)
   // }
-
-  console.log(this)
-
   next()
 })
 

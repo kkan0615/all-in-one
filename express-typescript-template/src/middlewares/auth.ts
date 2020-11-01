@@ -72,8 +72,9 @@ class AuthMiddleware {
       setTokenToHeader(res, newAccessToken, refreshToken)
     }
 
-    req.body.user = decoded
-    console.log(decoded)
+    const user = await User.findById(decoded._id)
+    console.log(76, user)
+    req.body.user = user
     next()
   }
 

@@ -5,11 +5,11 @@
   Description: Sample Vue Page
 -->
 <template>
-  <v-card
-    color="secondary"
+  <div
+    class="mb-4"
   >
     <v-list
-      color="secondary"
+      color="background"
       dense
     >
       <v-list-item>
@@ -19,6 +19,11 @@
           >
             {{ title }}
           </v-list-item-title>
+          <v-list-item-subtitle
+            class="my-2"
+          >
+            {{ subtitle }}
+          </v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
           <div
@@ -75,7 +80,8 @@
         </v-card>
       </v-list-item>
     </v-list>
-  </v-card>
+    <v-divider />
+  </div>
 </template>
 
 <script lang="ts">
@@ -92,6 +98,8 @@ import { SnackbarState } from '@/store/modules/alert'
 export default class TopFilter extends Vue {
   @Prop({ required: true, type: String })
   private readonly title !: string
+  @Prop({ required: false, type: String, default: '' })
+  private readonly subtitle!: string
   @Prop({ required: false, default: true, type: Boolean })
   private readonly visibleBookmark !: boolean
 

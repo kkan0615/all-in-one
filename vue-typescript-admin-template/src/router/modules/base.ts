@@ -65,7 +65,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
           isForGroup: false,
           menuType: 'desktop',
           margin: 12,
-          role: Buffer.from('FFFFFFFFFFFFF', 'binary'),
+          role: 'FFFFFFFFFFFFF',
           title: 'GridFormTEST'
         }
       },
@@ -99,9 +99,10 @@ const baseRoutes: Array<CustomRouteConfig> = [
       }
     ]
   },
+  /* Alert and Confirm */
   {
-    path: '/confirm',
-    name: 'confirm',
+    path: '/alert',
+    name: 'alert',
     component: BaseLayout,
     meta: {
       icon: 'check',
@@ -109,7 +110,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
       isForGroup: true,
       menuType: 'desktop',
       role: undefined,
-      title: 'confirmDialog'
+      title: 'Alert and Confirm'
     },
     children: [
       {
@@ -122,7 +123,36 @@ const baseRoutes: Array<CustomRouteConfig> = [
           isForGroup: false,
           menuType: 'desktop',
           role: undefined,
-          title: 'confirmDialog'
+          title: 'Confirm Dialog'
+        }
+      }
+    ]
+  },
+  /* Notification */
+  {
+    path: '/notification',
+    name: 'notification',
+    component: BaseLayout,
+    meta: {
+      icon: 'check',
+      margin: 12,
+      isForGroup: true,
+      menuType: 'desktop',
+      role: undefined,
+      title: 'Notification Examples'
+    },
+    children: [
+      {
+        path: 'socketNotification',
+        name: 'socketNotification',
+        component: () => import('@/views/Notification/index.vue'),
+        meta: {
+          icon: 'check',
+          margin: 12,
+          isForGroup: false,
+          menuType: 'desktop',
+          role: undefined,
+          title: 'Socket Notification Example'
         }
       }
     ]

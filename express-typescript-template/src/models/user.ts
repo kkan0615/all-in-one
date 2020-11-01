@@ -1,4 +1,4 @@
-import { Role, roles } from '@/models/role'
+import { Role } from '@/models/role'
 
 export interface User {
   id: number
@@ -10,14 +10,3 @@ export interface User {
   lastIpAddress?: string
   lastTime?: string
 }
-
-export const users: Array<User> = [
-  {
-    id: 1,
-    userId: 'admin',
-    refreshToken: '',
-    email: 'admin@gmail.com',
-    password: 'adminpass01@',
-    rolesId: roles[0]
-  }
-]

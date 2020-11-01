@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import Menu from '@/schemas/menu'
-import { createNestedMenu } from '@/utils/nestedArray'
+import { createNestedMenu, INestedMenu } from '@/utils/nestedArray'
 
 // namespace MenuController {
 //   export interface IVueRouter {
@@ -27,8 +27,8 @@ class MenuController {
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      const treeViewMenus = await createNestedMenu(menus)
-      console.log(treeViewMenus)
+      const treeViewMenus = await createNestedMenu(menus as Array<INestedMenu>)
+      // console.log(treeViewMenus)
       res.json({
         menus,
         treeViewMenus

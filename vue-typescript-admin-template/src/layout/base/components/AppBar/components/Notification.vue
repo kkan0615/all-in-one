@@ -96,16 +96,9 @@ import store from '@/store'
   name: 'Notification',
 })
 export default class Notification extends Vue {
-  //  @TODO: Create store subscribe And Socket
-  // private notiIo: SocketIOClient.Socket = io('http://localhost:8002/notification').connect()
-  private counts = 0
   private menu = false
 
   async created () {
-    // if (this.$notiSocket.connected) {
-    //   this.$notiSocket.disconnect()
-    // }
-
     this.$notiSocket.connect()
 
     this.$notiSocket.emit('joinRooms', {
@@ -113,7 +106,7 @@ export default class Notification extends Vue {
       roleId: store.getters['user/role']._id
     })
 
-    const res = (await this.$http.get<ResponseParam<NotificationState>>('/notification/unreadAll')).data
+    const res = (await this.$http.get<ResponseParam<NotificationState>>('/notification/check/unreadAll')).data
     this.$store.commit('alert/SET_NOTIFICATION', res.recordSet)
   }
 
@@ -123,9 +116,6 @@ export default class Notification extends Vue {
     })
   }
 
-  // beforeDestroy () {
-  //   this.$notiSocket.disconnect()
-  // }
 
   private onClickClose () {
     this.menu = false

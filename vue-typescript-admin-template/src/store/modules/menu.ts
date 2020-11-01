@@ -29,6 +29,7 @@ const state = new MenuStore()
 const mutations = {
   SET_DISPLAY_ROUTES (state, payload: Array<CustomRouteConfig>) {
     if (payload) {
+      console.log(payload)
       state.displayRoutes = searchPermittedRoutes(payload)
       state.isLoadedDisplayRoutes = true
     } else {
@@ -86,10 +87,9 @@ const actions = {
 
     return foundIndex
   },
-  async createAsyncRoutes ({ commit, state }, payload: Array<any>) {
+  async createAsyncRoutes ({ commit, state }) {
     const res = await axiosSetting.get('/menu')
     console.log(res)
-    console.log(payload)
   },
   resetMenuState ({ commit }) {
     commit('SET_DISPLAY_ROUTES', [])

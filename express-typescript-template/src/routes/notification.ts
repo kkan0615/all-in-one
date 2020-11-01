@@ -1,9 +1,10 @@
-import { NextFunction, Request, Response, Router } from 'express'
+import { Router } from 'express'
 import Notification from '@/controllers/notification'
-import TestMiddleware from '@/middlewares/test'
+import AuthMiddleware from '@/middlewares/auth'
 
 const router = Router()
+router.use('/check/*', AuthMiddleware.isLoggedIn)
 
-router.get('/unreadAll', Notification.getAllUnreadNotifications)
+router.get('/check/unreadAll', Notification.getAllUnreadNotifications)
 
 export default router
