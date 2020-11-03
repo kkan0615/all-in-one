@@ -10,7 +10,7 @@
       @click="changeNavigationStatus"
     />
     <v-spacer />
-    <notification />
+    <!--    <notification />-->
     <translate-menu />
     <auth-app-bar />
     <v-btn

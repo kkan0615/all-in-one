@@ -4,7 +4,7 @@ import authAxios from '@/axios/auth'
 
 // @TODO: (DELETE) 나중에 삭제하기
 import baseRoutes from '@/router/modules/base'
-import { UserReturnParams } from '@/types/ServerResponse/auth'
+import { UserReturnParams } from '@/types/serverParams'
 import router from '@/router'
 
 export interface UserState {

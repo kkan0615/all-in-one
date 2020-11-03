@@ -56,6 +56,7 @@ import Grid from './components/Grid.vue'
 import Form from './components/Form.vue'
 import { testDataSource } from '@/views/Sample/GridForm/data'
 import { DxSelected } from '@/types/Devextreme'
+import { LOADING_VISIBLE_EVENT_BUS_KEY } from '@/types/eventbusKeys'
 
 @Component({
   name: 'Test',
@@ -78,6 +79,10 @@ export default class Test extends Vue {
   private dataSource = testDataSource
   private selectedRowKeys: Array<number> = []
   private selectedRow = Vue.observable<any>({})
+
+  // created () {
+  //   this.$eventbus.$emit(this.$events.loading.visible, false)
+  // }
 
   private onSelectionchange (selected: DxSelected<any, number>) {
     if (!selected || !selected.selectedRowsData || !selected.selectedRowKeys) return

@@ -141,21 +141,21 @@ const baseRoutes: Array<CustomRouteConfig> = [
       role: undefined,
       title: 'Notification Examples'
     },
-    children: [
-      {
-        path: 'socketNotification',
-        name: 'socketNotification',
-        component: () => import('@/views/Notification/index.vue'),
-        meta: {
-          icon: 'check',
-          margin: 12,
-          isForGroup: false,
-          menuType: 'desktop',
-          role: undefined,
-          title: 'Socket Notification Example'
-        }
-      }
-    ]
+    // children: [
+    //   {
+    //     path: 'socketNotification',
+    //     name: 'socketNotification',
+    //     component: () => import('@/views/Notification/index.vue'),
+    //     meta: {
+    //       icon: 'check',
+    //       margin: 12,
+    //       isForGroup: false,
+    //       menuType: 'desktop',
+    //       role: undefined,
+    //       title: 'Socket Notification Example'
+    //     }
+    //   }
+    // ]
   }
 ]
 

@@ -3,6 +3,7 @@
 -->
 <template>
   <v-app>
+    <full-screen-loading />
     <AppBar
       :navigation-status="navigationStatus"
       :app-bar-status="appBarStatus"
@@ -46,10 +47,12 @@ import { Component, Vue } from 'vue-property-decorator'
 import AppBar from './components/AppBar/index.vue'
 import NavigationDrawer from './components/NavigationDrawer/index.vue'
 import SubNavigationDrawer from './components/SubNavigationDrawer/index.vue'
+import FullScreenLoading from '@/components/loading/FullScreenLoading/index.vue'
 
 @Component({
   name: 'BaseLayout',
   components: {
+    FullScreenLoading,
     AppBar,
     NavigationDrawer,
     SubNavigationDrawer

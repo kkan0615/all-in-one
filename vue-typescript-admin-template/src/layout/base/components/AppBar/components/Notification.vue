@@ -89,7 +89,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import { NotificationState } from '@/store/modules/alert'
 import io from 'socket.io-client'
 import moment from 'moment'
-import { ResponseParam } from '@/types/ServerResponse/auth'
+import { ResponseParam } from '@/types/serverParams'
 import store from '@/store'
 
 @Component({

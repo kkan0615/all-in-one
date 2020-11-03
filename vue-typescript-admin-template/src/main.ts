@@ -31,6 +31,9 @@ import '@/styles/global.scss'
 
 /* Confirm dialog */
 import { ConfirmDialogPlugin, ConfirmDialog } from '@/plugins/confirm'
+import EventbusPlugin from '@/plugins/eventbus'
+import { EventbusKeys } from '@/types/eventbusKeys'
+import EventbusKeysPlugin from '@/plugins/eventbuskeys'
 
 
 Vue.config.productionTip = false
@@ -39,10 +42,14 @@ Vue.use(http)
 Vue.use(VueCookies)
 Vue.use(notiSocketPlugin)
 Vue.use(ConfirmDialogPlugin)
+Vue.use(EventbusPlugin)
+Vue.use(EventbusKeysPlugin)
 
 declare module 'vue/types/vue' {
   interface Vue {
+    $eventbus: Vue;
     $http: AxiosStatic;
+    $events: EventbusKeys;
     $notiSocket: SocketIOClient.Socket;
     $confirm: ConfirmDialog;
   }
