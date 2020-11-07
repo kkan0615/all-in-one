@@ -5,23 +5,33 @@
   Description: Full screen(w: 100%, h: 100%)
 -->
 <template>
-  <div
-    v-if="loading"
-    class="loading-panel"
+  <v-overlay
+    :value="loading"
+    :z-index="100"
+    opacity="0.97"
   >
-    <div class="loading">
+    <div
+      class="loading justify-center"
+    >
       <div class="dot" />
       <div class="dot" />
       <div class="dot" />
       <div class="dot" />
       <div class="dot" />
     </div>
-  </div>
+    <div
+      class="mt-4 text-center text-h6"
+    >
+      Tip: {{ tip }}
+    </div>
+  </v-overlay>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { LOADING_VISIBLE_EVENT_BUS_KEY } from '@/types/eventbusKeys'
+import tips from './data/tips'
+import { generatorIntegerRandom } from '@/utils/random'
 
 /**
  * @author - Youngjin Kwak
@@ -32,6 +42,8 @@ import { LOADING_VISIBLE_EVENT_BUS_KEY } from '@/types/eventbusKeys'
 })
 export default class FullScreenLoading extends Vue {
   private loading = false
+  private tip = 'Random tip will be here'
+  private tips = tips
 
   created () {
     this.$eventbus.$on(
@@ -48,64 +60,59 @@ export default class FullScreenLoading extends Vue {
   }
 
   private changeLoadingVisible (bool: boolean) {
-    console.log('loading', bool)
     this.loading = bool
+
+    /* Generate tip randomly */
+    const ran = generatorIntegerRandom(this.tips.length)
+    this.tip = this.tips[ran]
   }
 }
 </script>
 
+
 <style lang="scss" scoped>
-.loading-panel {
-  z-index: 100;
+.loading {
+  $colors: #7ef9ff, #89cff0, #4682b4, #0f52ba, #000080;
   display: flex;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  background: #222;
 
-  .loading {
-    $colors: #7ef9ff, #89cff0, #4682b4, #0f52ba, #000080;
-    display: flex;
+  .dot {
+    position: relative;
+    width: 2em;
+    height: 2em;
+    margin: 0.8em;
+    border-radius: 50%;
 
-    .dot {
-      position: relative;
-      width: 2em;
-      height: 2em;
-      margin: 0.8em;
-      border-radius: 50%;
+    &::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      border-radius: inherit;
+      animation: wave 2s ease-out infinite;
+    }
 
-      &::before {
-        position: absolute;
-        content: "";
-        width: 100%;
-        height: 100%;
-        background: inherit;
-        border-radius: inherit;
-        animation: wave 2s ease-out infinite;
-      }
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        background: nth($colors, $i);
 
-      @for $i from 1 through 5 {
-        &:nth-child(#{$i}) {
-          background: nth($colors, $i);
-
-          &::before {
-            animation-delay: $i * 0.2s;
-          }
+        &::before {
+          animation-delay: $i * 0.2s;
         }
       }
     }
   }
+}
 
-  @keyframes wave {
-    50%,
-    75% {
-      transform: scale(2.5);
-    }
+@keyframes wave {
+  50%,
+  75% {
+    transform: scale(2.5);
+  }
 
-    80%,
-    100% {
-      opacity: 0;
-    }
+  80%,
+  100% {
+    opacity: 0;
   }
 }
 </style>
