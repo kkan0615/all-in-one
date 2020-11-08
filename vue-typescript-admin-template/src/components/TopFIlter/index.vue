@@ -1,92 +1,78 @@
 <!--
   Author: Youngjin Kwak
   CreatedAt: 09-30-2020
-  UpdatedAt: 10-03-2020
-  Description: Sample Vue Page
+  UpdatedAt: 11-08-2020
+  Description: Top header part
 -->
 <template>
-  <div
-    class="mb-4"
+  <v-card
+    class="mb-4 pa-0"
+    color="background"
+    flat
   >
-    <v-list
-      color="background"
-      dense
-    >
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title
-            class="text-h6"
-          >
-            {{ title }}
-          </v-list-item-title>
-          <v-list-item-subtitle
-            class="my-2"
-          >
-            {{ subtitle }}
-          </v-list-item-subtitle>
-        </v-list-item-content>
-        <v-list-item-action>
-          <div
-            class="d-flex flex-row"
-          >
-            <!-- Action Slot -->
-            <slot
-              name="action"
-              class="mx-2"
-            />
-            <!--bookmark-->
-            <v-btn
-              v-if="visibleBookmark"
-              class="mx-2"
-              color="primary"
-              elevation="0"
-              @click="onBookmark"
-            >
-              <v-icon
-                left
-              >
-                bookmark
-              </v-icon>
-              bookmark
-            </v-btn>
-            <!-- Filter Button -->
-            <v-btn
-              class="mx-2"
-              color="primary"
-              elevation="0"
-              @click="changeVisibleFilter"
-            >
-              <v-icon
-                left
-              >
-                sort
-              </v-icon>
-              Filter
-            </v-btn>
-          </div>
-        </v-list-item-action>
-      </v-list-item>
-      <v-divider
-        v-if="visibleFilter"
-      />
-      <v-list-item
-        v-if="visibleFilter"
+    <v-card-title>
+      {{ title }}
+      <v-btn
+        v-if="visibleBookmark"
+        class="mx-2"
+        :color="isInFavorite ? 'primary' : ''"
+        icon
+        elevation="0"
+        @click="onBookmark"
       >
-        <v-card
-          color="secondary"
-          elevation="0"
+        <v-icon>
+          bookmark
+        </v-icon>
+      </v-btn>
+      <v-spacer />
+      <v-breadcrumbs
+        :items="breadcrumbs"
+        divider="-"
+      />
+    </v-card-title>
+    <v-card-subtitle>
+      {{ subtitle }}
+    </v-card-subtitle>
+    <v-card-actions
+      class="justify-end"
+    >
+      <!-- Slot -->
+      <slot name="actions" />
+      <!-- Filter Button -->
+      <v-btn
+        class="mx-2"
+        color="primary"
+        elevation="0"
+        @click="changeVisibleFilter"
+      >
+        <v-icon
+          left
         >
-          <slot name="content" />
-        </v-card>
-      </v-list-item>
-    </v-list>
-    <v-divider />
-  </div>
+          sort
+        </v-icon>
+        Filter
+      </v-btn>
+    </v-card-actions>
+    <!-- For the filter panel -->
+    <v-divider
+      v-if="visibleFilter"
+    />
+    <v-card-text
+      v-if="visibleFilter"
+    >
+      Test Filter
+    </v-card-text>
+    <v-divider
+      v-if="visibleFilter"
+    />
+  </v-card>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { SnackbarState } from '@/store/modules/alert'
+import { Breadcrumb } from '@/components/TopFIlter/type'
+import { CustomRouteConfig } from '@/types/customRouteConfig'
 
 /**
  * @author - Youngjin Kwak
@@ -107,6 +93,44 @@ export default class TopFilter extends Vue {
 
   /*********************************************************************
    * @description Change visible for filter
+   * @return Array of breadcrumb
+   ********************************************************************/
+  private get breadcrumbs (): Array<Breadcrumb> {
+    const result = []
+    const splitPath = this.$route.fullPath.split('/')
+    if (splitPath[0] === '') {
+      result.push({
+        text: 'Home',
+        disabled: false,
+        href: '/',
+      })
+    }
+
+    for (let i = 1; i < splitPath.length - 1; i++) {
+      result.push({
+        text: splitPath[i],
+        disabled: false,
+        href: splitPath[i],
+      })
+    }
+
+    result.push({
+      text: splitPath[splitPath.length - 1],
+      disabled: true,
+      href: splitPath[splitPath.length - 1],
+    })
+
+    return result
+  }
+
+  private get isInFavorite (): boolean {
+    return !!this.$store.state.menu.favoriteRoutes.find((menu: CustomRouteConfig) =>
+      menu.name === this.$route.name
+    )
+  }
+
+  /*********************************************************************
+   * @description Change visible of filter
    ********************************************************************/
   private changeVisibleFilter () {
     this.visibleFilter = !this.visibleFilter

@@ -3,6 +3,9 @@
     color="secondary"
     app
     :value="navigationStatus"
+    width="15em"
+    min-width="15rem"
+    max-width="15rem"
   >
     <!-- Top place -->
     <v-list>
@@ -49,7 +52,6 @@
         </v-tooltip>
       </v-subheader>
     </v-list>
-    <v-divider />
     <!--  List of Menus  -->
     <div
       v-if="isLoggedIn"
@@ -77,9 +79,7 @@
         {{ userInfo.nickname }}
       </div>
     </div>
-    <v-divider />
-    <SearchMenu />
-
+    <!--    <SearchMenu />-->
     <!-- Favorite menu list-->
     <v-divider />
     <favorite-menu />

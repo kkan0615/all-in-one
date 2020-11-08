@@ -29,12 +29,13 @@ import 'devextreme/dist/css/dx.material.blue.dark.css'
 import '@/styles/global.scss'
 /* Notification Socket */
 
+/* List of Plugins */
 /* Confirm dialog */
 import { ConfirmDialogPlugin, ConfirmDialog } from '@/plugins/confirm'
 import EventbusPlugin from '@/plugins/eventbus'
 import { EventbusKeys } from '@/types/eventbusKeys'
 import EventbusKeysPlugin from '@/plugins/eventbuskeys'
-
+import loadingPlugin, { LoadingPlugin } from '@/plugins/loading'
 
 Vue.config.productionTip = false
 
@@ -44,14 +45,17 @@ Vue.use(notiSocketPlugin)
 Vue.use(ConfirmDialogPlugin)
 Vue.use(EventbusPlugin)
 Vue.use(EventbusKeysPlugin)
+Vue.use(loadingPlugin)
 
 declare module 'vue/types/vue' {
+
   interface Vue {
     $eventbus: Vue;
     $http: AxiosStatic;
     $events: EventbusKeys;
     $notiSocket: SocketIOClient.Socket;
     $confirm: ConfirmDialog;
+    $loading: LoadingPlugin;
   }
 }
 

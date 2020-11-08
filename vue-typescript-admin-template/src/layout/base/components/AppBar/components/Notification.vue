@@ -30,7 +30,7 @@
       height="500px"
     >
       <v-card-title>
-        Notifications
+        Notification
         <v-spacer />
         <v-btn
           icon
@@ -42,6 +42,11 @@
           </v-icon>
         </v-btn>
       </v-card-title>
+      <v-card-subtitle
+        v-if="notifications.length"
+      >
+        You have {{ notifications.length }} unread notification
+      </v-card-subtitle>
       <v-card-text
         v-if="!$notiSocket.connected"
       >
@@ -78,7 +83,7 @@
       <v-card-text
         v-else
       >
-        No notification is here
+        No Notification
       </v-card-text>
     </v-card>
   </v-menu>

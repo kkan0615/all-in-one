@@ -1,102 +1,41 @@
 <template>
   <div>
-    <p>{{ testValue }}</p>
-    <v-text-field
-      v-model="title"
-      label="title"
-      outlined
+    <top-filter
+      :title="$route.meta.title"
     />
-    <v-text-field
-      v-model="content"
-      label="content"
-      outlined
-    />
-    <v-text-field
-      v-model="toWho"
-      label="ID"
-      outlined
-    />
-    <v-btn
-      @click="onClickToRole"
+    <div
+      class="pa-4"
     >
-      Test Socket
-    </v-btn>
-    <!--    <v-btn-->
-    <!--      @click="pingPongConnect"-->
-    <!--    >-->
-    <!--      ping-->
-    <!--    </v-btn>-->
-    <!--    <v-btn-->
-    <!--      @click="anotherWord"-->
-    <!--    >-->
-    <!--      anotherWord-->
-    <!--    </v-btn>-->
+      <v-card
+        color="secondary"
+        height="100vh"
+      >
+        <v-card-text>
+          test page...
+        </v-card-text>
+      </v-card>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import io from 'socket.io-client'
-import { NotificationState } from '@/store/modules/alert'
-import moment from 'moment'
+import TopFilter from '@/components/TopFIlter/index.vue'
 
 @Component({
   name: 'Test',
   components: {
+    TopFilter
   }
 })
 export default class Test extends Vue {
-  private testValue: any = 'hi'
-  private content = ''
-  private title = ''
-  private toWho = this.$store.getters['user/role']._id
-
-  mounted () {
-    this.$notiSocket.on('addNotification', (data: NotificationState) => {
-      console.log(data)
-    })
-
+  created () {
+    const splitPath = this.$route.fullPath.split('/')
+    console.log(splitPath)
+    this.$loading.openFullScreenLoading()
+    setTimeout(() => {
+      this.$loading.closeFullScreenLoading()
+    }, 1000)
   }
-
-  // private onClickTestButton () {
-  //   this.testIo = io('http://localhost:8002', {
-  //     transports: ['websocket'],
-  //     upgrade: false,
-  //     forceNew: true,
-  //   })
-  //   this.testIo.on('testPong', (data: any) => {
-  //     console.log(data)
-  //     this.testValue = data
-  //   })
-  //
-  //   this.testIo.on('anotherWordRes', (data: any) => {
-  //     console.log(data)
-  //     this.testValue = data
-  //   })
-  //   console.log(this.testIo)
-  // }
-
-  private onClickToRole () {
-    if (!this.title || !this.content) return
-    this.$notiSocket.emit('sendRoleNotification', {
-      type: 'info',
-      date: moment().format('llll'),
-      authorId: this.$store.state.user._id,
-      title: this.title,
-      content: this.content
-    } as NotificationState, this.toWho)
-  }
-
-
-  // private pingPongConnect () {
-  // this.$notiSocket.emit('sendNotification', {
-  //   type: 'info',
-  //   date: moment().format('llll'),
-  //   userId: this.$store.state.user._id || '5f5cc20b67681639f8989716',
-  //   //authorId: this.$store.state.user._id,
-  //   title: 'ABC airplane is ready',
-  //   content: 'the airplane ABC is ready'
-  // } as NotificationState)
-  // }
 }
 </script>

@@ -106,7 +106,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
     component: BaseLayout,
     meta: {
       icon: 'check',
-      margin: 12,
+      margin: 8,
       isForGroup: true,
       menuType: 'desktop',
       role: undefined,
@@ -119,7 +119,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
         component: () => import('@/views/ConfirmDialog/index.vue'),
         meta: {
           icon: 'check',
-          margin: 12,
+          margin: 8,
           isForGroup: false,
           menuType: 'desktop',
           role: undefined,

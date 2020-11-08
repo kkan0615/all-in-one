@@ -80,9 +80,9 @@ export default class Test extends Vue {
   private selectedRowKeys: Array<number> = []
   private selectedRow = Vue.observable<any>({})
 
-  // created () {
-  //   this.$eventbus.$emit(this.$events.loading.visible, false)
-  // }
+  created () {
+    this.$eventbus.$emit(this.$events.loading.visible, true)
+  }
 
   private onSelectionchange (selected: DxSelected<any, number>) {
     if (!selected || !selected.selectedRowsData || !selected.selectedRowKeys) return

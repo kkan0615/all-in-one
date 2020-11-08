@@ -23,12 +23,11 @@
           align="center"
           justify="center"
           no-gutters
-          class="pa-6"
         >
           <v-col
             cols="12"
             sm="12"
-            md="12"
+            :md="$route.meta.margin"
           >
             <!--            <transition name="fade-transform" mode="out-in" appear>-->
             <router-view />

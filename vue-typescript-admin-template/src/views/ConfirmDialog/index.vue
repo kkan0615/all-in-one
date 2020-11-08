@@ -6,41 +6,65 @@
 -->
 <template>
   <div>
-    <div
+    <top-filter
+      :title="$route.meta.title"
+    />
+    <v-card
+      color="secondary"
       class="my-4"
     >
-      {{ display }}
-    </div>
-    <div>
-      <v-text-field
-        v-model="title"
-        label="Title"
-        outlined
-        clearable
-      />
-      <v-text-field
-        v-model="subtitle"
-        label="Subtitle"
-        outlined
-        clearable
-      />
-      <v-text-field
-        v-model="message"
-        label="Message"
-        outlined
-        clearable
-      />
-    </div>
-    <v-btn
-      @click="openBasicConfirm"
+      <v-card-title>
+        Return
+      </v-card-title>
+      <v-card-text>
+        {{ display }}
+      </v-card-text>
+    </v-card>
+    <v-card
+      color="secondary"
     >
-      Open basic
-    </v-btn>
+      <v-card-title>
+        Test Form
+      </v-card-title>
+      <v-divider />
+      <v-card-text>
+        <v-text-field
+          v-model="title"
+          label="Title"
+          outlined
+          clearable
+        />
+        <v-text-field
+          v-model="subtitle"
+          label="Subtitle"
+          outlined
+          clearable
+        />
+        <v-text-field
+          v-model="message"
+          label="Message"
+          outlined
+          clearable
+        />
+      </v-card-text>
+      <v-divider />
+      <v-card-actions
+        class="justify-end"
+      >
+        <v-btn
+          color="primary"
+          @click="openBasicConfirm"
+        >
+          Open basic
+        </v-btn>
+      </v-card-actions>
+    </v-card>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import TopFilter from '@/components/TopFIlter/index.vue'
 
 /**
  * @author - Youngjin Kwak
@@ -48,6 +72,7 @@ import { Component, Vue } from 'vue-property-decorator'
  */
 @Component({
   name: 'Protocol',
+  components: { TopFilter },
 })
 export default class ConfirmDialog extends Vue {
 
@@ -62,8 +87,8 @@ export default class ConfirmDialog extends Vue {
       subtitle: this.subtitle
     })
 
-    if (confirmed) this.display = 'Hello ~ U found this message'
-    else this.display = 'If you would like to see secret message, press yes !'
+    if (confirmed) this.display = 'Success to press "Yes"'
+    else this.display = 'Success to press "No"'
   }
 }
 </script>

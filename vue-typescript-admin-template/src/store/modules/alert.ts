@@ -19,12 +19,14 @@ export class SnackbarState {
   public color: string;
   public timeout?: number
   public callback?: Function;
+  public code?: number | string
 
   constructor (snackbarState?: SnackbarState) {
     this.content =  snackbarState?.content || ''
     this.color = snackbarState?.color || 'primary'
     this.timeout = snackbarState?.timeout || 5000
     this.callback = snackbarState?.callback
+    this.code = snackbarState?.code || ''
   }
 }
 
