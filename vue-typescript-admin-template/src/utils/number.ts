@@ -19,3 +19,8 @@ export function commaFormatter (num: string | number): string {
 export function hexToDecimal (hexString: string) {
   return parseInt(hexString, 16)
 }
+
+export function localeFormattedNumber (value: number | string, minimumFractionDigits?: number) {
+  if (typeof value === 'string') value = parseFloat(value)
+  return value.toLocaleString(undefined, { minimumFractionDigits })
+}
