@@ -26,11 +26,9 @@ date: 11 - 08 - 2020
 ---
 
 ## Version
----
-Device: 'desktop'
-Browser: 'Chrome'
-Release: '1.1'
----
+| Device | Browser | Release |
+|---|:---:|---:|
+| desktop | Chrome | 1.1 |
 
 ## Steps to reproduce the issue
 Steps to reproduce the behavior:
