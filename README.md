@@ -1,11 +1,11 @@
 # Youngjin's front + server framework with Typescript. 
 
 ## vue-typescript-admin-template
-Vue + Typescript Front framework
+Vue + Typescript Front framework,
 Read more <a href="">Here</a>
 
 ## express-typescript-template 
-Express + Typescript + MongoDB Server framework
+Express + Typescript + MongoDB Server framework,
 Read more <a href="https://github.com/kkan0615/all-in-one/tree/master/express-typescript-template">Here</a>
 
 ## Inforamtion
@@ -13,6 +13,7 @@ Project manage and Leader: Youngjin Kwak (kkan0615@gmail.com)
 
 ### Author
 | role | name(nickname) | email | github |
+|------|----------------|-------|--------|
 | PM & PL | Youngjin Kwak | kkan0615@gmail.com | https://github.com/kkan0615
 
 ## Github convention
