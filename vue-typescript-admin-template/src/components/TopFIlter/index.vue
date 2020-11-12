@@ -26,11 +26,14 @@
       </v-btn>
       <v-spacer />
       <v-breadcrumbs
+        class="pa-2"
         :items="breadcrumbs"
         divider="-"
       />
     </v-card-title>
-    <v-card-subtitle>
+    <v-card-subtitle
+      v-if="subtitle"
+    >
       {{ subtitle }}
     </v-card-subtitle>
     <v-card-actions
@@ -54,17 +57,15 @@
       </v-btn>
     </v-card-actions>
     <!-- For the filter panel -->
-    <v-divider
-      v-if="visibleFilter"
-    />
-    <v-card-text
+    <div
       v-if="visibleFilter"
     >
-      Test Filter
-    </v-card-text>
-    <v-divider
-      v-if="visibleFilter"
-    />
+      <v-divider />
+      <v-card-text>
+        <slot name="filter" />
+      </v-card-text>
+      <v-divider />
+    </div>
   </v-card>
 </template>
 

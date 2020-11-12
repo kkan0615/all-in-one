@@ -11,9 +11,11 @@
         height="100vh"
       >
         <v-card-text>
-          test page...
           <number-field
             v-model="testNum"
+            label="'test Label'"
+            :outlined="true"
+            :rules="rules"
           />
         </v-card-text>
       </v-card>
@@ -34,10 +36,13 @@ import NumberField from '@/components/Form/NumberField/index.vue'
   }
 })
 export default class Test extends Vue {
-  private testNum = '120000567'
+  private testNum = ''
+  private rules = [
+    (v: string) => !!v || 'Test error message'
+  ]
+
   created () {
     const splitPath = this.$route.fullPath.split('/')
-    console.log(splitPath)
     this.$loading.openFullScreenLoading()
     setTimeout(() => {
       this.$loading.closeFullScreenLoading()

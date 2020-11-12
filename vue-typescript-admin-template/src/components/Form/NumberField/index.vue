@@ -1,7 +1,7 @@
 <!--
   Author: Youngjin Kwak
   CreatedAt: 10-29-2020
-  UpdatedAt: 11-09-2020
+  UpdatedAt: 11-12-2020
   Description: Number input box component
 -->
 <template>
@@ -9,16 +9,42 @@
     v-if="currentField === 'text'"
     ref="textField"
     :value="formattedNumber"
+    :outlined="outlined"
+    :readonly="readonly"
+    :disabled="disabled"
+    :suffix="suffix"
+    :color="color"
+    :label="label"
+    :rules="rules"
     @focus="onFocusTextField"
-  />
+  >
+    <template
+      #label
+    >
+      <slot name="label" />
+    </template>
+  </v-text-field>
   <v-text-field
     v-else
     ref="numberField"
     :value="numberValue"
     type="number"
+    :outlined="outlined"
+    :readonly="readonly"
+    :disabled="disabled"
+    :suffix="suffix"
+    :color="color"
+    :label="label"
+    :rules="innerRules"
     @blur="onBlurNumberField"
     @input="onInputNumberField"
-  />
+  >
+    <template
+      #label
+    >
+      <slot name="label" />
+    </template>
+  </v-text-field>
 </template>
 
 <script lang="ts">
@@ -37,11 +63,27 @@ export default class NumberField extends Vue {
   private readonly value !: number | string
   @Prop({ type: Number, required: false, default: undefined })
   private readonly minimumFractionDigits !: number | undefined
+  /* Vuetify states(data) */
+  @Prop({ type: String, required: false, default: '' })
+  private readonly label !: string
+  @Prop({ type: Boolean, required: false, default: false })
+  private readonly outlined !: boolean
+  @Prop({ type: Boolean, required: false, default: false })
+  private readonly readonly !: boolean
+  @Prop({ type: Boolean, required: false, default: false })
+  private readonly disabled !: boolean
+  @Prop({ type: String, required: false, default: '' })
+  private readonly suffix !: string
+  @Prop({ type: String, required: false, default: '' })
+  private readonly color !: string
+  @Prop({ type: Array, required: false, default: () => [] })
+  private readonly rules !: Array<any>
 
   @Ref('numberField')
   private readonly numberField !: HTMLInputElement
 
   private currentField: 'number' | 'text' = 'text'
+  private innerRules: Array<any> = []
 
   public get stringValue (): string {
     return this.value.toString()
@@ -52,7 +94,9 @@ export default class NumberField extends Vue {
   }
 
   public get formattedNumber () {
-    return localeFormattedNumber(this.value, this.minimumFractionDigits)
+    const formatted = localeFormattedNumber(this.value, this.minimumFractionDigits)
+    console.log(formatted === 'NaN' ? formatted : '')
+    return formatted === 'NaN' ? '' : formatted
   }
 
   public async onFocusTextField () {
@@ -61,6 +105,7 @@ export default class NumberField extends Vue {
   }
 
   public async onBlurNumberField () {
+    if (!this.innerRules.length) this.innerRules = this.rules
     await this.changeCurrentField()
   }
 
