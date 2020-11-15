@@ -1,0 +1,79 @@
+<!--
+  Author: Youngjin Kwak
+  CreatedAt: 11-14-2020
+  UpdatedAt: 11-14-2020
+  Description: Simple Form Components
+-->
+<template>
+  <v-card
+    color="secondary"
+  >
+    <v-card-title>
+      Version 1
+    </v-card-title>
+    <v-divider />
+    <v-card-text>
+      <v-form>
+        <v-text-field
+          label="Name"
+          outlined
+        />
+        <v-text-field
+          label="Email"
+          :rules="versionOneRules.email"
+          outlined
+        />
+        <v-text-field
+          v-model="password"
+          :type="showPassword ? 'text' : 'password'"
+          :append-icon="showPassword ? 'visibility' : 'visibility_off'"
+          label="Password"
+          outlined
+          prepend-inner-icon="mdi-lock"
+          @click:append-icon="showPassword = !showPassword"
+        />
+      </v-form>
+    </v-card-text>
+    <v-card-actions
+      class="justify-end"
+    >
+      <v-btn
+        text
+      >
+        cancel
+      </v-btn>
+      <v-btn
+        color="primary"
+      >
+        save
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+</template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+
+/**
+   * @author - Youngjin Kwak
+   * @description -
+   */
+@Component({
+  name: 'SimpleForm',
+})
+export default class SimpleForm extends Vue {
+  private showPassword = false
+
+  /* Version 1 data */
+  private name = ''
+  private password = ''
+  private email = ''
+  private versionOneRules = {
+    name: [],
+    email: [
+      (v: string) => !!v || 'E-mail is required',
+      (v: string) => (/.+@.+\..+/.test(v)) || 'E-mail must be valid',
+    ]
+  }
+}
+</script>

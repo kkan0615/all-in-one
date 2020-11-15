@@ -17,6 +17,11 @@
             :outlined="true"
             :rules="rules"
           />
+          <v-btn
+            @click="test"
+          >
+            test
+          </v-btn>
         </v-card-text>
       </v-card>
     </div>
@@ -26,7 +31,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import TopFilter from '@/components/TopFIlter/index.vue'
-import NumberField from '@/components/Form/NumberField/index.vue'
+import NumberField from '@/components/Input/NumberField/index.vue'
 
 @Component({
   name: 'Test',
@@ -47,6 +52,15 @@ export default class Test extends Vue {
     setTimeout(() => {
       this.$loading.closeFullScreenLoading()
     }, 1000)
+  }
+
+  private async test () {
+    const test = await this.$http.post('test/debug/big/socketRoute', {
+      message: 'awesome'
+    })
+
+    console.log(test)
+
   }
 }
 </script>

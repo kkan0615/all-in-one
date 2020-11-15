@@ -12,7 +12,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
       menuType: 'desktop',
       margin: 12,
       role: undefined,
-      title: 'DashBoard'
+      title: 'Dash Board'
     },
     children: [
       {
@@ -26,6 +26,35 @@ const baseRoutes: Array<CustomRouteConfig> = [
           margin: 12,
           role: undefined,
           title: 'Main DashBoard'
+        }
+      }
+    ]
+  },
+  /* Basic samples */
+  {
+    path: '/basicsample',
+    name: 'BasicSample',
+    component: BaseLayout,
+    meta: {
+      icon: 'folder',
+      isForGroup: true,
+      menuType: 'desktop',
+      margin: 12,
+      role: undefined,
+      title: 'Basic Sample'
+    },
+    children: [
+      {
+        path: 'form',
+        name: 'BasicSampleForm',
+        component: () => import('@/views/BasicSample/Form/index.vue'),
+        meta: {
+          icon: 'view_day',
+          isForGroup: false,
+          menuType: 'desktop',
+          margin: 8,
+          role: undefined,
+          title: 'Form'
         }
       }
     ]

@@ -11,7 +11,7 @@ import { setTokenToHeader } from '@/utils/auth'
 const jwt = new _jwt()
 const logger = new Logger(__filename)
 
-class AuthMiddleware {
+export class AuthMiddleware {
   public static async isLoggedIn  (req: Request, res: Response, next: NextFunction) {
 
     const accessToken = req.headers['access-token'] as string

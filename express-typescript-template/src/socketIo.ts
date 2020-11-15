@@ -16,7 +16,7 @@ declare namespace NSocket {
   }
 }
 
-export default class SocketIo {
+export class SocketIo {
   private static _instance: SocketIo
   private _connected = false
   private _reconnectedCount = 0
@@ -27,6 +27,10 @@ export default class SocketIo {
       return (this._instance && this._instance._connected)
         ? this._instance : (this._instance = await SocketIo.connect())
     })()
+  }
+
+  public static get connectionPool (): Promise<io.Server | undefined> {
+    return Promise.resolve(this._instance._connectionPool)
   }
 
   public static async connect (): Promise<SocketIo> {
@@ -182,3 +186,5 @@ export default class SocketIo {
   }
 
 }
+
+export default SocketIo

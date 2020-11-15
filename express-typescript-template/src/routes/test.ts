@@ -4,6 +4,9 @@ import TestMiddleware from '@/middlewares/test'
 import Role from '@/schemas/role'
 import User from '@/schemas/user'
 import Menu, { IMenu } from '@/schemas/menu'
+import SocketIo from '@/socketIo'
+import Notification from '@/schemas/notification'
+import AuthMiddleware from '@/middlewares/auth'
 
 const router = Router()
 
@@ -24,6 +27,24 @@ router.post('/', Test.postHandler)
 router.put('/', Test.putHandler)
 
 router.delete('/', Test.deleteHandler)
+
+router.post('/debug/big/socketRoute', AuthMiddleware.isLoggedIn, async (req: Request, res: Response, next: NextFunction) => {
+  console.log('--------------------------Big----------------------')
+  const socket = await SocketIo.connectionPool
+  console.log(req.body.user)
+  const notiSocket = socket?.of('/notification')
+  if (!notiSocket) {
+    return res.json({
+      message: 'fucnked up'
+    })
+  }
+  const newNoti = await Notification.findById('5f8afeaf3ee75139e8d90a4f')
+  // console.log('rooms', notiSocket.)
+  notiSocket.emit('addNotification', newNoti)
+  res.json({
+    message: 'success'
+  })
+})
 
 router.get('/addTestData', async (req: Request, res: Response, next: NextFunction) => {
   const users = await User.find().populate('roleId')

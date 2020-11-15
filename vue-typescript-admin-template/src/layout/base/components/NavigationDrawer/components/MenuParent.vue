@@ -1,13 +1,14 @@
 <!--
   Author: Youngjin Kwak
   CreatedAt: 08-15-2020
-  UpdatedAt: 08-15-2020
-  Description: MenuParent Vue Page
+  UpdatedAt: 01-14-2020
+  Description: Menu Parent Vue Page
 -->
 <template>
   <div>
+    <!--      v-if="menu.children && menu.children.length > 0" -->
     <menu-child
-      v-if="menu.children && menu.children.length > 0"
+      v-if="menu.meta.isForGroup"
       :menu="menu"
       @click:item="clickItem"
     />

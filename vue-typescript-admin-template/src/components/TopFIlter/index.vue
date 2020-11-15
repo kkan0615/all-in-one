@@ -107,19 +107,15 @@ export default class TopFilter extends Vue {
       })
     }
 
-    for (let i = 1; i < splitPath.length - 1; i++) {
+    for (let i = 0; i < this.$router.currentRoute.matched.length; i++) {
       result.push({
-        text: splitPath[i],
+        text: this.$router.currentRoute.matched[i].meta.title,
         disabled: false,
-        href: splitPath[i],
+        href: this.$router.currentRoute.matched[i].path,
       })
     }
 
-    result.push({
-      text: splitPath[splitPath.length - 1],
-      disabled: true,
-      href: splitPath[splitPath.length - 1],
-    })
+    result[this.$router.currentRoute.matched.length].disabled = true
 
     return result
   }
