@@ -1,0 +1,17 @@
+[{
+  "_id": {
+    "$oid": "5f5cb87a35e00f1d64406547"
+  },
+  "name": "superAdmin",
+  "remark": "It has all permissions",
+  "__v": 0,
+  "grade": 0
+},{
+  "_id": {
+    "$oid": "5f620af17b67713bfc4a482a"
+  },
+  "name": "Guest",
+  "grade": 1,
+  "remark": "Guest permission, 3",
+  "__v": 0
+}]

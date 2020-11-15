@@ -1,0 +1,31 @@
+[{
+  "_id": {
+    "$oid": "5f5cc20b67681639f8989716"
+  },
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjVjYzIwYjY3NjgxNjM5Zjg5ODk3MTYiLCJ1c2VySWQiOiJzdXBlckFkbWluIiwiaWF0IjoxNjA1MzMxOTI1LCJleHAiOjE2MDU0MTgzMjV9.-EwOqnKMnNBe_-DPx-WKdSdzueMDl-XmLdfVfLI5vJE",
+  "userId": "superAdmin",
+  "email": "superAdmin@goole.com",
+  "password": "admin",
+  "roleId": {
+    "$oid": "5f5cb87a35e00f1d64406547"
+  },
+  "__v": 0,
+  "avatar": "https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/01/urbanbrush-20190125112300736385.png",
+  "lastTime": "November 14th 2020, 2:32:05 pm",
+  "nickname": "Super Admin"
+},{
+  "_id": {
+    "$oid": "5f620bad8062252564ca562c"
+  },
+  "email": "guest@gmail.com",
+  "userId": "guest0615",
+  "password": "guest0615",
+  "refreshToken": null,
+  "lastTime": "October 31st 2020, 2:22:41 pm",
+  "roleId": {
+    "$oid": "5f620af17b67713bfc4a482a"
+  },
+  "__v": 0,
+  "avatar": "https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/01/urbanbrush-20190125112300736385.png",
+  "nickname": "Awesome Guest"
+}]
