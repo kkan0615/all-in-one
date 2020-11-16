@@ -4,11 +4,11 @@
 <template>
   <v-app>
     <full-screen-loading />
-    <AppBar
+    <app-bar
       :navigation-status="navigationStatus"
       :app-bar-status="appBarStatus"
     />
-    <NavigationDrawer
+    <navigation-drawer
       :navigation-status="navigationStatus"
       :permanent-status="permanentStatus"
       :app-bar-status="appBarStatus"

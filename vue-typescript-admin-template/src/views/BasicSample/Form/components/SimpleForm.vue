@@ -1,7 +1,7 @@
 <!--
   Author: Youngjin Kwak
   CreatedAt: 11-14-2020
-  UpdatedAt: 11-14-2020
+  UpdatedAt: 11-16-2020
   Description: Simple Form Components
 -->
 <template>
@@ -9,7 +9,10 @@
     color="secondary"
   >
     <v-card-title>
-      Version 1
+      Simple Verison
+      <help-how-to-use
+        content="This is just simple version of Form"
+      />
     </v-card-title>
     <v-divider />
     <v-card-text>
@@ -53,6 +56,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import HelpHowToUse from '@/components/helpHowToUse/index.vue'
 
 /**
    * @author - Youngjin Kwak
@@ -60,6 +64,7 @@ import { Component, Vue } from 'vue-property-decorator'
    */
 @Component({
   name: 'SimpleForm',
+  components: { HelpHowToUse },
 })
 export default class SimpleForm extends Vue {
   private showPassword = false
