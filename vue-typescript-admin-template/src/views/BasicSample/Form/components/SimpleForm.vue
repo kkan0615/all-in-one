@@ -16,7 +16,9 @@
     </v-card-title>
     <v-divider />
     <v-card-text>
-      <v-form>
+      <v-form
+        ref="versionOneForm"
+      >
         <v-text-field
           label="Name"
           outlined
@@ -47,6 +49,7 @@
       </v-btn>
       <v-btn
         color="primary"
+        @click="submitVersionOne"
       >
         save
       </v-btn>
@@ -55,7 +58,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Ref, Vue } from 'vue-property-decorator'
 import HelpHowToUse from '@/components/helpHowToUse/index.vue'
 
 /**
@@ -67,6 +70,9 @@ import HelpHowToUse from '@/components/helpHowToUse/index.vue'
   components: { HelpHowToUse },
 })
 export default class SimpleForm extends Vue {
+  @Ref('versionOneForm')
+  private readonly versionOneForm!: HTMLFormElement
+
   private showPassword = false
 
   /* Version 1 data */
@@ -79,6 +85,10 @@ export default class SimpleForm extends Vue {
       (v: string) => !!v || 'E-mail is required',
       (v: string) => (/.+@.+\..+/.test(v)) || 'E-mail must be valid',
     ]
+  }
+
+  private submitVersionOne (e: any) {
+    e.preventDefault()
   }
 }
 </script>

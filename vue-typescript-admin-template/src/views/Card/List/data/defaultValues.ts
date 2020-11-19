@@ -1,0 +1,1 @@
+export const DEFAULT_GRID_COLUMN_SIZE = 3

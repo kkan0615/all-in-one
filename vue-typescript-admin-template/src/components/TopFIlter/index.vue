@@ -39,8 +39,8 @@
     <v-card-actions
       class="justify-end"
     >
-      <!-- Slot -->
-      <slot name="actions" />
+      <!-- prepend-actions -->
+      <slot name="prepend-actions" />
       <!-- Filter Button -->
       <v-btn
         class="mx-2"
@@ -55,6 +55,8 @@
         </v-icon>
         Filter
       </v-btn>
+      <!-- prepend-actions -->
+      <slot name="append-actions" />
     </v-card-actions>
     <!-- For the filter panel -->
     <div
@@ -62,7 +64,14 @@
     >
       <v-divider />
       <v-card-text>
-        <slot name="filter" />
+        <slot name="filter">
+          <div
+            v-for="option in TopFilterOptions"
+            :key="option.dataField"
+          >
+            {{ option }}
+          </div>
+        </slot>
       </v-card-text>
       <v-divider />
     </div>
@@ -74,6 +83,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { SnackbarState } from '@/store/modules/alert'
 import { Breadcrumb } from '@/components/TopFIlter/type'
 import { CustomRouteConfig } from '@/types/customRouteConfig'
+import { TopFilterOption } from '@/components/TopFIlter/type/TopFilterOption'
 
 /**
  * @author - Youngjin Kwak
@@ -89,6 +99,8 @@ export default class TopFilter extends Vue {
   private readonly subtitle!: string
   @Prop({ required: false, default: true, type: Boolean })
   private readonly visibleBookmark !: boolean
+  @Prop({ required: false, type: Array, default: () => [] })
+  private readonly TopFilterOptions !: Array<TopFilterOption<any>>
 
   private visibleFilter = false
 

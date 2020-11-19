@@ -36,41 +36,30 @@
     <auth-login-card
       v-if="isLoggedIn"
     />
+    <auth-unlogged-in-card
+      v-else-if="!isLoggedIn"
+    />
     <!--    <v-list-->
-    <!--      v-if="isLoggedIn"-->
+    <!--      v-else-if="!isLoggedIn"-->
     <!--    >-->
     <!--      <v-list-item-->
     <!--        link-->
-    <!--        @click="logout"-->
+    <!--        :to="{ name: 'login' }"-->
     <!--      >-->
     <!--        <v-list-item-title-->
     <!--          class="cursor-pointer"-->
     <!--        >-->
-    <!--          Logout-->
+    <!--          Login-->
+    <!--        </v-list-item-title>-->
+    <!--      </v-list-item>-->
+    <!--      <v-list-item>-->
+    <!--        <v-list-item-title-->
+    <!--          class="cursor-pointer"-->
+    <!--        >-->
+    <!--          Register-->
     <!--        </v-list-item-title>-->
     <!--      </v-list-item>-->
     <!--    </v-list>-->
-    <v-list
-      v-else-if="!isLoggedIn"
-    >
-      <v-list-item
-        link
-        :to="{ name: 'login' }"
-      >
-        <v-list-item-title
-          class="cursor-pointer"
-        >
-          Login
-        </v-list-item-title>
-      </v-list-item>
-      <v-list-item>
-        <v-list-item-title
-          class="cursor-pointer"
-        >
-          Register
-        </v-list-item-title>
-      </v-list-item>
-    </v-list>
   </v-menu>
 </template>
 
@@ -78,10 +67,11 @@
 import { Component, Mixins, Vue } from 'vue-property-decorator'
 import { UserStateHandler } from '@/mixins/userStateHandler'
 import AuthLoginCard from '@/layout/base/components/AppBar/components/AuthLoginCard.vue'
+import AuthUnloggedInCard from '@/layout/base/components/AppBar/components/AuthUnloggedInCard.vue'
 
 @Component({
   name: 'AuthAppBar',
-  components: { AuthLoginCard },
+  components: { AuthUnloggedInCard, AuthLoginCard },
 })
 export default class AuthAppBar extends Mixins(UserStateHandler) {
   /* menu is opened or not */

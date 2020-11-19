@@ -128,6 +128,35 @@ const baseRoutes: Array<CustomRouteConfig> = [
       }
     ]
   },
+  /* Card */
+  {
+    path: '/card',
+    name: 'card',
+    component: BaseLayout,
+    meta: {
+      icon: 'style',
+      margin: 12,
+      isForGroup: true,
+      menuType: 'desktop',
+      role: undefined,
+      title: 'Card'
+    },
+    children: [
+      {
+        path: 'cardList',
+        name: 'cardList',
+        component: () => import('@/views/Card/List/index.vue'),
+        meta: {
+          icon: 'view_module',
+          margin: 12,
+          isForGroup: false,
+          menuType: 'desktop',
+          role: undefined,
+          title: 'Card list'
+        }
+      }
+    ]
+  },
   /* Alert and Confirm */
   {
     path: '/alert',
