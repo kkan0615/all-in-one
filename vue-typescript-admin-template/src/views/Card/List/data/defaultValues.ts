@@ -1,1 +1,2 @@
 export const DEFAULT_GRID_COLUMN_SIZE = 3
+export const DEFAULT_TABLE_PAGING_SIZE = 5

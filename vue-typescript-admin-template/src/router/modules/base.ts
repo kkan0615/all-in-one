@@ -154,6 +154,20 @@ const baseRoutes: Array<CustomRouteConfig> = [
           role: undefined,
           title: 'Card list'
         }
+      },
+      {
+        path: 'detail/:id',
+        name: 'detail',
+        hidden: true,
+        component: () => import('@/views/Card/Detail/index.vue'),
+        meta: {
+          icon: 'view_module',
+          margin: 12,
+          isForGroup: false,
+          menuType: 'desktop',
+          role: undefined,
+          title: 'Detail'
+        }
       }
     ]
   },
