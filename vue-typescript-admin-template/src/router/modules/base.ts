@@ -30,6 +30,122 @@ const baseRoutes: Array<CustomRouteConfig> = [
       }
     ]
   },
+  /* Components */
+  {
+    path: '/components',
+    name: 'Component',
+    component: BaseLayout,
+    meta: {
+      icon: 'ballot',
+      isForGroup: true,
+      menuType: 'desktop',
+      margin: 12,
+      role: undefined,
+      title: 'Components'
+    },
+    // children: [
+    //   {
+    //     path: 'MainDashboard',
+    //     name: 'MainDashboard',
+    //     component: () => import('@/views/Dashboard/Main/index.vue'),
+    //     meta: {
+    //       icon: 'dashboard',
+    //       isForGroup: false,
+    //       menuType: 'desktop',
+    //       margin: 12,
+    //       role: undefined,
+    //       title: 'Main DashBoard'
+    //     }
+    //   }
+    // ]
+  },
+  /* Sample */
+  {
+    path: '/samples',
+    name: 'Sample',
+    component: BaseLayout,
+    meta: {
+      icon: 'developer_board',
+      isForGroup: true,
+      menuType: 'desktop',
+      margin: 12,
+      role: undefined,
+      title: 'Samples'
+    },
+    children: [
+      {
+        path: 'CardTableSwapper',
+        name: 'CardTableSwapper',
+        component: () => import('@/views/Sample/CardTableSwapper/index.vue'),
+        meta: {
+          icon: 'view_module',
+          margin: 12,
+          isForGroup: false,
+          menuType: 'desktop',
+          role: undefined,
+          title: 'Card Table Swapper'
+        },
+      },
+      {
+        path: 'detail/:id',
+        name: 'Detail',
+        hidden: true,
+        component: () => import('@/views/Sample/Detail/index.vue'),
+        meta: {
+          icon: 'post_add',
+          margin: 12,
+          isForGroup: false,
+          menuType: 'desktop',
+          role: undefined,
+          title: 'Detail'
+        },
+      }
+    ]
+  },
+  /* Functions */
+  {
+    path: '/functionComponent',
+    name: 'FunctionComponent',
+    component: BaseLayout,
+    meta: {
+      icon: 'functions',
+      isForGroup: true,
+      menuType: 'desktop',
+      margin: 12,
+      role: undefined,
+      title: 'Function Samples'
+    },
+    children: [
+      {
+        path: '/alert',
+        name: 'alert',
+        component: () => import('@/layout/Grouping/index.vue'),
+        meta: {
+          icon: 'check',
+          margin: 8,
+          isForGroup: true,
+          menuType: 'desktop',
+          role: undefined,
+          title: 'Alert and Confirm'
+        },
+        children: [
+          {
+            path: 'confirmDialog',
+            name: 'confirmDialog',
+            component: () => import('@/views/ConfirmDialog/index.vue'),
+            meta: {
+              icon: 'check',
+              margin: 8,
+              isForGroup: false,
+              menuType: 'desktop',
+              role: undefined,
+              title: 'Confirm Dialog'
+            }
+          }
+        ]
+      },
+    ]
+  },
   /* Basic samples */
   {
     path: '/basicsample',
@@ -124,78 +240,6 @@ const baseRoutes: Array<CustomRouteConfig> = [
           menuType: 'desktop',
           role: undefined,
           title: 'Test2'
-        }
-      }
-    ]
-  },
-  /* Card */
-  {
-    path: '/card',
-    name: 'card',
-    component: BaseLayout,
-    meta: {
-      icon: 'style',
-      margin: 12,
-      isForGroup: true,
-      menuType: 'desktop',
-      role: undefined,
-      title: 'Card'
-    },
-    children: [
-      {
-        path: 'cardList',
-        name: 'cardList',
-        component: () => import('@/views/Card/List/index.vue'),
-        meta: {
-          icon: 'view_module',
-          margin: 12,
-          isForGroup: false,
-          menuType: 'desktop',
-          role: undefined,
-          title: 'Card list'
-        }
-      },
-      {
-        path: 'detail/:id',
-        name: 'detail',
-        hidden: true,
-        component: () => import('@/views/Card/Detail/index.vue'),
-        meta: {
-          icon: 'view_module',
-          margin: 12,
-          isForGroup: false,
-          menuType: 'desktop',
-          role: undefined,
-          title: 'Detail'
-        }
-      }
-    ]
-  },
-  /* Alert and Confirm */
-  {
-    path: '/alert',
-    name: 'alert',
-    component: BaseLayout,
-    meta: {
-      icon: 'check',
-      margin: 8,
-      isForGroup: true,
-      menuType: 'desktop',
-      role: undefined,
-      title: 'Alert and Confirm'
-    },
-    children: [
-      {
-        path: 'confirmDialog',
-        name: 'confirmDialog',
-        component: () => import('@/views/ConfirmDialog/index.vue'),
-        meta: {
-          icon: 'check',
-          margin: 8,
-          isForGroup: false,
-          menuType: 'desktop',
-          role: undefined,
-          title: 'Confirm Dialog'
         }
       }
     ]

@@ -21,6 +21,11 @@ const routes: Array<CustomRouteConfig> = [
     },
   },
   {
+    path: '*',
+    // name: 'NotF',
+    component: () => import('@/views/ErrorPage/404/index.vue'),
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

@@ -145,9 +145,9 @@ import { Component, Emit, Prop, Vue } from 'vue-property-decorator'
 import {
   DEFAULT_GRID_COLUMN_SIZE,
   DEFAULT_TABLE_PAGING_SIZE
-} from '@/views/Card/List/data/defaultValues'
-import { TypeOfViews, TypeOfVisible, ViewTypeList } from '@/views/Card/List/types/settings'
-import { viewTypeList } from '@/views/Card/List/data/settings'
+} from '@/views/Sample/CardTableSwapper/data/defaultValues'
+import { TypeOfViews, TypeOfVisible, ViewTypeList } from '@/views/Sample/CardTableSwapper/types/settings'
+import { viewTypeList } from '@/views/Sample/CardTableSwapper/data/settings'
 
 /**
  * @author - Youngjin Kwak

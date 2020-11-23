@@ -13,7 +13,7 @@
       @click:item="clickItem"
     />
     <v-list-item
-      v-else
+      v-else-if="!menu.hidden"
       color="accent"
       link
       :to="{ name: menu.name }"

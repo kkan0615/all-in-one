@@ -51,21 +51,21 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import TopFilter from '@/components/TopFIlter/index.vue'
-import Card from '@/views/Card/List/components/card.vue'
-import SettingButton from '@/views/Card/List/components/SettingButton.vue'
+import Card from '@/views/Sample/CardTableSwapper/components/card.vue'
+import SettingButton from '@/views/Sample/CardTableSwapper/components/SettingButton.vue'
 import {
   DEFAULT_GRID_COLUMN_SIZE,
   DEFAULT_TABLE_PAGING_SIZE
-} from '@/views/Card/List/data/defaultValues'
-import { TypeOfViews, TypeOfVisible } from '@/views/Card/List/types/settings'
-import Table from '@/views/Card/List/components/Table.vue'
+} from '@/views/Sample/CardTableSwapper/data/defaultValues'
+import { TypeOfViews, TypeOfVisible } from '@/views/Sample/CardTableSwapper/types/settings'
+import Table from '@/views/Sample/CardTableSwapper/components/Table.vue'
 
 /**
  * @author - Youngjin Kwak
  * @description -
  */
 @Component({
-  name: 'CardList',
+  name: 'CardTableSwapper',
   components: {
     Table,
     SettingButton,
@@ -73,7 +73,7 @@ import Table from '@/views/Card/List/components/Table.vue'
     TopFilter
   },
 })
-export default class CardList extends Vue {
+export default class CardTableSwapper extends Vue {
   private currentGridColumnSize = DEFAULT_GRID_COLUMN_SIZE
   private currentPagingSize = DEFAULT_TABLE_PAGING_SIZE
   private typeOfViews: TypeOfViews = 'grid'

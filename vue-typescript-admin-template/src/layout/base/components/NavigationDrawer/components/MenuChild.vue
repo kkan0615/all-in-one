@@ -14,13 +14,14 @@
     <template v-slot:activator>
       <v-list-item-content>
         <v-list-item-title>{{ menu.meta.title }}</v-list-item-title>
-        <v-list-item-subtitle>
-          {{ menu.meta.description }}
-        </v-list-item-subtitle>
+        <!--        <v-list-item-subtitle>-->
+        <!--          {{ menu.meta.description }} -->
+        <!--        </v-list-item-subtitle>-->
       </v-list-item-content>
     </template>
 
     <v-list
+      v-if="menu.meta.isForGroup"
       dense
       class="pa-0"
       color="background"
