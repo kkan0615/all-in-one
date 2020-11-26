@@ -1,35 +1,62 @@
 <template>
   <div>
-    MainDashboard
-
-    <p>Cookies: {{ cookiesInfo }}</p>
-    <p>Users: {{ users }}</p>
-    <p>{{ 'FF' & 'FF' }}</p>
+    <v-row>
+      <v-col
+        v-for="numberCardOption in numberCardOptions"
+        :key="numberCardOption._id"
+        :cols="12"
+        :md="3"
+        :lg="3"
+        :xl="3"
+      >
+        <number-card
+          :number-card-option="numberCardOption"
+        />
+      </v-col>
+      <v-col
+        :cols="12"
+        :md="6"
+        :lg="6"
+        :xl="6"
+      >
+        <line-chart />
+      </v-col>
+      <v-col
+        :cols="12"
+        :md="6"
+        :lg="6"
+        :xl="6"
+      >
+        <simple-bar-chart />
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { SnackbarState } from '@/store/modules/alert'
-import Cookies from 'js-cookie'
+import NumberCard from './components/card.vue'
+import { numberCardOptions } from '@/views/Dashboard/Main/data'
+import { generatorIntegerRandom } from '@/utils/random'
+import LineChart from '@/views/Dashboard/Main/components/lineChart.vue'
+import SimpleBarChart from '@/views/Dashboard/Main/components/simpleBarChart.vue'
 
 @Component({
   name: 'MainDashboard',
+  components: {
+    SimpleBarChart,
+    LineChart,
+    NumberCard
+  }
 })
 export default class MainDashboard extends Vue {
-  mounted () {
-    this.$store.commit('alert/showSnackBar', {
-      content: 'Success to pass through store',
-      color: 'info',
-    } as SnackbarState)
-  }
+  private numberCardOptions = numberCardOptions
 
-  private get cookiesInfo () {
-    return Cookies.getJSON()
-  }
-
-  private get users () {
-    return this.$store.state.user
+  created () {
+    this.numberCardOptions = numberCardOptions.map(numberCardOption => {
+      numberCardOption.value = generatorIntegerRandom(99999)
+      return numberCardOption
+    })
   }
 }
 </script>

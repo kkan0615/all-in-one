@@ -10,7 +10,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
       icon: 'dashboard',
       isForGroup: true,
       menuType: 'desktop',
-      margin: 12,
+      margin: 10,
       role: undefined,
       title: 'Dash Board'
     },
@@ -23,7 +23,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
           icon: 'dashboard',
           isForGroup: false,
           menuType: 'desktop',
-          margin: 12,
+          margin: 10,
           role: undefined,
           title: 'Main DashBoard'
         }

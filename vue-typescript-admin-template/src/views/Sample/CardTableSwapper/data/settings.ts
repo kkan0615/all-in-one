@@ -1,4 +1,4 @@
-import { ViewTypeList } from '@/views/Card/List/types/settings'
+import { ViewTypeList } from '@/views/Sample/CardTableSwapper/types/settings'
 
 export const viewTypeList: Array<ViewTypeList> = [
   {
