@@ -13,21 +13,36 @@
           :number-card-option="numberCardOption"
         />
       </v-col>
+      <!--      <v-col-->
+      <!--        :cols="12"-->
+      <!--        :md="6"-->
+      <!--        :lg="6"-->
+      <!--        :xl="6"-->
+      <!--      >-->
+      <!--        <line-chart />-->
+      <!--      </v-col>-->
+      <!--      <v-col-->
+      <!--        :cols="12"-->
+      <!--        :md="6"-->
+      <!--        :lg="6"-->
+      <!--        :xl="6"-->
+      <!--      >-->
+      <!--        <simple-bar-chart />-->
+      <!--      </v-col>-->
       <v-col
+        v-for="chartOption in chartOptions"
+        :key="chartOption._id"
         :cols="12"
-        :md="6"
-        :lg="6"
-        :xl="6"
+        :md="chartOption.md"
+        :lg="chartOption.lg"
+        :xl="chartOption.xl"
       >
-        <line-chart />
-      </v-col>
-      <v-col
-        :cols="12"
-        :md="6"
-        :lg="6"
-        :xl="6"
-      >
-        <simple-bar-chart />
+        <basic-chart
+          :id="chartOption._id"
+          :title="chartOption.title"
+          :option="chartOption.option"
+          :height="chartOption.height"
+        />
       </v-col>
     </v-row>
   </div>
@@ -36,14 +51,17 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import NumberCard from './components/card.vue'
-import { numberCardOptions } from '@/views/Dashboard/Main/data'
+import { chartOptions, numberCardOptions } from '@/views/Dashboard/Main/data'
 import { generatorIntegerRandom } from '@/utils/random'
 import LineChart from '@/views/Dashboard/Main/components/lineChart.vue'
 import SimpleBarChart from '@/views/Dashboard/Main/components/simpleBarChart.vue'
+import BasicChart from '@/components/Chart/Basic/index.vue'
+import { ChartOption } from '@/types/chartOption'
 
 @Component({
   name: 'MainDashboard',
   components: {
+    BasicChart,
     SimpleBarChart,
     LineChart,
     NumberCard
@@ -51,6 +69,8 @@ import SimpleBarChart from '@/views/Dashboard/Main/components/simpleBarChart.vue
 })
 export default class MainDashboard extends Vue {
   private numberCardOptions = numberCardOptions
+  private chartOptions: Array<ChartOption> = chartOptions
+
 
   created () {
     this.numberCardOptions = numberCardOptions.map(numberCardOption => {

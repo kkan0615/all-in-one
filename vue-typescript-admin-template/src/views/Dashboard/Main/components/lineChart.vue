@@ -25,7 +25,7 @@
     <v-card-text>
       <div
         :id="id"
-        :style="{height: '500px', width: '100%'}"
+        :style="{height: '350px', width: '100%'}"
       />
     </v-card-text>
   </v-card>
