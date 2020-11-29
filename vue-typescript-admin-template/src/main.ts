@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import i18n from '@/lang'
 import vuetify from './plugins/vuetify'
+import '@/plugins/registerServiceWorker'
 /* Cookie - https://www.npmjs.com/package/vue-cookies */
 import VueCookies from 'vue-cookies'
 /* Default setting of axios */

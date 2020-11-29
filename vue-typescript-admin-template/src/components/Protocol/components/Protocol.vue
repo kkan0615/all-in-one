@@ -7,15 +7,11 @@ s
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
-  @Component({
-    name: 'Protocol',
-  })
+@Component({
+  name: 'Protocol',
+})
 export default class Protocol extends Vue {
-    @Prop() propMessage = 'message Prop'
-    public message = 'message'
-
-    mounted () {
-
-    }
+  @Prop() propMessage = 'message Prop'
+  public message = 'message'
 }
 </script>
