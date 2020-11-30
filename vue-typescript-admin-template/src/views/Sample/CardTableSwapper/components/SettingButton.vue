@@ -95,31 +95,10 @@
           <v-subheader>View Type</v-subheader>
           <v-list-item-group
             color="primary"
+            mandatory
             :value="numberTypeOfViews"
             @change="changeTypeOfViews"
           >
-            <!--            &lt;!&ndash; Table &ndash;&gt;-->
-            <!--            <v-list-item>-->
-            <!--              <v-list-item-icon>-->
-            <!--                <v-icon>table_chart</v-icon>-->
-            <!--              </v-list-item-icon>-->
-            <!--              <v-list-item-content>-->
-            <!--                <v-list-item-title>-->
-            <!--                  Table-->
-            <!--                </v-list-item-title>-->
-            <!--              </v-list-item-content>-->
-            <!--            </v-list-item>-->
-            <!--            &lt;!&ndash; Grid &ndash;&gt;-->
-            <!--            <v-list-item>-->
-            <!--              <v-list-item-icon>-->
-            <!--                <v-icon>view_comfy</v-icon>-->
-            <!--              </v-list-item-icon>-->
-            <!--              <v-list-item-content>-->
-            <!--                <v-list-item-title>-->
-            <!--                  Grid-->
-            <!--                </v-list-item-title>-->
-            <!--              </v-list-item-content>-->
-            <!--            </v-list-item>-->
             <v-list-item
               v-for="type in viewTypeList"
               :key="type.dataField"
@@ -134,6 +113,20 @@
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
+          <v-list-item>
+            <v-list-item-content>
+              <v-select
+                :label="typeOfViews === 'grid' ? 'Column Size' : 'Paging Size'"
+                :value="typeOfViews === 'grid' ? currentGridColumnSize : currentPagingSize"
+                dense
+                outlined
+                filled
+                hide-details
+                :items="typeOfViews === 'grid' ? columnsSizeOptions : pagingSizeOptions"
+                @change="changeSizeSelect"
+              />
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
       </v-card-text>
     </v-card>
@@ -146,8 +139,9 @@ import {
   DEFAULT_GRID_COLUMN_SIZE,
   DEFAULT_TABLE_PAGING_SIZE
 } from '@/views/Sample/CardTableSwapper/data/defaultValues'
-import { TypeOfViews, TypeOfVisible, ViewTypeList } from '@/views/Sample/CardTableSwapper/types/settings'
+import { TypeOfViews, TypeOfVisible } from '@/views/Sample/CardTableSwapper/types/settings'
 import { viewTypeList } from '@/views/Sample/CardTableSwapper/data/settings'
+import { SnackbarState } from '@/store/modules/alert'
 
 /**
  * @author - Youngjin Kwak
@@ -171,27 +165,48 @@ export default class SettingButton extends Vue {
   private viewTypeList = viewTypeList
 
   private get numberTypeOfViews () {
-    console.log(this.typeOfViews === 'table' ? 0 : 1)
     return this.typeOfViews === 'table' ? 0 : 1
+  }
+
+  private changeSizeSelect (value: number) {
+    switch (this.typeOfViews) {
+      case 'grid':
+        this.changeCurrentGridColumnSize(value)
+        break
+      case 'table':
+        this.changeCurrentPagingSize(value)
+        break
+      default:
+        this.$store.commit('alert/showSnackBar', {
+          content: 'Setting option get the bug, please press \'F5\'',
+          color: 'success',
+        } as SnackbarState)
+        break
+    }
   }
 
   @Emit('changeCurrentGridColumnSize')
   private changeCurrentGridColumnSize (currentGridColumnSize: number) {
     this.$emit('update:currentGridColumnSize', currentGridColumnSize)
+
     return currentGridColumnSize
   }
 
   @Emit('changeCurrentPagingSize')
   private changeCurrentPagingSize (currentPagingSize: number) {
     this.$emit('update:currentPagingSize', currentPagingSize)
+
     return currentPagingSize
   }
 
-  @Emit('changeTypeOfViews')
-  private changeTypeOfViews (selectedListIndex: number) {
+  private changeTypeOfViews (selectedListIndex?: number) {
+    console.log(selectedListIndex)
+    if (selectedListIndex === undefined) return
+
     const typeOfViews = this.viewTypeList[selectedListIndex].dataField
+    console.log(typeOfViews)
     this.$emit('update:typeOfViews', typeOfViews)
-    return typeOfViews
+    this.$emit('changeTypeOfViews', typeOfViews)
   }
 }
 </script>

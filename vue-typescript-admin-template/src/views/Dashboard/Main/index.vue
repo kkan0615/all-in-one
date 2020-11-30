@@ -55,8 +55,8 @@ import { chartOptions, numberCardOptions } from '@/views/Dashboard/Main/data'
 import { generatorIntegerRandom } from '@/utils/random'
 import LineChart from '@/views/Dashboard/Main/components/lineChart.vue'
 import SimpleBarChart from '@/views/Dashboard/Main/components/simpleBarChart.vue'
-import BasicChart from '@/components/Chart/Basic/index.vue'
 import { ChartOption } from '@/types/chartOption'
+import BasicChart from '@/components/chart/Basic/index.vue'
 
 @Component({
   name: 'MainDashboard',
