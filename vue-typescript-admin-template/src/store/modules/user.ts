@@ -6,23 +6,23 @@ import authAxios from '@/axios/auth'
 import baseRoutes from '@/router/modules/base'
 import { UserReturnParams } from '@/types/serverParams'
 import router from '@/router'
+import { User } from '@/types/models/user'
+import { Role } from '@/types/models/role'
 
-export interface UserState {
-  _id: string;
+/**
+ * UserState include token and refreshToken used only for personal info
+ * @extends User - User information
+ */
+export interface UserState extends User{
   token: string;
   refreshToken: string;
-  nickname: string;
-  email: string;
   roleId: RoleState;
-  avatar: string;
 }
 
-export interface RoleState {
-  _id: string;
-  name: string;
-  grade: number;
-  remark: string;
-}
+/**
+ * If there is key value used only for personal info, change to interface from type
+ * */
+export type RoleState = Role
 
 export interface UserLoginState {
   userId: string;

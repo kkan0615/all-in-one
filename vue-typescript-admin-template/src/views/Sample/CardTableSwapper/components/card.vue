@@ -7,7 +7,7 @@
 <template>
   <v-skeleton-loader
     v-bind="attrs"
-    type="card-avatar, article, actions"
+    type="card-avatar, article, actions, card-heading"
   >
     <v-card
       v-if="value"
@@ -15,10 +15,10 @@
     >
       <v-img
         height="250"
-        src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+        :src="value._id === '5f5cc20b67681639f8989716' ? value.avatar : 'https://picsum.photos/500'"
       />
 
-      <v-card-title>Cafe Badilico</v-card-title>
+      <v-card-title>{{ value.nickname }}</v-card-title>
 
       <v-card-text>
         <v-row
@@ -80,20 +80,21 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import TopFilter from '@/components/TopFIlter/index.vue'
+import { User } from '@/types/models/user'
 
 /**
  * @author - Youngjin Kwak
  * @description -
  */
 @Component({
-  name: 'Card',
+  name: 'UserCard',
   components: {
     TopFilter
   },
 })
-export default class Card extends Vue {
-  @Prop()
-  private readonly value!: any
+export default class UserCard extends Vue {
+  @Prop({ required: false, type: Object })
+  private readonly value!: User
 
   private attrs = {
     color: 'secondary',

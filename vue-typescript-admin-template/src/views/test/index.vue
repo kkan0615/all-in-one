@@ -62,7 +62,7 @@ export default class Test extends Vue {
 
   async created () {
     const splitPath = this.$route.fullPath.split('/')
-    this.$loading.openFullScreenLoading()
+    await this.$loading.openFullScreenLoading()
     setTimeout(() => {
       this.$loading.closeFullScreenLoading()
     }, 1000)

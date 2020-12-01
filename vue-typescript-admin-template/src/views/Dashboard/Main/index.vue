@@ -71,7 +71,6 @@ export default class MainDashboard extends Vue {
   private numberCardOptions = numberCardOptions
   private chartOptions: Array<ChartOption> = chartOptions
 
-
   created () {
     this.numberCardOptions = numberCardOptions.map(numberCardOption => {
       numberCardOption.value = generatorIntegerRandom(99999)
