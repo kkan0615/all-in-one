@@ -1,13 +1,13 @@
 <!--
   Author: Youngjin Kwak
   CreatedAt: 11-18-2020
-  UpdatedAt: 11-18-2020
+  UpdatedAt: 12-02-2020
   Description: Sample Vue Page
 -->
 <!--
 @TODO
-1. debounce 연결,
-2. 로딩 가운데로 정렬
+1. 로딩 가운데로 정렬
+2. 인피니트 스크롤시 로딩후 스크롤 위로 올리기
 -->
 <template>
   <div
@@ -80,9 +80,11 @@ import {
 } from '@/views/Sample/CardTableSwapper/data/defaultValues'
 import { TypeOfViews, TypeOfVisible } from '@/views/Sample/CardTableSwapper/types/settings'
 import Table from '@/views/Sample/CardTableSwapper/components/Table.vue'
-import { User } from '@/types/models/user'
+import { UserCardValue } from './types/userCardValue'
 import { userSamples } from '@/samples/models/user'
 import UserCard from '@/views/Sample/CardTableSwapper/components/card.vue'
+import _ from 'lodash'
+import { generatorIntegerRandom } from '@/utils/random'
 
 /**
  * @author - Youngjin Kwak
@@ -99,7 +101,7 @@ import UserCard from '@/views/Sample/CardTableSwapper/components/card.vue'
 })
 export default class CardTableSwapper extends Vue {
   /* Users */
-  private users: Array<User> = []
+  private users: Array<UserCardValue> = []
   private currentGridColumnSize = DEFAULT_GRID_COLUMN_SIZE
   private currentPagingSize = DEFAULT_TABLE_PAGING_SIZE
   private typeOfViews: TypeOfViews = 'grid'
@@ -108,11 +110,13 @@ export default class CardTableSwapper extends Vue {
   private pageIndex = 0
   /* Loading for bottom */
   private scrollLoading = false
-  private test = 10
 
   async created () {
+    /* Start loading */
     await this.$loading.openFullScreenLoading()
+    /* Initialize users */
     await this.initUsers()
+    /* Stop the loading */
     await this.$loading.closeFullScreenLoading()
   }
 
@@ -123,6 +127,7 @@ export default class CardTableSwapper extends Vue {
 
   beforeDestroy () {
     this.removeInfiniteScroll()
+
   }
 
   private mountInfiniteScroll () {
@@ -133,18 +138,35 @@ export default class CardTableSwapper extends Vue {
     window.removeEventListener('scroll', this.infiniteScroll)
   }
 
-  private async infiniteScroll () {
+  // private async infiniteScroll () {
+  //   /* If it's already in loading status, return*/
+  //   if(this.scrollLoading) return
+  //
+  //   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+  //     await this.loadMoreUsers()
+  //     if (this.test < 40)
+  //       this.test += 10
+  //   }
+  // }
+
+  private infiniteScroll = _.throttle(async () => {
+    /* If it's already in loading status, return*/
+    if(this.scrollLoading) return
+
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       await this.loadMoreUsers()
-      if (this.test < 40)
-        this.test += 10
     }
-  }
+  })
 
   private async initUsers () {
     // @TODO: CHANGE TO FRONT MODE
     if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'frontMode') {
-      this.users = userSamples.slice(this.pageIndex, (this.pageIndex + 1) * 20)
+      this.users = (userSamples.slice(this.pageIndex, (this.pageIndex + 1) * 20) as Array<UserCardValue>)
+        .map(userSample => {
+          userSample.loggedIn = generatorIntegerRandom(2) === 1
+          userSample.loading = false
+          return userSample
+        })
       this.pageIndex++
     }
     // console.log(process.env)
@@ -153,7 +175,14 @@ export default class CardTableSwapper extends Vue {
   private async loadMoreUsers () {
     this.scrollLoading = true
     if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'frontMode') {
-      const splicedUsers = userSamples.slice(this.pageIndex * 20,  (this.pageIndex + 1) * 20)
+      const splicedUsers = (userSamples.slice(this.pageIndex * 20,  (this.pageIndex + 1) * 20) as Array<UserCardValue>)
+        .map(userSample => {
+          userSample.loggedIn = generatorIntegerRandom(2) === 1
+          userSample.loading = false
+          return userSample
+        })
+
+      console.log(splicedUsers)
       if (!splicedUsers.length) {
         this.scrollLoading = false
         return

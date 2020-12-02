@@ -79,7 +79,7 @@ const baseRoutes: Array<CustomRouteConfig> = [
         component: () => import('@/views/Sample/CardTableSwapper/index.vue'),
         meta: {
           icon: 'view_module',
-          margin: 12,
+          margin: 10,
           isForGroup: false,
           menuType: 'desktop',
           role: undefined,
