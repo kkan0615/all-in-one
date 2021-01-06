@@ -15,7 +15,7 @@
     "@types/js-cookie": "^2.2.6",
     "@types/vuedraggable": "^2.23.1",
     "apollo-boost": "^0.4.7",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "core-js": "^3.6.4",
     "echarts": "^4.8.0",
     "eslint-config-prettier": "^6.10.0",
