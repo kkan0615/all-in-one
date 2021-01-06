@@ -13,7 +13,7 @@
     "@types/echarts": "^4.9.2",
     "@types/js-cookie": "^2.2.6",
     "@types/socket.io-client": "^1.4.34",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "devextreme": "^20.1.7",
     "devextreme-vue": "^20.1.7",
     "echarts": "^4.9.0",
