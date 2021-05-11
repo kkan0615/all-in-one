@@ -11,7 +11,7 @@
     "@types/lodash": "^4.14.157",
     "@types/node": "^14.0.14",
     "@types/vuedraggable": "^2.23.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "material-design-icons-iconfont": "^5.0.1",
     "tiptap": "^1.27.1",
     "tiptap-extensions": "^1.29.1",
